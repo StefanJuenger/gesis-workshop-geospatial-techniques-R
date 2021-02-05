@@ -31,5 +31,21 @@ When social scientists aim to use geospatial data, they must rely on specialized
 ## Exercises
 [Exercise 1_1_1: Package Installation](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_question.html)
 
+[Exercise 1_4_1: Basic Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_1_Basic_Raster_Operations_question.html)
+
+[Exercise 1_4_2: : Fancier Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_question.html)
+
+[Exercise 2_1_1: Working with OSM Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_1_Working_with_OSM_data_question.html)
+
+[Exercise 2_1_2: Wrangling the German Census](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_question.html)
+
 ## Solutions
 [Exercise 1_1_1: Package Installation](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_1_1_Package_Installation_solution.html)
+
+[Exercise 1_4_1: Basic Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_1_Basic_Raster_Operations_solution.html)
+
+[Exercise 1_4_2: : Fancier Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_solution.html)
+
+[Exercise 2_1_1: Working with OSM Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_1_Working_with_OSM_data_solution.html)
+
+[Exercise 2_1_2: Wrangling the German Census](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_solution.html)
