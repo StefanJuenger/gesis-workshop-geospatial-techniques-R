@@ -1,0 +1,59 @@
+---
+title: 'Exercise 1_1_1: Package Installation'
+author: 'Stefan Jünger & Anne Kathrin Stroppe'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+As this is the very first exercise in this workshop it is quite easy and short. Its purpose is  to get used to this exercise format and, more importantly, to install all necessary packages for this course.
+
+*Note*: You can find the solutions for this exercise as well as all other exercises in the `solutions` folder in the repo/directory that contains the course materials. You can copy code from these exercise files by clicking on the small blue clipboard icon in the upper right corner of the code boxes.
+
+And here comes our very first exercise (which is not very spatial...):
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Please install all packages that are listed on slide X of the Introduction slides ("1_1_Intro.html").
+```
+
+```{block, opts.label = "clues"}
+We recommend using the `easypackages` packages, which can be installed with the command `install.packages("easypackages")`. After loading the package with `library(easypackages)` you can load *and* install packages with the command `easypackages::packages("fancy_package_1", "fancy_package_2", ...)`. You can also install packages from Gihub just by adding the Github user's name in front of the package name, e.g., `DavidHasselhof/fancy_package_3`.
+```
+
+```{r first.exercise, solution = TRUE}
+easypackages::packages(
+  "dplyr",
+  "ggplot2",
+  "ggsn",
+  "haven",
+  "maptools",
+  "osmdata",
+  "OpenStreetMap",
+  "reticulate",
+  "sf",
+  "spatstat",
+  "stars",
+  "tmap",
+  "tmaptools",
+  "raster",
+  "StefanJuenger/z11"
+)
+```
+
+That's it. Please notify us if there are any issues with installing the packages or, more generally, your `R` installation.
