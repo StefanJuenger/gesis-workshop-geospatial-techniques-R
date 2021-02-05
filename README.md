@@ -29,5 +29,7 @@ When social scientists aim to use geospatial data, they must rely on specialized
 [Advanced Maps II](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_3_Advanced_Maps_II/2_3_Advanced_Maps_II.html)
 
 ## Exercises
+[Exercise 1_1_1: Package Installation](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_question.html)
 
 ## Solutions
+[Exercise 1_1_1: Package Installation](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_solution.html)
