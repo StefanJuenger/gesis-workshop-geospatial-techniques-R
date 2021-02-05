@@ -1,0 +1,106 @@
+---
+title: 'Exercise 2_1_2: Wrangling the German Census'
+author: 'Stefan Jünger & Anne Kathrin Stroppe'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+
+library(dplyr)
+library(raster)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Download the 1 km² attribute for the German Census 2011 immigrant rate, which has the German name `Auslaender_A`. Then download the data for the vacany rate (German name: `Leerstandsquote`) in the same raster resolution. Make sure to properly define missing values.
+```
+
+```{block, opts.label = "clues"}
+The function for downloading is `z11::z11_get_1km_attribute()` and the one for listing all attributes of this size `z11::z11_list_1km_attributes()`. There you can also see both of the data names.
+```
+
+```{r first, solution = TRUE}
+immigrant_rate_1km <-
+  z11::z11_get_1km_attribute(Auslaender_A)
+
+immigrant_rate_1km[immigrant_rate_1km <= -1] <- NA
+
+vacany_rate_1km <-
+  z11::z11_get_1km_attribute(Leerstandsquote)
+
+vacany_rate_1km[vacany_rate_1km <= -1] <- NA
+
+immigrant_rate_1km
+vacany_rate_1km
+```
+
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+Crop both datasets to the extent of the city of Berlin.
+```
+
+```{block, opts.label = "clues"}
+You can use the `osmdata:getbb()` function to receive a proper polygon for this purpose. Make sure to only extract the `multipolygon` and to convert it to the EPSG:3035 CRS.
+```
+
+```{r second, solution = TRUE}
+berlin <-
+  osmdata::getbb("Berlin", format_out = "sf_polygon") %>% 
+  .$multipolygon %>% 
+  sf::st_transform(3035)
+
+immigrant_rate_1km_berlin <-
+  raster::crop(immigrant_rate_1km, berlin)
+
+vacancy_rate_1km_berlin <-
+  raster::crop(vacany_rate_1km, berlin)
+```
+
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+That's an open exercise: How would you try to conduct a basic correlational analysis of both raster data attributes?
+```
+
+```{block, opts.label = "clues"}
+Remember that you can extract the whole raster data as a simple vector using `raster::getValues()`
+```
+
+```{r third, solution = TRUE}
+immigrant_rate_1km_berlin_z <-
+  scale(immigrant_rate_1km_berlin)
+
+vacancy_rate_1km_berlin_z <-
+  scale(vacancy_rate_1km_berlin)
+
+
+cor.test(
+  raster::getValues(immigrant_rate_1km_berlin_z), 
+  raster::getValues(vacancy_rate_1km_berlin_z),
+  na.rm = TRUE
+)
+
+where_both_are_high <- immigrant_rate_1km_berlin_z
+where_both_are_high[
+  immigrant_rate_1km_berlin_z <= 1 | vacancy_rate_1km_berlin_z <= 1
+  ] <- 0
+where_both_are_high[
+  immigrant_rate_1km_berlin_z >= 1 & vacancy_rate_1km_berlin_z >= 1
+  ] <- 1
+
+raster::plot(where_both_are_high)
+```

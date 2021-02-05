@@ -1,0 +1,116 @@
+---
+title: 'Exercise 2_1_1: Working with OSM Data'
+author: 'Stefan Jünger & Anne Kathrin Stroppe'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+
+library(dplyr)
+
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Pick a city of the world to your liking and retrieve its bounding box. Then plot it: What do you see?
+```
+
+```{block, opts.label = "clues"}
+The function you may search is part of the `osmdata` package.
+```
+
+```{r first, solution = TRUE}
+dresden <-
+  osmdata::getbb("Dresden")
+
+plot(dresden)
+
+# We see two points, which build the extremes of the bounding box.
+```
+
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+Choose one or two building types you are interested in and set them as key and value pairs. You can find a list of building types in the [Overpass API documentation](https://wiki.openstreetmap.org/wiki/Key:building). But don't forget to set the timeout query parameters first usind the `osmdata::opq()` function.
+```
+
+```{block, opts.label = "clues"}
+First, you specify the bounding box like before, second, the query parameters, and third, the key and value pairs. Try two use a pipe workflow as it makes it a bit easier.
+```
+
+```{r second, solution = TRUE}
+dresden <-
+  osmdata::getbb("Dresden") %>% 
+  osmdata::opq(timeout = 25*100) %>% 
+  osmdata::add_osm_feature(
+    key = "building", 
+    value = c("house", "residential")
+  )
+```
+
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+Download the data using the `osmadata::osmdata_sf()` function and extract only the polygons. 
+```
+
+```{block, opts.label = "clues"}
+The downloaded data are actually a list. The polygons are a named list element that you can extract with its name `osm_polygons`, just like a variable in a data table.
+```
+
+```{r third, solution = TRUE}
+dresden <-
+  osmdata::getbb("Dresden") %>% 
+  osmdata::opq(timeout = 25*100) %>% 
+  osmdata::add_osm_feature(
+    key = "building", 
+    value = c("house", "residential")
+  ) %>% 
+  osmdata::osmdata_sf() %>% 
+  .$osm_polygons
+```
+
+
+```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
+Take some time to browse through the data. Depending on the building type you have chosen, you may find some interesting information. You can also plot the data you have just downloaded.
+```
+
+```{block, opts.label = "clues"}
+You may consider converting the data into a tibble using `tibble::as_tibble()` and maybe a `sf::st_as_sf()` afterwards for a nicer browsing experience.
+```
+
+```{r fourth, solution = TRUE}
+library(tmap)
+
+dresden <-
+  osmdata::getbb("Dresden") %>% 
+  osmdata::opq(timeout = 25*100) %>% 
+  osmdata::add_osm_feature(
+    key = "building", 
+    value = c("house", "residential")
+  ) %>% 
+  osmdata::osmdata_sf() %>% 
+  .$osm_polygons %>% 
+  tibble::as_tibble() %>% 
+  sf::st_as_sf()
+
+dresden
+
+tm_shape(dresden) +
+  tm_polygons()
+```
+
+
