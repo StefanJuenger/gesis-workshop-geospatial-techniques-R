@@ -1,0 +1,117 @@
+---
+title: 'Exercise 1_4_1: Basic Raster Operations'
+author: 'Stefan Jünger & Anne Kathrin Stroppe'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Create a matrix with 8 rows and 8 columns filles with random numbers in  a range between 1 and 1000.
+```
+
+```{block, opts.label = "clues"}
+You can use the `sample()` function to create the create the numbers.
+```
+
+```{r first, solution = TRUE}
+library(dplyr)
+
+fancy_matrix <-
+  sample(1:1000, 8*8, replace = TRUE) %>% 
+  matrix(nrow = 8, ncol = 8)
+
+fancy_matrix
+```
+
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+Now use this matrix to create a raster layer and plot it.
+```
+
+```{block, opts.label = "clues"}
+The `raster()` function can be fed with matrices to create a raster layer.
+```
+
+```{r second, solution = TRUE}
+library(raster)
+
+fancy_raster_layer <-
+  raster::raster(fancy_matrix)
+
+raster::plot(fancy_raster_layer)
+```
+
+The `raster()` function can not only be used to create raster data on the fly, which is also not very interesting. Instead, we can use it to import already prepared to data.
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+Import one of the raster `.tiff`  files in the `./data/` folder of the workshop directory (repository). Do you get any warning messages?
+```
+
+```{block, opts.label = "clues"}
+Make sure your file paths are set correctly. You can check them with `getwd()`. Setting is done with `setwd()`.
+```
+
+```{r third, solution = TRUE}
+immigrants_cologne <-
+  raster::raster("../data/immigrants_cologne.tif")
+
+# The warning message is due to the current transition of CRS definition 
+# systems. You can ignore it in this course.
+```
+
+
+```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
+Import the data on Immigrants, Germans, and Inhabitants. Add up the Immigrants and Germans to a new layer. Then subtract this new layer from the Inhabitants layer to check whether the inhabitants layer is the same as the sum of Immigrants and Germans. Is it?
+```
+
+```{block, opts.label = "clues"}
+You can handle raster layers as any simple data table using `+` and `-` operators.
+```
+
+```{r fourth, solution = TRUE}
+# load all layers
+immigrants_cologne <-
+  raster::raster("../data/immigrants_cologne.tif")
+
+germans_cologne <-
+  raster::raster("../data/germans_cologne.tif")
+
+inhabitants_cologne <-
+  raster::raster("../data/inhabitants_cologne.tif")
+
+# create sum layer
+immigrants_germans_sum <-
+  immigrants_cologne + germans_cologne
+
+# create difference layer
+difference_layer <-
+  inhabitants_cologne - immigrants_germans_sum
+
+difference_layer
+
+# get a summary statistic
+summary(difference_layer)
+
+# create a table of counts
+difference_layer %>% 
+  as.data.frame() %>% 
+  table()
+```
