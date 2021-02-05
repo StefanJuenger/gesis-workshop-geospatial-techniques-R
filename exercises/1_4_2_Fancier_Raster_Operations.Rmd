@@ -1,0 +1,92 @@
+---
+title: 'Exercise 1_4_2: Fancier Raster Operations'
+author: 'Stefan Jünger & Anne Kathrin Stroppe'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Sample 50 points that fall within the boundaries of the city of Cologne. You will find the shapefile in the `./data/` folder.
+```
+
+```{block, opts.label = "clues"}
+This is no raster file, so you would need the `sf::read_sf()` function to load the data. Sampling is straightforward: Just apply the `sf::st_sample` to the loaded shapefile, but make sure to apply the `sf::st_as_sf()` function afterwards to receive a full-fledged data table (with a geometry column only).
+```
+
+```{r first, solution = TRUE}
+library(dplyr)
+
+cologne <-
+  sf::read_sf("../data/cologne.shp")
+
+cologne_50_points <-
+  cologne %>% 
+  sf::st_sample(50) %>% 
+  sf::st_as_sf()
+```
+
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+Create a new raster layer comprising immigrant rates in Cologne based on the raster layers from the previous exercises.
+```
+
+```{block, opts.label = "clues"}
+You would need the `immigrants_cologne.tif` and `inhabitants_cologne.tif` files in the `./data/` folder.
+```
+
+```{r second, solution = TRUE}
+library(raster)
+
+immigrant_rates <-
+  raster::raster("../data/immigrants_cologne.tif") * 100 /
+  raster::raster("../data/inhabitants_cologne.tif")
+```
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+Extract the immigrant rate value at each position of the previously sampled points as a vector. What is your observation?
+```
+
+```{block, opts.label = "clues"}
+Remember that the German Census 2011 data are rather sparse due to some severe data protections measures.
+```
+
+```{r third, solution = TRUE}
+immigrant_rates_at_point <-
+  raster::extract(immigrant_rates, cologne_50_points)
+
+# There may be a lot of missing values.
+```
+
+```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
+Use a more adequate method of raster extraction to gather information in the geographic surrounding of a point. What is your observation now?
+```
+
+```{block, opts.label = "clues"}
+Assume that people move in a 500 meters radius around their location. Thus, extracting information on buffers of 500 meters around the points might be interesting using the option `buffer = 500`. In that case, you should also set a descriptive statistics function, e.g., with the option `fun = mean`. 
+```
+
+```{r fourth, solution = TRUE}
+immigrant_rates_500m_buffer <-
+  raster::extract(immigrant_rates, cologne_50_points, buffer = 500, fun = mean)
+
+# There may be a lot of missing values.
+```
+
