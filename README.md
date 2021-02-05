@@ -12,14 +12,20 @@ When social scientists aim to use geospatial data, they must rely on specialized
 ## Slides
 ### Day 1
 [Introduction](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_1_Introduction/1_1_Introduction.html)
+
 [Vector Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_2_Vector_Data/1_2_Vector_Data.html)
+
 [Basic Maps](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_3_Basic_Maps/1_3_Basic_Maps.html)
+
 [Raster Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_4_Raster_Data/1_4_Raster_Data.html)
 
 ### Day 2
 [Advanced Data Import](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_1_Advanced_Data_Import/2_1_Advanced_Data_Import.html)
+
 [Applied Data Wrangling](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_2_Applied_Data_Wrangling/2_2_Applied_Data_Wrangling.html)
+
 [Advanced Maps I](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_3_Advanced_Maps_I/2_3_Advanced_Maps_I.html)
+
 [Advanced Maps II](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_3_Advanced_Maps_II/2_3_Advanced_Maps_II.html)
 
 ## Exercises
