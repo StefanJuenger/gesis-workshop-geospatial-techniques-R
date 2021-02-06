@@ -41,6 +41,7 @@ When social scientists aim to use geospatial data, they must rely on specialized
 
 [Exercise 2_4_1: Pre-Shaping Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_1_Pre-Shaping_Data_question.html)
 
+[Exercise 2_4_2: Drawing Custom Elements](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_2_Drawing_Custom_Elements_question.html)
 
 ## Solutions
 [Exercise 1_1_1: Package Installation](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_1_1_Package_Installation_solution.html)
@@ -54,3 +55,7 @@ When social scientists aim to use geospatial data, they must rely on specialized
 [Exercise 2_1_2: Wrangling the German Census](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_solution.html)
 
 [Exercise 2_4_1: Pre-Shaping Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_1_Pre-Shaping_Data_solution.html)
+
+[Exercise 2_4_2: Drawing Custom Elements](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_2_Drawing_Custom_Elements_solution.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_2_Drawing_Custom_Elements_solution.html)
