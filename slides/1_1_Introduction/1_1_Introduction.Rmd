@@ -117,10 +117,8 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
   - data management & data privacy
   - reproducible research
 
-[stefan.juenger@gesis.org](mailto:stefan.juenger@gesis.org)
-
-[@StefanJuenger](https://twitter.com/StefanJuenger)
-
+[stefan.juenger@gesis.org](mailto:stefan.juenger@gesis.org) |
+[@StefanJuenger](https://twitter.com/StefanJuenger) |
 [https://stefanjuenger.github.io](https://stefanjuenger.github.io)
 
 ---
@@ -137,8 +135,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
   - infrastructural inequalities & political alienation
   - quantitative methods of the social sciences
 
-[anne-kathrin.stroppe@gesis.org](mailto:anne-kathrin.stroppe@gesis.org)
-
+[anne-kathrin.stroppe@gesis.org](mailto:anne-kathrin.stroppe@gesis.org) |
 [@AStroppe](https://twitter.com/AStroppe)
 
 ---
@@ -499,24 +496,24 @@ knitr::include_graphics("./img/sf.jpg")
 During the course we will use plenty of different packages, but only a few are our main drivers (e.g., die `sf` package). Here's the list of packages
 
 .pull-left[
-- `dplyr`
-- `ggplot2`
-- `ggsn`
-- `haven`
-- `maptools`
-- `osmdata`
-- `OpenStreetMap`
-- `reticulate` (optional)
-- `sf`
+- [`dplyr`](https://cran.r-project.org/web/packages/dplyr/index.html)
+- [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html)
+- [`ggsn`](https://cran.r-project.org/web/packages/ggsn/index.html)
+- [`haven`](https://cran.r-project.org/web/packages/haven/index.html)
+- [`maptools`](https://cran.r-project.org/web/packages/maptools/index.html)
+- [`osmdata`](https://cran.r-project.org/web/packages/osmdata/index.html)
+- [`OpenStreetMap`](https://cran.r-project.org/web/packages/OpenStreetMap/index.html)
+- [`reticulate`](https://cran.r-project.org/web/packages/reticulate/index.html) (optional)
+- [`sf`](https://cran.r-project.org/web/packages/sf/index.html)
 ]
 
 .pull-right[
-- `spatstat`
-- `stars`
-- `tmap`
-- `tmaptools`
-- `raster`
-- `z11`
+- [`spatstat`](https://cran.r-project.org/web/packages/spatstat/index.html)
+- [`stars`](https://cran.r-project.org/web/packages/stars/index.html)
+- [`tmap`](https://cran.r-project.org/web/packages/tmap/index.html)
+- [`tmaptools`](https://cran.r-project.org/web/packages/tmaptools/index.html)
+- [`raster`](https://cran.r-project.org/web/packages/raster/index.html)
+- [`z11`](https://github.com/StefanJuenger/z11)
 ]
 
 *Note*: Some additional packages will be installed as dependencies.
@@ -526,9 +523,9 @@ During the course we will use plenty of different packages, but only a few are o
 class: middle
 ## Exercise 1_1_1: Package Installation
 
-.center[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_question.html)
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_question.html)
 
-.center[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_solution.html)
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_solution.html)
 
 ---
 
