@@ -3,8 +3,8 @@ title: 'Exercise 2_4_1: Pre-Shaping Data'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  # unilur::tutorial_html: default
-  unilur::tutorial_html_solution: default
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}

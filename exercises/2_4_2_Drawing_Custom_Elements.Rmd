@@ -1,0 +1,183 @@
+---
+title: 'Exercise 2_4_2: Drawing Custom Elements'
+author: 'Stefan Jünger & Anne Kathrin Stroppe'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+
+library(dplyr)
+library(ggplot2)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+In this exercise, we are going to re-use the results from the previous one. If you don't have them available, just fire up the code below.
+
+```{r pre-code, echo = FALSE, include = FALSE}
+library(dplyr)
+library(ggplot2)
+
+gesis_cologne <-
+  tmaptools::geocode_OSM(
+    "Unter Sachsenhausen 6, 50667 Köln", 
+    as.sf = TRUE,
+    geometry = "point"
+    ) %>% 
+  sf::st_transform(3035) %>% 
+  dplyr::select(query, geometry = point)
+
+bboxing <- function(input_point) {
+  sf::st_bbox(
+    c(
+      xmin = sf::st_coordinates(input_point)[1] - 1000,
+      xmax = sf::st_coordinates(input_point)[1] + 1000,
+      ymax = sf::st_coordinates(input_point)[2] + 1000,
+      ymin = sf::st_coordinates(input_point)[2] - 1000
+    ),
+    crs = sf::st_crs(3035)
+  )
+}
+
+gesis_bbox <- bboxing(gesis_cologne)
+
+cologne_roads <-
+  osmdata::getbb("Köln") %>% 
+  osmdata::opq(timeout = 25*100) %>%
+  osmdata::add_osm_feature(
+    "highway", 
+    c("trunk", "primary", "secondary", "tertiary")
+  )%>% 
+  osmdata::osmdata_sf() %>% 
+  .$osm_lines %>% 
+  sf::st_transform(3035)
+
+gesis_roads <-
+  cologne_roads %>% 
+  sf::st_crop(gesis_bbox)
+
+rotate_data <- function(data, x_add = 0, y_add = 0) {
+  
+  shear_matrix <- function () { 
+    matrix(c(2, 1.2, 0, 1), 2, 2) 
+  }
+  
+  rotate_matrix <- function(x) { 
+    matrix(c(cos(x), sin(x), -sin(x), cos(x)), 2, 2) 
+  }
+  
+  data %>% 
+    dplyr::mutate(
+      geometry = 
+        .$geometry * shear_matrix() * rotate_matrix(pi/20) + c(x_add, y_add)
+    )
+}
+```
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Say, we want to draw a compass as a simple arrow on a map. What do you think would be a good position for a compass?
+```
+
+```{block, opts.label = "clues"}
+Think outside the box :-)
+```
+
+```{r first, solution = TRUE}
+# It depends on the map. Often compasses are placed where they don't cover any
+# other import elements of the map. If you're unsure, it might be a good idea
+# just to place it outside of the map frame.
+```
+
+Look at this code to create compass coordinates (for an arrow):
+
+```{r compass-data, eval = FALSE}
+gesis_cologne_compass_data <- 
+  (gesis_bbox + c(?, ?, ?, ?)) %>% 
+  sf::st_as_sfc() %>%
+  sf::st_sf()
+```
+
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+If we were to draw the compass arrow in the upper right corner, what do you think would be some reasonable offset values for the bounding box? The values define the start and end point of the arrow, thus they have to be adjusted to be vertical in space.
+```
+
+```{block, opts.label = "clues"}
+There is no right or wrong as we have to test them in the next step. So this is a mean question. But remember that the bounding box is 1000 meters on each side, and that the bounding box values are ordered this way: minimum x-value, minimum y-value, maximum x-value, and maximum y-value.
+```
+
+```{r second, solution = TRUE}
+gesis_cologne_compass_data <- 
+  (gesis_bbox + c(2200, 1000, 200, 0)) %>% 
+  sf::st_as_sfc() %>%
+  sf::st_sf()
+```
+
+Admittedly, drawing custom elements is a matter of fiddling around. We want to draw an arrow, and we didn't had this before. So here's a way to use our compass data and add it to an existing `ggplot`. Please feel free to adapt it to your liking.
+
+```{r geom-segment, eval = FALSE}
+geom_segment(
+  data = 
+    gesis_cologne_compass_data %>% 
+    rotate_data() %>% 
+    sf::st_bbox() %>% 
+    {data.frame(xmin = .$xmin, xmax = .$xmax, ymin = .$ymin, ymax = .$ymax)},
+  aes(x = xmin, y = ymin, xend = xmax, yend = ymax),
+  size = 1.2,
+  arrow = arrow(length = unit(0.2, "cm"), type = "closed")
+)
+```
+
+
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+Recreate the unrotated and the rotated map from Exercise 1_4_1 and add the pre-defined `geom_segment()`. Do your offset values from exercise "2" look nice? Adapt them, if not.
+```
+
+```{block, opts.label = "clues"}
+There's a lot of stuff happening on the map. Think about applying the `ggsn::blank()` function to remove all the clutter. Also, for the unrotated map you obviously don't need the `rotate_data()` function, right?
+```
+
+```{r third, solution = TRUE}
+# unrotated
+ggplot() +
+  geom_sf(data = gesis_roads) +
+  geom_segment(
+  data = 
+    gesis_cologne_compass_data %>% 
+    sf::st_bbox() %>% 
+    {data.frame(xmin = .$xmin, xmax = .$xmax, ymin = .$ymin, ymax = .$ymax)},
+  aes(x = xmin, y = ymin, xend = xmax, yend = ymax),
+  size = 1.2,
+  arrow = arrow(length = unit(0.2, "cm"), type = "closed")
+) +
+  ggsn::blank()
+
+# rotated
+ggplot() +
+  geom_sf(data = rotate_data(gesis_roads)) +
+  geom_segment(
+  data = 
+    gesis_cologne_compass_data %>% 
+    rotate_data() %>%  
+    sf::st_bbox() %>% 
+    {data.frame(xmin = .$xmin, xmax = .$xmax, ymin = .$ymin, ymax = .$ymax)},
+  aes(x = xmin, y = ymin, xend = xmax, yend = ymax),
+  size = 1.2,
+  arrow = arrow(length = unit(0.2, "cm"), type = "closed")
+) +
+  ggsn::blank()
+```
