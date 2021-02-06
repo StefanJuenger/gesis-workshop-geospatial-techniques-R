@@ -31,6 +31,10 @@ When social scientists aim to use geospatial data, they must rely on specialized
 ## Exercises
 [Exercise 1_1_1: Package Installation](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_question.html)
 
+[Exercise 1_3_1: Basic Maps](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_1_Basic_Maps_question_question.html)
+
+[Exercise 1_3_2: Fun with Maps](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_2_Fun_with_Maps_question.html)
+
 [Exercise 1_4_1: Basic Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_1_Basic_Raster_Operations_question.html)
 
 [Exercise 1_4_2: Fancier Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_question.html)
@@ -45,6 +49,8 @@ When social scientists aim to use geospatial data, they must rely on specialized
 
 ## Solutions
 [Exercise 1_1_1: Package Installation](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_1_1_Package_Installation_solution.html)
+
+[Exercise 1_3_1: Basic Maps](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_1_Basic_Maps_question_solution.html)
 
 [Exercise 1_4_1: Basic Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_1_Basic_Raster_Operations_solution.html)
 
