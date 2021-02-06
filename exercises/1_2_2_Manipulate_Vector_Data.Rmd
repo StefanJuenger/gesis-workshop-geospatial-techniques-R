@@ -1,0 +1,114 @@
+---
+# title: 'Exercise 1_2_2 Manipulate Vector Data - Solutions'
+title: 'Exercise 1_2_2 Manipulate Vector Data'
+author: 'Anne Stroppe, Stefan Jünger'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Import the ESRI shapefile of German districts and the district attribute table.
+Join the two data frames, transform the CRS to "EPSG:3035" and check your changes. 
+
+```
+
+
+```{r first-exercise, solution = TRUE, eval = FALSE}
+
+# Import data
+german_districts <- st_read(dsn = "./data",
+                           layer = "GER_DISTRICTS") %>% 
+                     rename(., district_id = id)
+
+attributes_districts <-  read.csv("./data/attributes_districts.csv", 
+                                  header = T, fill = T, sep = ",") 
+
+
+# Join data and transform
+german_districts_enhanced <- 
+  german_districts %>% 
+  left_join(., attributes_districts, by = "district_id") %>% 
+  st_transform(., crs = 3035)
+
+# Check
+st_crs(german_districts_enhanced)
+head(german_districts_enhanced, 2)
+
+```
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+
+We want a first descriptive visual of the distribution of Covid-19 cases in Cologne and the surrounding districts. 
+Calculate the number of Covid-19 cases in the last 7 days (cases_7days) by population (population) and multiply with 100,000 (in Germany usually called "7 Tages Inzidenzzahl). Call the column "covid7d_rate".
+
+Select Cologne (district_id==5315), find the surrounding districts and plot only the Covid Rate in Cologne and the surrounding districts.
+
+```
+
+```{block, opts.label = "clues"}
+
+You can use the dplyr function `bind_rows` to cobine the information of cologne and the surrounding districts.
+
+```
+
+``````{r second-exercise, solution = TRUE, eval = FALSE}
+
+# calculate Covid-19 rate
+german_districts_enhanced <-
+  german_districts_enhanced %>% 
+  mutate(covid7d_rate = (cases_7days / population) * 100000)
+
+# filter Cologne
+cologne <-
+  german_districts_enhanced %>% 
+  filter(. , district_id == 5315)
+
+# filter surrounding districts, append with Cologne data and select the Covid column
+cologne_sur <-
+  german_districts_enhanced %>%
+  filter(lengths(st_touches(., cologne)) > 0) %>% 
+  bind_rows(., cologne) %>%   
+  select(. , covid7d_rate)
+
+# plot  
+plot(cologne_sur)
+
+
+```
+
+
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+
+Save your data set of Cologne and its surrounding districts as a ESRI Shapefile. 
+
+```
+
+```{r third-exercise, solution = TRUE, eval = FALSE}
+
+# Export as Shapefile
+st_write(cologne_sur, 
+         dsn = "./data/own_exports/cologne_covid19_eps3035", 
+         delete_layer = TRUE) #optional
+
+  
+```

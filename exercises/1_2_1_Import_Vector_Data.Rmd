@@ -1,0 +1,77 @@
+---
+#title: 'Exercise 1_2_1 Import and Explore Vector Data - Solutions'
+title: 'Exercise 1_2_1 Import and Explore Vector Data'
+author: 'Anne Stroppe, Stefan Jünger'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+Let's get started with some hands-on exercises and exploring some data!
+This exercise focuses on how to import different vector data geometries from different data sources and get used to simple feature data tables.
+
+In the folder "data" you can find the data files we prepped for all the exercises which rely on preexisting data sets. 
+However, if you like to play around with your own data, feel free to do so!
+. 
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Load the administrative borders of Germany. Therefore, import the shapefile "GER_COUNTRY" from the respective folder and assign the data to an object named "germany". 
+
+```
+
+```{block, opts.label = "clues"}
+Don't forget to load the packages "sf" and set your working directory before starting this exercise.
+```
+
+```{r first.exercise, solution = TRUE, eval = FALSE}
+
+library(sf)
+
+germany <- st_read(dsn = "./data",
+                           layer = "GER_COUNTRY") 
+
+```
+
+The output in the console of the *RStudio* interface gives you already some information on the data you just loaded. You also see that the object "germany" appeared on your environment.
+Though, we will explore the data set a little bit closer.
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+
+Explore the data, plot the data and answer the following questions:
+
+  - What is the geometry type? 
+  - What is the id of the coordinate refernce system ?
+  - Which kind of class is the object?
+  - What is the name of the column containing the information on geometries?
+  - Which attributes are assigned to the geometries?
+  - What was the population size in Germany in 2017?
+
+```
+
+```{r second-exercise, solution = TRUE, eval = FALSE}
+
+st_geometry(germany) # Multpolygon: Set of several Polygons. Each row is a polygon.
+class(germany) # "sf" and "data.frame"
+attr(germany, "sf_column") # geometry
+st_crs(germany) # ETRS89, ID = EPSG:4258
+head(germany) # Name, Area Type, Area Size, Population Size
+table(germany$population) # 82,792,351 inhabitants
+
+
+```
