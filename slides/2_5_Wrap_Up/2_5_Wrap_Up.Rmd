@@ -1,0 +1,196 @@
+---
+title: "Geospatial Techniques for Social Scientists in R"
+subtitle: "Wrap Up"
+author: "Stefan Jünger & Anne-Kathrin Stroppe<br>February 09, 2021"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    seal: true
+    css: ["default", "./assets/css/gesis.css"]
+    nature:
+      highlightStyle: "github"
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+
+```{r init-chunk, include = FALSE}
+# load all packages
+source("../../R/load_packages.R")
+
+# load course content table
+source("../../R/course_content.R")
+
+opts_chunk$set(echo = TRUE, fig.align = "center", message = FALSE, cache = TRUE)
+
+options(warn = -1)
+
+xaringanExtra::use_xaringan_extra(c("tile_view", "clipboard"))
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = FALSE  #<<
+)
+```
+
+---
+
+## Course Content
+
+```{r course-content, echo = FALSE}
+course_content
+```
+
+---
+
+## Introduction
+
+```{r course-content-1, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(1, background = "yellow")
+```
+
+---
+
+## Introduction
+
+Main Messages
+- Geospatial data are relevant in the Social Sciences
+- `R` can serve as a full-blown Geographic Information System (GIS)
+
+---
+
+## Vector Data
+
+```{r course-content-2, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(2, background = "yellow")
+```
+
+---
+
+## Vector Data
+
+Main Messages
+-
+-
+-
+
+---
+
+## Basic Maps
+
+```{r course-content-3, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(4, background = "yellow")
+```
+
+---
+
+## Basic Maps
+
+Main Messages
+-
+-
+-
+
+---
+
+## Raster Data
+
+```{r course-content-4, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(5, background = "yellow")
+```
+
+---
+
+## Raster Data
+
+Main Messages
+- Data format for efficient and fast analysis of geospatial data
+- flexible and easy to convert
+
+---
+
+## Advanced Data Import
+
+```{r course-content-5, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(6, background = "yellow")
+```
+
+---
+
+## Advanced Data Import
+
+Main Messages
+- Geospatial data tend to be large
+- APIs help in downloading these data
+- can get pretty involved
+
+---
+
+## Applied Data Wrangling
+
+```{r course-content-6, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(7, background = "yellow")
+```
+
+---
+
+## Applied Data Wrangling
+
+Main Messages
+- Georeferenced survey data require handling sensitive data
+- our example of wrangling and linking data (applications may vary)
+-
+
+---
+
+## Advanced Maps I
+
+```{r course-content-7, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(9, background = "yellow")
+```
+
+---
+
+## Advanced Maps I
+
+Main Messages
+-
+-
+-
+
+---
+
+## Advanced Maps II
+
+```{r course-content-8, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(10, background = "yellow")
+```
+
+---
+
+## Advanced Maps II
+
+Main Messages
+- Drawing maps as in Powerpoint...
+- it's coded and thus reproducible
+- ...and fun?
+
+---
+
+## What's left
+
+Spatial Analysis
+- requires knowledge of spatial statistics
+- but definitely the next step
+
+More data source
+- necessarily limited
+- geospatial data are interdisciplinary
+  - amount of data feels unlimited
