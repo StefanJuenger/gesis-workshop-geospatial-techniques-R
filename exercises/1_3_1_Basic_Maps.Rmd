@@ -4,8 +4,8 @@ title: 'Exercise 1_3_1 Basic Maps - Solutions'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  # unilur::tutorial_html: default
-  unilur::tutorial_html_solution: default
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -24,7 +24,7 @@ klippy::klippy()
 ```
 
 We've finally arrived at creating our first maps based on the data we imported and cleaned in the previous sessions.
-The focus on this first session lies on the package "tmap" to create maps.
+The focus on this first session lies on the package `tmap` to create maps.
 
 
 ```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
@@ -36,7 +36,7 @@ Chose a color of your choice for both maps.
 
 ```
 
-```{r first.exercise, solution = TRUE, eval = FALSE}
+```{r first.exercise, solution = TRUE}
 
 # load libraries
 library(tmap)
@@ -44,11 +44,11 @@ library(sf)
 library(dplyr)
 
 # code based on the original
-german_districts <- st_read(dsn = "./data",
+german_districts <- st_read(dsn = "../data",
                            layer = "GER_DISTRICTS") %>% 
                      rename(., district_id = id)
 
-attributes_districts <-  read.csv("./data/attributes_districts.csv", 
+attributes_districts <-  read.csv("../data/attributes_districts.csv", 
                                   header = T, fill = T, sep = ",") 
                                   
 german_districts_enhanced <- 
@@ -82,36 +82,11 @@ Alternate the map by:
 - place the legend outside to of the map at the bottom
 - ...
 
-Assign your map to an object called "covid_map".
+Assign your map to an object called `covid_map`.
 
 ```
 
-```{block, opts.label = "clues"}
-
-Check the head() of your shapefile. 
-You might to need to rename some of the columns or use the correct names: "cases_per_100k" (abbreviated: "cs__100").
-
-```
-
-```{block, opts.label = "clues"}
-
-Combine following options with a plus sign:
-
-- add a legend title and change the color palette: tm_fill(col = "", title = "", palette = "") +
-- add a title to the map and change the font color of the title: tm_layout(title = "", title.color = "") +
-- place the legend outside: tm_legend(legend.outside = T/N, legend.outside.position = "")
-
-If you run "colors()", R returns the names of all built-in colors.
-
-```
-
-```{block, opts.label = "clues"}
-
-To assign your map to an object use the arrow "<-".
-
-```
-
-```{r second-exercise, solution = TRUE, eval = FALSE}
+```{r second-exercise, solution = TRUE}
 
 # plot the covid-19 cases per 100.000 inhabitants
 tm_shape(german_districts_enhanced) + 
@@ -154,4 +129,30 @@ covid_map <-
 
 
 ```
+
+```{block, opts.label = "clues"}
+
+Check the `head()` of your shapefile. 
+You might to need to rename some of the columns or use the correct names: `cases_per_100k` (abbreviated: `cs__100`).
+
+```
+
+```{block, opts.label = "clues"}
+
+Combine following options with a plus sign:
+
+- add a legend title and change the color palette: `tm_fill(col = "", title = "", palette = "") +`
+- add a title to the map and change the font color of the title: `tm_layout(title = "", title.color = "") +`
+- place the legend outside: `tm_legend(legend.outside = T/N, legend.outside.position = "")`
+
+If you run `colors()`, R returns the names of all built-in colors.
+
+```
+
+```{block, opts.label = "clues"}
+
+To assign your map to an object use the arrow `<-`.
+
+```
+
 
