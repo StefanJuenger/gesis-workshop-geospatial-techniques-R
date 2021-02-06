@@ -1,0 +1,161 @@
+---
+title: 'Exercise 2_4_1: Pre-Shaping Data'
+author: 'Stefan Jünger & Anne Kathrin Stroppe'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+
+library(dplyr)
+library(ggplot2)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Pick a address in Germany and geocode it through OSM. Make sure that the CRS is transformed to EPSG:3035.
+```
+
+```{block, opts.label = "clues"}
+If you're not familiar with German places that may be interesting. You could, for example, choose between these three:
+- "B2,1 68159 Mannheim"
+- "Waldspirale, 64289 Darmstadt"
+- "Gustav-Stresemann-Ring 11, 65189 Wiesbaden"
+```
+
+```{r first, solution = TRUE}
+gesis_cologne <-
+  tmaptools::geocode_OSM(
+    "Unter Sachsenhausen 6, 50667 Köln", 
+    as.sf = TRUE,
+    geometry = "point"
+    ) %>% 
+  sf::st_transform(3035) %>% 
+  dplyr::select(query, geometry = point)
+
+gesis_cologne
+```
+
+
+```{r bboxing}
+bboxing <- function(input_point) {
+  sf::st_bbox(
+    c(
+      xmin = sf::st_coordinates(input_point)[1] - 1000,
+      xmax = sf::st_coordinates(input_point)[1] + 1000,
+      ymax = sf::st_coordinates(input_point)[2] + 1000,
+      ymin = sf::st_coordinates(input_point)[2] - 1000
+    ),
+    crs = sf::st_crs(3035)
+  )
+}
+```
+
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+Apply the `bboxing` function and store the results in a new object. What do you think is the function doing?
+```
+
+```{block, opts.label = "clues"}
+Note that we use a cut-out map of a specific place's surrounding.
+```
+
+```{r second, solution = TRUE}
+gesis_bbox <- bboxing(gesis_cologne)
+
+gesis_bbox
+
+# It's a bounding box for the areal surrounding of our geocoded address -- 1000 
+# meters in each direction. We will use it to cut out a slice of some data we
+# are going to load next.
+```
+
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+Download  data on roads using OpenStreetMap. You can use the "highways" plus "trunk", "primary", "secondary", and "tertiary" as key/value pairs. Again, make sure that the CRS is transformed to EPSG:3035
+```
+
+```{block, opts.label = "clues"}
+This was part of the session this morning. It's part of this crazy pipe where you first define a bounding box using `osmdata::getbb()` and so on. 
+```
+
+```{r third, solution = TRUE}
+cologne_roads <-
+  osmdata::getbb("Köln") %>% 
+  osmdata::opq(timeout = 25*100) %>%
+  osmdata::add_osm_feature(
+    "highway", 
+    c("trunk", "primary", "secondary", "tertiary")
+  )%>% 
+  osmdata::osmdata_sf() %>% 
+  .$osm_lines %>% 
+  sf::st_transform(3035)
+```
+
+
+```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
+Crop the downloaded roads data to the extent of the object you created in exercise "2". We haven't used the function before, but it's basically the same as in the use of cropping raster data -- it's the `sf::st_crop()` function.
+```
+
+```{block, opts.label = "clues"}
+The first argument of the function are your downloaded roads data, the second one the -- psst! -- bounding box from exercise "2".
+```
+
+```{r fourth, solution = TRUE}
+gesis_roads <-
+  cologne_roads %>% 
+  sf::st_crop(gesis_bbox)
+```
+
+Use the following function for shearing and rotating your layers. Simply run the code first before applying it.
+
+```{r fun-rotate-data}
+rotate_data <- function(data, x_add = 0, y_add = 0) {
+  
+  shear_matrix <- function () { 
+    matrix(c(2, 1.2, 0, 1), 2, 2) 
+  }
+  
+  rotate_matrix <- function(x) { 
+    matrix(c(cos(x), sin(x), -sin(x), cos(x)), 2, 2) 
+  }
+  
+  data %>% 
+    dplyr::mutate(
+      geometry = 
+        .$geometry * shear_matrix() * rotate_matrix(pi/20) + c(x_add, y_add)
+    )
+}
+```
+
+```{block, box.title = "5", box.body = list(fill = "white"), box.icon = "fa-star"}
+Finally, plot the data as is, and then after or while rotating it with the `rotate_data()` function.
+```
+
+```{block, opts.label = "clues"}
+You can rotate the data either before calling `gpplot()` and store them in a separate object. Or, you can do that on the fly within the `geom_sf()` call.
+```
+
+```{r fifth, solution = TRUE}
+# unrotated
+ggplot() +
+  geom_sf(data = gesis_roads)
+
+# rotated
+ggplot() +
+  geom_sf(data = rotate_data(gesis_roads))
+```
