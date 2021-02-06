@@ -223,7 +223,7 @@ tm_shape(World) +
 ]
 
 .pull-right[
-```{r first-map-int, echo = FALSE,eval= F}
+```{r first-map-int, echo = FALSE, eval = FALSE}
 # set mode to "view" for interactive maps
 tmap_mode("view")
 
@@ -243,7 +243,7 @@ tmap_mode("plot")
 There is not much to consider when using `tmap` , but essential two requirements:
   1. Define your spatial object.
   2. Choose a building block to determine how to display information.
-  
+
 ```{r tmap-display, eval = F}
 
 # required first step:
@@ -265,11 +265,8 @@ tm_shape() +
     tm_dots() +
     tm_bubbles() +
 
-
 # for all of them:
 ?'tmap-element'
-
-  
 ```
 
 ---
@@ -434,11 +431,11 @@ tm_shape(World) +
               palette = "RdPu",
               title = "Life Expectancy",
               style = "kmeans") +
-  tm_layout( main.title = "Life Expectancy Around the World",
-             legend.text.color = "white",
-             legend.title.color = "white",
-             legend.bg.color = "darkgrey",
-             legend.outside = TRUE)
+  tm_layout(main.title = "Life Expectancy Around the World",
+            legend.text.color = "white",
+            legend.title.color = "white",
+            legend.bg.color = "darkgrey",
+            legend.outside = TRUE)
 
 ```
 ]
@@ -465,7 +462,12 @@ tm_shape(World) +
 
 ---
 
-## Exercise 1
+class: middle
+## Exercise 1_3_1: Basic Maps
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_1_Basic_Maps_question_question.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_1_Basic_Maps_question_solution.html)
 
 ---
 
@@ -496,23 +498,23 @@ Can we support this claim based on our data and our basic map skills?
 
 # code based on the original
 german_districts <- st_read(dsn = "../../data",
-                           layer = "GER_DISTRICTS",
+                            layer = "GER_DISTRICTS",
                             quiet = T) %>% 
-                     rename(., district_id = id)
+  rename(., district_id = id)
 
 attributes_districts <-  read.csv("../../data/attributes_districts.csv", 
                                   header = T, fill = T, sep = ",") 
-                                  
+
 german_districts_enhanced <- 
-        german_districts %>% 
-        left_join(., attributes_districts, by = "district_id") %>% 
-        st_transform(., crs = 3035)
+  german_districts %>% 
+  left_join(., attributes_districts, by = "district_id") %>% 
+  st_transform(., crs = 3035)
 
 covid_map <-  
   tm_shape(german_districts_enhanced) + 
   tm_fill(col = "cases_per_100k",
-              title = "Covid-19 Cases per 100k",
-              palette = "RdPu") +
+          title = "Covid-19 Cases per 100k",
+          palette = "RdPu") +
   tm_layout(main.title = "Covid Cases in Germany",
             main.title.color = "black" ) +
   tm_legend(legend.outside = TRUE,
@@ -561,7 +563,7 @@ afd_map
 
 If we place the Covid-19 map and the AfD map right next to each other, we can actually see some correlations.
 (Even though there might be a lot of unobserved confounders...)
-The tool we use here is named `tmap_arrange`.
+The tool we use here is named `tmap_arrange()`.
 
 .pull-left[
 ```{r arranged-display, eval=F}
@@ -655,7 +657,10 @@ hospital_covid_map
 
 ---
 
-## Exercise and Maybe a Mapp-Off
+class: middle
+## Exercise 1_3_2: Fun with Maps (& a Mapp-Off afterwards)
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_2_Fun_with_Maps_question.html)
 
 ---
 
@@ -697,7 +702,7 @@ knitr::include_graphics("./img/anne.png")
 ]
 
 .right-column[
-.left[.small[`r icon::fa("envelope")` [`anne-kathrin.stroppe@gesis.org`](mailto:anne-kathrin.stroppe@gesis.org)] </br>
-.small[`r icon::fa("twitter")` [`@AStroppe`](https://twitter.com/AStroppe)] </br>
-.small[`r icon::fa("github")` [`stroppan`](https://github.com/stroppan)] </br>
+.left[.small[`r icon::fontawesome("envelope")` [`anne-kathrin.stroppe@gesis.org`](mailto:anne-kathrin.stroppe@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@AStroppe`](https://twitter.com/AStroppe)] </br>
+.small[`r icon::fontawesome("github")` [`stroppan`](https://github.com/stroppan)]] </br>
 ]
