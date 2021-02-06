@@ -11,41 +11,46 @@ When social scientists aim to use geospatial data, they must rely on specialized
 
 ## Slides
 ### Day 1
-[Introduction](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_1_Introduction/1_1_Introduction.html)
+[1_1 Introduction](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_1_Introduction/1_1_Introduction.html)
 
-[Vector Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_2_Vector_Data/1_2_Vector_Data.html)
+[1_2 Vector Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_2_Vector_Data/1_2_Vector_Data.html)
 
-[Basic Maps](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_3_Basic_Maps/1_3_Basic_Maps.html)
+[1_3 Basic Maps](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_3_Basic_Maps/1_3_Basic_Maps.html)
 
-[Raster Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_4_Raster_Data/1_4_Raster_Data.html)
+[1_4 Raster Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_4_Raster_Data/1_4_Raster_Data.html)
 
 ### Day 2
-[Advanced Data Import](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_1_Advanced_Data_Import/2_1_Advanced_Data_Import.html)
+[2_1 Advanced Data Import](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_1_Advanced_Data_Import/2_1_Advanced_Data_Import.html)
 
-[Applied Data Wrangling](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_2_Applied_Data_Wrangling/2_2_Applied_Data_Wrangling.html)
+[2_2 Applied Data Wrangling](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_2_Applied_Data_Wrangling/2_2_Applied_Data_Wrangling.html)
 
-[Advanced Maps I](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_3_Advanced_Maps_I/2_3_Advanced_Maps_I.html)
+[2_3 Advanced Maps I](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_3_Advanced_Maps_I/2_3_Advanced_Maps_I.html)
 
-[Advanced Maps II](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_3_Advanced_Maps_II/2_3_Advanced_Maps_II.html)
+[2_4 Advanced Maps II](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/2_3_Advanced_Maps_II/2_3_Advanced_Maps_II.html)
 
 ## Exercises
 [Exercise 1_1_1: Package Installation](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_question.html)
 
 [Exercise 1_4_1: Basic Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_1_Basic_Raster_Operations_question.html)
 
-[Exercise 1_4_2: : Fancier Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_question.html)
+[Exercise 1_4_2: Fancier Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_question.html)
 
 [Exercise 2_1_1: Working with OSM Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_1_Working_with_OSM_data_question.html)
 
 [Exercise 2_1_2: Wrangling the German Census](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_question.html)
+
+[Exercise 2_4_1: Pre-Shaping Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_1_Pre-Shaping_Data_question.html)
+
 
 ## Solutions
 [Exercise 1_1_1: Package Installation](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_1_1_Package_Installation_solution.html)
 
 [Exercise 1_4_1: Basic Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_1_Basic_Raster_Operations_solution.html)
 
-[Exercise 1_4_2: : Fancier Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_solution.html)
+[Exercise 1_4_2: Fancier Raster Operations](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_solution.html)
 
 [Exercise 2_1_1: Working with OSM Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_1_Working_with_OSM_data_solution.html)
 
 [Exercise 2_1_2: Wrangling the German Census](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_solution.html)
+
+[Exercise 2_4_1: Pre-Shaping Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_1_Pre-Shaping_Data_solution.html)
