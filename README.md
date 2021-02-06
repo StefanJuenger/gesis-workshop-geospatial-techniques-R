@@ -57,5 +57,3 @@ When social scientists aim to use geospatial data, they must rely on specialized
 [Exercise 2_4_1: Pre-Shaping Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_1_Pre-Shaping_Data_solution.html)
 
 [Exercise 2_4_2: Drawing Custom Elements](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_2_Drawing_Custom_Elements_solution.html)
-
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_2_Drawing_Custom_Elements_solution.html)
