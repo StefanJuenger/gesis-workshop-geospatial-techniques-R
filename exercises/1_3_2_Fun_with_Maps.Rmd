@@ -4,8 +4,8 @@ title: 'Exercise 1_3_2 Fun with Maps - Solutions'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  # unilur::tutorial_html: default
-  unilur::tutorial_html_solution: default
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -28,13 +28,13 @@ From here on, you can go and explore!
 
 ```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
 
-Have fun with creating maps and exploring the package "tmap"! Be ready to present your final result to the others!
+Have fun with creating maps and exploring the package `tmap`! Be ready to present your final result to the others!
 
 Toolbox:
 
-  - run the command "tmaptools::palette_explorer()"  to find the name of your favorite color palette
-  - run the command "tmaptools::tmap_tip()"  for a random tip to improve your maps
-  - run the command "tmap_mode("view")" to make an interactive map
+  - run the command `tmaptools::palette_explorer()`  to find the name of your favorite color palette
+  - run the command `tmaptools::tmap_tip()`  for a random tip to improve your maps
+  - run the command `tmap_mode("view")` to make an interactive map
   
 For learning more about alterations:
 
