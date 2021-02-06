@@ -1,0 +1,49 @@
+---
+title: 'Exercise 1_3_2 Fun with Maps - Solutions'
+# title: 'Exercise 1_3_2 Fun with Maps'
+author: 'Anne Stroppe, Stefan Jünger'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+
+From here on, you can go and explore!
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+
+Have fun with creating maps and exploring the package "tmap"! Be ready to present your final result to the others!
+
+Toolbox:
+
+  - run the command "tmaptools::palette_explorer()"  to find the name of your favorite color palette
+  - run the command "tmaptools::tmap_tip()"  for a random tip to improve your maps
+  - run the command "tmap_mode("view")" to make an interactive map
+  
+For learning more about alterations:
+
+  - https://tlorusso.github.io/geodata_workshop/tmap_package
+  - https://cran.microsoft.com/snapshot/2016-01-20/web/packages/tmap/vignettes/tmap-nutshell.html 
+  
+
+```
+
+
+
+  
