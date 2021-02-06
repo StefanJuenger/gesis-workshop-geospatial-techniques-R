@@ -79,12 +79,12 @@ Standardized mechanisms
 
 ## Data Providers Offering Geospatial Data APIs
 
-- OpenStreetMap
-- Google
-- Bing
+- [OpenStreetMap](https://wiki.openstreetmap.org/wiki/API)
+- [Google](https://developers.google.com/maps/documentation/geolocation/overview)
+- [Bing](https://docs.microsoft.com/en-us/bingmaps/rest-services/locations/)
 - ...
-- Cologne's Open Data Portal
-- 
+- [Cologne's Open Data Portal](https://www.offenedaten-koeln.de/dataset/taxonomy/term/44/field_tags/Geo-44)
+- Specialized `R` packages, such as the [`wiesbaden` package](https://cran.r-project.org/web/packages/wiesbaden/index.html) or the [`tidycensus` package](https://cran.r-project.org/web/packages/tidycensus/index.html)
 
 ---
 
