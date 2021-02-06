@@ -1,0 +1,149 @@
+---
+title: 'Exercise 2_3_1 The Basis of Advanced Maps'
+author: 'Anne Stroppe, Stefan Jünger'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
+---
+
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+
+Let us go back where we stopped developing our mapping techniques yesterday: Our Corona Map.
+This is just a super short repetition of what was just presented.
+No worries, we're going to have some time to improve your maps.
+
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+
+Recreate a simple Covid-19 map as already created yesterday but use ggplot2 this time.
+
+They don't have to perfectly match but:
+
+  - Use either the cases per 100.000 inhabitants or cases per 100.000 inhabitants in the last 7 days.
+  - Choose a color palette.
+  - Name your legend and change its position.
+  - Your map should have a title.
+  
+```
+
+```{r code, eval = F}
+
+# For importing the data, you can ue this code:
+library(dplyr)
+library(sf)
+
+attributes_districts <-  read.csv("./data/attributes_districts.csv", 
+                                  header = T, fill = T, sep = ",") 
+german_districts_enhanced <- st_read(dsn = "./data",
+                           layer = "GER_DISTRICTS") %>% 
+                           rename(., district_id = id) %>% 
+                          st_transform(., crs = 3035) %>% 
+                          left_join(., attributes_districts, by = "district_id")
+
+
+
+```
+
+
+```{r first-exercise, solution = TRUE, eval = FALSE}
+
+
+# load libraries
+library(ggplot2)
+
+
+# build map
+covid_map <-
+ggplot() +
+  geom_sf(data = german_districts_enhanced, 
+          aes(fill = cases_per_100k), 
+          color = NA) + 
+  scale_fill_viridis_c(option = "plasma",
+                       direction = -1,
+                       name = "Covid-19 Cases per 100k") + 
+  theme(legend.position = "left") +
+  labs(title="Covid-19 Map",   
+       subtitle= "German Federal Elections 2017")   
+
+
+
+```
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+
+Now we want to add another layer to see if enough hospitals are located in the Covid-19 high risk zones of Germany.
+
+- Add the the hospital layer to the map
+- Change the color of the points
+- Save the plot including hospitals as pdf
+
+For an extra challenge: 
+The hospital shapefile contains information on the number of beds in each hospital.
+Can you change the size of hospital dots according to the number of beds?
+
+
+```
+
+```{block, opts.label = "clues"}
+
+Make sure that the CRS of your hospital layer is defined correctly! 
+
+```
+
+```{block, opts.label = "clues"}
+
+You need to define `size = beds` as aethetics of the new layer.
+
+```
+
+```{block, opts.label = "clues"}
+
+The variable beds is a character but needs to be numeric.
+
+```
+
+
+```{r second-exercise, solution = TRUE, eval = FALSE}
+
+# import point layer hospital sf
+hospitals_sf <- read.csv("./data/hospital_points.csv", header = T, fill = T, sep = ",") %>%
+                st_as_sf(., coords = c("X", "Y"),
+                  crs = 3035)
+                
+# add layer to map
+covid_map <-
+  ggplot() +
+   geom_sf(data = german_districts_enhanced, 
+          aes(fill = cases_per_100k), 
+          color = NA) + 
+   scale_fill_viridis_c(option = "plasma",
+                       direction = -1,
+                       name = "Covid-19 Cases per 100k") + 
+    theme(legend.position = "left") +
+    labs(title="Covid-19 Map") +
+    geom_sf(data = hospitals_sf,
+         aes(size = as.numeric(beds)))
+
+# save map
+ggsave("./data/own_material/covid_map.pdf", covid_map, dpi = 300)
+
+
+```
+
