@@ -38,7 +38,7 @@ xaringanExtra::use_extra_styles(
 
 This course will teach you how to exploit `R` and apply its geospatial techniques in a social science context.
 
-By the end of this course you should...
+By the end of this course, you should...
 
 - be comfortable with using geospatial data in `R`
   - including importing, wrangling, and exploring geospatial data
@@ -56,7 +56,7 @@ include_graphics("./img/r_first_then.png")
 
 ## This is not a spatial statistics course
 
-The topic of spatial statistics would require a focus on actual statistics rather than hands-on data wrangling. Therefore, we decided to skip the topic of spatial statistics. We won't take a closer look at:
+The topic of spatial statistics would require a focus on actual statistics rather than hands-on data wrangling. Therefore, we decided to skip the subject of spatial statistics. We won't take a closer look at:
 - The concept of spatial dependence
   - its modeling using spatial weight matrices
   - analysis of spatial dependence (e.g., Moran's I)
@@ -64,11 +64,11 @@ The topic of spatial statistics would require a focus on actual statistics rathe
 
 --
 
-Still, all of these topics can be approached using `R`, e.g., with the
-- `spdep` package
-- `spatstat` package
-- `spatialEco` package
-- and so much more
+Still, all of these topics can be approached using `R`, e.g., with the packages
+- [`spdep`](https://bookdown.org/yihui/rmarkdown/xaringan-key.html
+- [`spatstat`](https://cran.r-project.org/web/packages/spatstat/index.html)
+- [`spatialEco`](https://cran.r-project.org/web/packages/spatialEco/index.html)
+- and so many more
 
 ---
 
@@ -80,7 +80,7 @@ There's a multitude of spatial `R` packages
 
 We show the use of packages we exploit in practice
 - there's always another way of doing things in `R`
-- don't hesitate to bring up your own solutions
+- don't hesitate to bring up your solutions
 
 ---
 
@@ -96,11 +96,11 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 
 ## Prerequisites for this course
 
-- At least basic knowledge of `R`, its syntax and internal logic
+- At least basic knowledge of `R`, its syntax, and internal logic
   - Affinity for using script-based languages (`Stata` and `Python` are also great)  
   - Don't be scared to wrangle data with complex structures
 - Working versions of `R` (and `Rstudio`) on your computer 
-  - Ideally with the packages installed we asked you upfront
+  - Ideally, with the packages installed, we asked you upfront
 
 ---
 
@@ -109,7 +109,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 **Stefan Jünger**
 
 - Postdoctoral researcher in the team Data Linking & Data Security at the GESIS Data Archive
-- Interim head of the GESIS Secure Data Center
+- Interim Head of the GESIS Secure Data Center
 - Ph.D. in social sciences, University of Cologne
 - (other) research interests:
   - quantitative methods
@@ -129,7 +129,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 
 - Doctoral researcher in the team National Surveys at the GESIS Data Archive
 - Data Curator for the German Longitudinal Election Study
-- Research focus on political and electoral geography
+- Research focuses on political and electoral geography
 - (other) research interests:
   - determinants of electoral behavior
   - infrastructural inequalities & political alienation
@@ -155,7 +155,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 
 - The workshop consists of a combination of lectures and hands-on exercises
 - Feel free to ask questions at any time
-  - if it is a question that everybody can/should hear, use the "raise hand" function in *Zoom*, wait until we call you and then ask via audio/video
+  - if it is a question that everybody can/should hear, use the "raise hand" function in *Zoom*, wait until we call you, and then ask via audio/video
 - Please mute your microphones unless you are asking a question
 - Slides and other materials are available at
 
@@ -163,7 +163,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 
 ---
 
-## Course Schedule
+## Course schedule
 
 ```{r course-content, echo = FALSE}
 course_content
@@ -180,7 +180,7 @@ course_content %>%
 
 ---
 
-## Geographic Information in Social Science Research
+## Geographic information in social science research
 
 .pull-left[
 Exploiting geographic information is not new.
@@ -197,7 +197,7 @@ knitr::include_graphics("https://images.fr.shopping.rakuten.com/photo/874882994.
 
 ---
 
-## Integration in Theory
+## Integration in theory
 
 .pull-left[
 ```{r allport-pic, echo = FALSE, out.width = "65%"} 
@@ -207,7 +207,7 @@ knitr::include_graphics("https://i.gr-assets.com/images/S/compressed.photo.goodr
 ]
 
 .pull-right[
-A lot of classic theories, have space embedded
+A lot of classic theories have space embedded
 - For example, in Allport's (1954) contact theory, he at least implicitly assumes that people meet in a set space
 ]
 
@@ -228,11 +228,12 @@ knitr::include_graphics("./img/park_etal.png")
 ```{r our-stuff-pic, echo = FALSE}
 knitr::include_graphics("./img/fig_halo_example.png")
 ```
+.tinyisher[Jünger 2019]
 ]
 
 ---
 
-## Data Landscape
+## Data landscape
 
 .pull-left[
 Increased amount of available data
@@ -251,13 +252,13 @@ knitr::include_graphics("./img/geo_today.png")
 ```
 
 Better tools
-- Personal computer with enough horse power
+- Personal computer with enough horsepower
 - Standard software, such as `R`, can be used as Geographic Information System (GIS)
 ]
 
 ---
 
-## What Are Georeferenced Data?
+## What are georeferenced data?
 
 .pull-left[
 </br>
@@ -276,7 +277,7 @@ knitr::include_graphics("./img/fig_geometries.png")
 
 ---
 
-## Geospatial Data
+## Geospatial data
 
 </br>
 
@@ -292,7 +293,7 @@ Can be projected jointly in one single space
 
 ---
 
-## What Is GIS?
+## What is GIS?
 
 Most common understanding: Geographic Information Systems (GIS) as specific software to process geospatial data for 
 - Visualization
@@ -306,7 +307,7 @@ knitr::include_graphics("./img/gis.png")
 
 ---
 
-## Data Specifics
+## Data specifics
 
 .pull-left[
 </br>
@@ -324,13 +325,13 @@ Formats
 - Raster data (grids)
 
 Coordinate reference systems
-- Allow the projection on earth‘s surface
+- Allow the projection on earth's surface
 - Differ in precision for specific purposes
 ]
 
 ---
 
-## Layers Must Match!
+## Layers must match!
 
 </br>
 ```{r pic-crs, echo = FALSE}
@@ -354,7 +355,7 @@ knitr::include_graphics("./img/fig_projections.png")
 
 (There are also geocentric CRS requiring also a z-coordinate...)
 
-*In practice, you shouldn't worry to much about CRS. Again, what matters is that they match.*
+*In practice, you shouldn't worry too much about CRS. Again, what matters is that they match.*
 
 ---
 
@@ -362,9 +363,9 @@ class: middle
 
 ## Short break `r emo::ji("hot_beverage")`
 
-Grab one of you favorite hot or cold beverages or take a stretch break.
+Grab one of your favorite hot or cold beverages, or take a stretch break.
 
-If you're back at your place early, you may want to play around with geometries on this site: https://thetruesize.com
+If you're back at your place, you may want to play around with geometries on this site: https://thetruesize.com
 
 ---
 
@@ -376,7 +377,7 @@ A lot of software relies on open libraries comprising information about CRS.
 
 ---
 
-## Old Standard: `PROJ.4` strings
+## Old standard: `PROJ.4` strings
 
 This is how you information about the CRS are defined in a classic standard:
 
@@ -422,9 +423,9 @@ PROJCS["ETRS89 / LAEA Europe",
 
 ## Current transition from `PROJ.4` to `WKT` in `R`
 
-Currently, there's a transition from the a bit aged standard of `PROJ.4` to `WKT` in many `R` packages.
+Currently, there's a transition from the bit old standard of `PROJ.4` to `WKT` in many `R` packages.
 - you'll get a lot of warnings (see next slide)
-- you should definitely check what's causing the warning
+- you should check what's causing the warning
 - in the best case, they will disappear in the future
 
 However, for the operations we are going to show...
@@ -446,31 +447,31 @@ I have turned these warnings off for legibility reasons in my slides.
 
 ---
 
-## EPSG Codes and EPSG:3035
+## EPSG codes and EPSG:3035
 
-Eventually, it's not as difficult to work with CRS in `R` as it may seem
+Eventually, it's not as challenging to work with CRS in `R` as it may seem
 - we don't have to use PROJ.4 or WKT strings directly.
 
 Most of the times it's enough to use so-called EPSG Codes ("European Petroleum Survey Group Geodesy")
 - Small digit sequence
 
-**During the course we rely on the European Terrestrial Reference System EPSG:3035, but that's maybe just a matter of taste.**
+**During the course, we rely on the European Terrestrial Reference System EPSG:3035, but that's maybe just a matter of taste.**
 
 ---
 
-## More Details on Geospatial Data 
+## More details on geospatial data 
 
-There's no more on geospatial data and their individual quirks for the time being.
+There's no more on geospatial data and their quirks for the time being.
 
 Let's learn about them as we learn about specific formats:
 - vector data (soon)
 - raster data (this afternoon)
 
-It should not be surprising in light of the this course's content: `R` can serve as a full-blown Geographic Information System (GIS) for all these data.
+It should not be surprising in light of this course's content: `R` can serve as a full-blown Geographic Information System (GIS) for all these data.
 
 ---
 
-## `R` Packages for Geospatial Data
+## `R` packages for geospatial data
 
 There have been packages for geospatial data in `R` already for a long time.
 - [`sp`](https://cran.r-project.org/web/packages/sp/index.html) for vector data
@@ -493,7 +494,7 @@ knitr::include_graphics("./img/sf.jpg")
 
 ## Packages in this course
 
-During the course we will use plenty of different packages, but only a few are our main drivers (e.g., die `sf` package). Here's the list of packages
+We will use plenty of different packages during the course, but only a few are our main drivers (e.g., the `sf` package). Here's the list of packages
 
 .pull-left[
 - [`dplyr`](https://cran.r-project.org/web/packages/dplyr/index.html)
@@ -544,9 +545,9 @@ class: middle
 
 ## Base `R` vs. `Tidyverse`
 
-There's only one `R`. However, due to the enormous amount of additional packages, routines for similar purposes can shape up rather differenlty.
+There's only one `R`. However, due to the enormous amount of additional packages, routines for similar purposes can shape up rather differently.
 
-A prime example is `Tidyverse`
+A prime example is the [`Tidyverse`](https://www.tidyverse.org/)
 - collection of packages for data science
 - tools to import, wrangle, and visualize data
 
@@ -557,7 +558,7 @@ A prime example is `Tidyverse`
 
 ---
 
-## Piping In `R`
+## Piping in `R`
 
 Usually, in `R` we apply functions as follows:
 
@@ -588,7 +589,7 @@ More details: https://r4ds.had.co.nz/pipes.html
 
 ## Some precocious notes on style
 .pull-left[
-In some ways, writing code is similar to writing a novel; it's a craft where you set the tone of how you want to be perceived from your future-you and others.
+In some ways, writing code is similar to writing a novel; it's a craft where you set the tone of how you want to be perceived by your future-you and others.
   
 What helps to be understood is the styling of your code.
 ]
@@ -597,7 +598,7 @@ What helps to be understood is the styling of your code.
 ```{r out.width = "70%", echo = FALSE}
 include_graphics("./img/on_writing_king.jpg")
 ```
-https://images-na.ssl-images-amazon.com/images/I/71z4varBITL.jpg
+.tinyisher[https://images-na.ssl-images-amazon.com/images/I/71z4varBITL.jpg]o
 ]
 
 ---
@@ -610,17 +611,17 @@ These are only some of the topics you will face when researching for styling you
 - comments
 - assignment rules
 
-`R` is pretty flexible in styling which is why it is necessary to think about these topics
-- compare that to `Python` which has strict indention rules
+`R` is pretty flexible in styling, which is why it is necessary to think about these topics
+- compare that to `Python`, which has strict indention rules
 
 ---
 
 ## Style guides out there
-It's really not uncommon to follow a specific style guide that already exists.
+It's not uncommon to follow a specific style guide that already exists.
 
 Many institutions define styles for several different programming languages, such as [Google's style guide for `R`](https://google.github.io/styleguide/Rguide.html)
 
-It really doesn't matter what style you use as long as you are consistent (at least in one single `R`-file, right?).
+It doesn't matter what style you use as long as you are consistent (at least in one single `R`-file, right?).
 
 ---
 
@@ -647,7 +648,7 @@ include_graphics("./img/styler_addin.png")
 
 ## Namespaces `::`
 
-I (again, Stefan) heavily use namespace declarations in code: `::`. It's a way to safely call a function if there a the same function names in other functions, which are also loaded. Usually, you don't need that, but it's a transparent way to show from which package you call which function. 
+I (again, Stefan) heavily use namespace declarations in code: `::`. It's a way to safely call a function if there are the same function names in other packages loaded. Usually, you don't need that, but it's a transparent way to show from which package you call which function. 
 
 No namespaces:
 
@@ -666,7 +667,7 @@ sf::st_buffer(fancy_data, 500)
 ---
 
 class: middle
-## Break
+## Break `r emo::ji("hot_beverage")`
 
 ---
 
