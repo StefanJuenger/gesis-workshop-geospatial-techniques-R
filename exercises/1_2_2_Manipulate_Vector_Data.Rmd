@@ -4,8 +4,8 @@ title: 'Exercise 1_2_2 Manipulate Vector Data'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -31,13 +31,19 @@ Join the two data frames, transform the CRS to "EPSG:3035" and check your change
 
 ```
 
+```{block, opts.label = "clues"}
+
+You need to rename one of the id variables or adjust your join accordingly ("id = district_id").
+
+```
+
 
 ```{r first-exercise, solution = TRUE, eval = FALSE}
 
 # Import data
 german_districts <- st_read(dsn = "./data",
                            layer = "GER_DISTRICTS") %>% 
-                     rename(., district_id = id)
+                     rename(., district_id = id) #
 
 attributes_districts <-  read.csv("./data/attributes_districts.csv", 
                                   header = T, fill = T, sep = ",") 
@@ -58,15 +64,15 @@ head(german_districts_enhanced, 2)
 ```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
 
 We want a first descriptive visual of the distribution of Covid-19 cases in Cologne and the surrounding districts. 
-Calculate the number of Covid-19 cases in the last 7 days (cases_7days) by population (population) and multiply with 100,000 (in Germany usually called "7 Tages Inzidenzzahl). Call the column "covid7d_rate".
+Calculate the number of Covid-19 cases in the last 7 days (*cases_7days*) by population (population) and multiply with 100,000 (in Germany usually called "7 Tages Inzidenzzahl). 
 
-Select Cologne (district_id==5315), find the surrounding districts and plot only the Covid Rate in Cologne and the surrounding districts.
+Select Cologne (district_id == 5315), find the surrounding districts and plot the Covid Rate in Cologne and the surrounding districts.
 
 ```
 
 ```{block, opts.label = "clues"}
 
-You can use the dplyr function `bind_rows` to cobine the information of cologne and the surrounding districts.
+You can use the dplyr function `bind_rows` to combine the two spatial objects "Cologne" and "Cologne Surroundings".
 
 ```
 
@@ -107,7 +113,7 @@ Save your data set of Cologne and its surrounding districts as a ESRI Shapefile.
 
 # Export as Shapefile
 st_write(cologne_sur, 
-         dsn = "./data/own_exports/cologne_covid19_eps3035", 
+         dsn = "./data/own_materials/cologne_covid19_eps3035", 
          delete_layer = TRUE) #optional
 
   
