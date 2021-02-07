@@ -48,12 +48,12 @@ course_content %>%
 ## `R`-Packages *we* will use
 
 - `raster` 
-  - still the major work horse for raster data
-  - there's a succesor: `terra` package, but it's still in devolpment
+  - still the major workhorse for raster data
+  - there's a successor: `terra` package, but it's still in development
 - `stars`
   - interface to modern geospatial data implementations, most and foremost from `sf`
-  - package for spatiotemporal datacubes and non-regular raster grids (more on that at the end of session)
-  - we will use it only as supportive package for specific purposes
+  - package for spatiotemporal datacubes and non-regular raster grids (more on that at the end of the session)
+  - we will use it only as a supportive package for specific purposes
 
 ---
 
@@ -62,7 +62,7 @@ course_content %>%
 Data Structure:
 - Other data format(s)
 - geometries do not differ within one dataset
-- sometimes smaller, sometimes larger in size...
+- sometimes smaller, sometimes larger...
 
 
 Implications:
@@ -86,7 +86,7 @@ knitr::include_graphics("./img/fig_geometries.png")
 ## Okay, what exactly are Raster Data?
 
 - Hold information on (most of the time) evenly shaped grid cells
-- Basically a simple data table
+- Basically, a simple data table
   - each cell represents one observation
   
 ```{r fig-from-table-to-raster, echo = FALSE}
@@ -97,9 +97,9 @@ knitr::include_graphics("./img/table_to_raster.png")
 
 ## Metadata
 
-- Information about geometries are stored globally as they are the same for all observation
+- Information about geometries are globally stored as they are the same for all observation
   - their location in space is defined by their cell location in the data table
-- Without these information raster data are simple image files
+- Without this information, raster data are simple image files
 
 ---
 
@@ -140,7 +140,7 @@ raster_layer
 
 ## Plotting
 
-```{r plot-raster}
+```{r plot-raster, out.width = "60%"}
 raster::plot(raster_layer)
 ```
 
@@ -154,7 +154,7 @@ raster::plot(raster_layer)
 - .grd
 - netCDF
 - ...
-- sometimes raster data come even in a text format, such as CSV
+- sometimes, raster data come even in a text format, such as CSV
 
 **In this course, we will only use `tiff` files as it is pretty common. Just be aware that there a different formats out there.**
 
@@ -164,9 +164,9 @@ raster::plot(raster_layer)
 
 Again, `raster` is the most commonly used package for raster data in `R`.
 
-There are some newer developments, e.g., as in the `stars` package, implementing also an interface to simple features in `sf`.
+Some newer developments, e.g., as in the `stars` package, also implement an interface to simple features in `sf`.
 
-The `terra` package helps in using more elaborate zonal statistics, the same holds true for the `spatstat` package.
+The `terra` package helps use more elaborate zonal statistics. The same holds for the `spatstat` package.
 
 
 ---
@@ -176,7 +176,7 @@ class: middle
 
 ---
 
-## Loading raster tifs (Census Data)
+## Loading raster tiffs (Census Data)
 
 ```{r immigrants-cologne}
 immigrants_cologne <-
@@ -251,7 +251,7 @@ raster::cellStats(immigrants_cologne, stat = "mean")
 
 ---
 
-## Get all values as vector
+## Get all values as a vector
 
 We can also extract the values of a raster directly as vector:
 
@@ -261,7 +261,7 @@ all_raster_values <- raster::values(immigrants_cologne)
 mean(all_raster_values, na.rm = TRUE)
 ```
 
-Nevertheless, although raster are simple data tables, working with them is a bit different in comparison to, e.g., simple features.
+Nevertheless, although raster data are simple data tables, working with them is a bit different compared to, e.g., simple features.
 
 ---
 
@@ -311,7 +311,7 @@ tm_shape(deutz) +
 
 ## Cropping
 
-Cropping is a method of cutting out a specifif `slice` of a raster based on an input dataset or geospatial extent, such as a bounding box.
+Cropping is a method of cutting out a specific `slice` of a raster layer based on an input dataset or geospatial extent, such as a bounding box.
 
 --
 
@@ -482,7 +482,7 @@ raster::extract(
 
 ## Focal statistics
 
-Focal statistics are another method of include information in proximity of a point in space. However, it's applied to the whole dataset and is independent from arbitrary points we project onto a map.
+Focal statistics are another method of include information in the proximity of a point in space. However, it's applied to the whole dataset and is independent of arbitrary points we project onto a map.
 - relates focal cells to surrounding cells
 - vastly used in image processing
 - but also applicable in social science research as we will see
@@ -577,7 +577,7 @@ tm_shape(immigrant_edges) +
 
 ## Raster stacks (or `raster::brick()`, respectively)
 
-So far, raster have been unidimensional: we only had one attribute for each dataset.
+So far, raster data have been unidimensional: we only had one attribute for each dataset.
 
 But they can also be stacked:
 ```{r raster-stack}
@@ -757,7 +757,7 @@ raster_polygon <-
 
 The developers of the `raster` package decided to rewrite the functions so that it's [simpler, better, and faster](https://rspatial.org/terra/pkg/index.html)
 
-**Thus, `terra` will be the successor of the `raster` package in the future.**
+**Thus, `terra` will be the `raster` package's successor in the future.**
 
 ---
 
