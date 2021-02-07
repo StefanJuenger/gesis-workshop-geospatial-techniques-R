@@ -1,0 +1,131 @@
+---
+title: 'Exercise 2_2_1: Spatial Joins'
+author: 'Stefan Jünger & Anne-Kathrin Stroppe'
+date: 'Geospatial Techniques for Social Scientists in R'
+output:
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(box.title = "Clues",
+               box.body = list(fill = "#fff9dc", colour = "black"),
+               box.header = list(fill = "#ffec8b", colour = "black"),
+               box.icon = "fa-search",
+               box.collapse = TRUE)
+)
+
+library(dplyr)
+library(raster)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+In the session, Anne calculated the distances to the closest hospitals located within North-Rhine Westphalia (NRW). Still, she did not show how she subsetted the original file, which contains all hospitals in Germany.
+What did she do?
+Subset the data file yourself by relying on the spatial information of the `csv`-file "hospital_points" and the polygon of North-Rhine Westphalia.
+
+```
+
+```{block, opts.label = "clues"}
+You need two shapefiles for that: the point layer hospital_points in the `data` folder and a shapefile of NRW. For NRW, you can either use Stefans OSM syntax or use the "german_states" shapefile and filter on `AGS=="05"`.
+```
+
+```{block, opts.label = "clues"}
+
+Row-wise deletion of observations with missing values will allow you to subset.   
+
+```
+
+```{r first, solution = TRUE, eval = FALSE}
+
+hospitals <- read.csv("./data/hospital_points.csv", 
+                      header = T, fill = T, sep = ",") %>%
+            sf::st_as_sf(., coords = c("X", "Y"),
+            crs = 3035)
+
+# import shapefile nrw
+nrw <- sf::st_read(dsn = "./data",
+                         layer = "GER_STATES",
+                         quiet = T) %>%
+                  sf::st_transform(.,3035) %>% 
+                  filter( AGS == "05")
+
+
+# you could also use the OSM function provided by Stefan
+nrw <-
+  osmdata::getbb(
+    "Nordrhein-Westfalen", 
+    format_out = "sf_polygon"
+  ) %>% 
+  .$multipolygon %>% 
+  sf::st_transform(3035)
+
+# spatial join
+nrw_hospitals <-
+  hospitals %>% 
+  st_join(., nrw, join = st_within) %>% 
+  filter(!is.na(AGS))
+
+
+```
+
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+
+Did the operationalization of health care provision convince you? Don't you think it might be more important how many hospitals are close to the respondents?
+To test this, we want to calculate the number of hospitals per district in North-Rhine Westphalia.
+Use the syntax below to load the district data and prep the hospital data.
+
+Earn extra points by counting the number of hospitals and the sum of hospital beds within a district.
+
+```
+
+```{r load-data, eval = F}
+
+nrw_districts <- st_read(dsn = "./data",
+                            layer = "GER_DISTRICTS",
+                            quiet = T) %>% 
+                    st_transform(. , 3035) %>% 
+                    rename(., district_id = id) %>% 
+                   filter( district_id >= 5000 & district_id < 6000 ) 
+
+nrw_hospitals <-  nrw_hospitals %>% 
+                  mutate(beds = as.numeric(beds)) %>%
+                  replace(., is.na(.), 0)
+
+```
+
+```{block, opts.label = "clues"}
+
+You need a `as_tibble()` data frame to use the functions `group_by()` and `summarise()`.
+
+```
+
+ 
+```{block, opts.label = "clues"}
+
+The function `n()` allows summarising the total count of hospitals. `sum(beds)` for summarizing the sum of beds.
+
+```
+
+```{r second, solution = TRUE, eval = FALSE}
+
+
+nrw_hospitals %>% 
+  st_join(., nrw_districts, join = st_within) %>% 
+  as_tibble() %>% 
+  group_by(district_id) %>% 
+  summarise(hospital_ct = n(), 
+            hospital_bed_ct = sum(beds)) %>% 
+  left_join(nrw_districts,.)
+
+
+```
+
