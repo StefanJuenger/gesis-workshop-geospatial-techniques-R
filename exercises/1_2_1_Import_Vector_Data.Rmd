@@ -1,11 +1,11 @@
 ---
-# title: 'Exercise 1_1_1: Import Vector Data'
-title: 'Exercise 1_1_1: Import Vector Data - Solution'
+title: 'Exercise 1_1_1: Import Vector Data'
+# title: 'Exercise 1_1_1: Import Vector Data - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-   # unilur::tutorial_html: default
-   unilur::tutorial_html_solution: default
+    unilur::tutorial_html: default
+   # unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -41,11 +41,11 @@ Plot the newly created object.
 Don't forget to load the packages "sf" and set your working directory before starting this exercise.
 ```
 
-```{r first.exercise, solution = TRUE, eval = FALSE}
+```{r first.exercise, solution = TRUE}
 
 library(sf)
 
-germany <- st_read(dsn = "./data",
+germany <- sf::st_read(dsn = "../data",
                   layer = "GER_COUNTRY") 
 
 plot(germany)
@@ -68,12 +68,12 @@ Explore the data and answer the following questions:
 
 ```
 
-```{r second-exercise, solution = TRUE, eval = FALSE}
+```{r second-exercise, solution = TRUE}
 
-st_geometry(germany) # Multipolygon: Set of several Polygons. Each row is a polygon.
+sf::st_geometry(germany) # Multipolygon: Set of several Polygons. Each row is a polygon.
 class(germany) # "sf" and "data.frame"
 attr(germany, "sf_column") # geometry
-st_crs(germany) # ETRS89, ID = EPSG:4258
+sf::st_crs(germany) # ETRS89, ID = EPSG:4258
 head(germany) # Name, Area Type, Area Size, Population Size
 table(germany$population) # 82,792,351 inhabitants
 
@@ -87,13 +87,15 @@ Create a new object which contains only one observation holding information on a
 
 ```
 
-```{r third-exercise, solution = TRUE, eval = FALSE}
+```{r third-exercise, solution = TRUE}
 
 # It seems like the shapefile contains not only the land area of Germany but also coastal areas and lakes.
 
 # filter 
-germany_land <-
+germany_new <-
   germany %>% 
-  filter(area_size != 0)
+  dplyr::filter(. , area_size != 0)
+
+germany_new
 
 ```
