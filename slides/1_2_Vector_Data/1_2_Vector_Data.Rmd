@@ -15,6 +15,7 @@ output:
 layout: true
 
 ```{r init-chunk, include = FALSE}
+
 # load all packages
 source("../../R/load_packages.R")
 
@@ -43,19 +44,19 @@ course_content %>%
 
 ---
 
-## Why Care About Data Types and Formats?
+## Why care about data types and formats?
 
-There is a difference how spatial information is stored, processed and visually represented.
+There is a difference in how spatial information is stored, processed, and visually represented.
 What does this mean for us?
  - Different commands to import and handle the data
- - Spatial linking techniques and analyses partially determined by data format
+ - Spatial linking techniques and analyses partially determined by the data format
  - Visualization of data can differ
 
 So: Always know what kind of data you are dealing with!
 
 ---
 
-## Representing the World in Vectors
+## Representing the world in vectors
 
 .pull-left[
 .center[
@@ -71,28 +72,28 @@ tm_shape(metro) +
 ]
 
 .pull-right[
-In a nutshell, the surface of earth is represented by simple geometries and attributes assigned to each of these features.
+In a nutshell, the surface of the earth is represented by simple geometries and attributes assigned to each of these features.
 
 What usually comes as vector data:
   - administrative borders 
   - rivers and roads, 
-  - buildings, cities and more
+  - buildings, cities, and more
 
-The basis for vector data are georeferenced coordinates. 
+Georeferenced coordinates are the basis of vector data. 
 Every object is defined by longitude (x) and latitude (y).
 ]
 
 ---
 
-## Vector Data: Geometries
+## Vector data: Geometries
 .pull-left[
-Each real world features is represented as one of three types of geometries:
-- Points: discrete location (f.e., well)
+Each real-world features is represented as one of three types of geometries:
+- Points: discrete location (f.e., city)
 - Lines: linear feature   (f.e., river)
-- Polygons: enclosed area  (f.e., lake)
+- Polygons: enclosed area  (f.e., country)
 
 However, the geometries are not fixed. 
-A city might be represented as a point on the map of the world, but for an enclosed look take the shape of a polygon.
+A city might be represented as a point on the world map, but if you zoom in, take a polygon shape.
 ]
 
 .pull-right[
@@ -105,21 +106,21 @@ knitr::include_graphics("./img/vector_geometries.png")
 
 ---
 
-## Vector Data: Attribute Tables
+## Vector data: Attribute tables
 
 The geometries of vector data hold firstly and foremost only up to three information:
-  - location (points, lines and polygons)
+  - location (points, lines, and polygons)
   - length (lines and polygons)
   - area (polygons)
     
-We need to assign attributes to each  geometry to hold additional information.
+We need to assign attributes to each geometry to hold additional information.
 Thereby, attribute tables correspond to data tables.
 Each row represents a geometric object, which we can also call observation or case.
-Each column holds an attribute or in "our" language a variable.
+Each column holds an attribute or, in "our" language, a variable.
 
 ---
 
-## Vector Data: Attribute Tables
+## Vector data: Attribute tables
 
 .center[
 ```{r attr-table, echo = FALSE, out.width = "90%"}
@@ -129,12 +130,12 @@ knitr::include_graphics("./img/attr_table.png")
 
 ---
 
-## New Best Friend: Shapefiles
+## New best friend: Shapefiles
 
-Both, the geometric information and attribute table, can be saved within one file.
-Most commonly, we use ESRI Shapefiles to store vector data.
-They hold the information on geometric type, there location, and coordinate reference system but also store the attributes.
-Even though we import only one shapefile, they consists of at least three mandatory files with the extensions:
+Both the geometric information and attribute table can be saved within one file.
+Most commonly, we use *ESRI Shapefiles* to store vector data.
+They hold the information on the geometric type, location, and coordinate reference system and additionally store the attributes.
+Even though we import only one file, shapefiles consist of at least three mandatory files with the extensions:
   - .shp : shape format
   - .shx : shape index format
   - .dbf : attribute format
@@ -144,11 +145,11 @@ You don't have to remember what they are standing for, but know that you won't b
 
 ---
 
-## First Summary 
+## First summary 
 
-1. Vector Data come in three different geometric types: points, lines, polygons.
+1. Vector data come in three different geometric types: points, lines, polygons.
 
-2. The geometric information are joined by an attribute table holding information for each geometric object.
+2. The geometric information is joined by an attribute table holding information for each geometric object.
 
 3. Attribute tables can be treated as data tables.
 
@@ -158,30 +159,17 @@ Let's give this some context and get to know vector data in R!
 
 ---
 
-## Datas Sets
-
-In the folder called `data` in the same folder as the other materials for this workshop, you can find the data files we prepped for all the exercises and slides. 
-
-Please make sure that if you reuse any of the provided data to cite the original data sources.
-You will find information on the data sources in the respective folders.
-
-The first data sets in use are provided by the German Federal Agency for Cartography and Geodesy [http://www.bkg.bund.de).
-They offer free and high quality data and have an [Open Data Portal](https://gdz.bkg.bund.de/index.php/default/open-data.html).  
-
-
----
-
 ## Welcome to `simple features`
 
 .pull-left[
 .small[
-There are several packages out there to wrangle and visualize spatial and, especially, vector data within `R`.
-We are fans of a package called ``sf` ("simple features").
+Several packages are out there to wrangle and visualize spatial and, especially, vector data within `R`.
+We are fans of a package called `sf` ("simple features").
 
 Why? 
-`simple features` refers to a formal standard to represent spatial geometries and supports interfaces to other programming languages and GIS systems.
+`simple features` refers to a formal standard representing spatial geometries and supports interfaces to other programming languages and GIS systems.
 As a bonus, it allows us to work in a `tibble` environment.
-You might come across other packages, like `sp`, but we advice to focus on `simple features` whenever possible. 
+You might come across other packages, like `sp`, but we advise you to focus on `simple features` whenever possible. 
 ]
 ]
 
@@ -197,7 +185,7 @@ knitr::include_graphics("./img/sf.jpg")
 ## Load a shapefile
 
 The first step is, of course, loading the data.
-Here, we want to load the shapefile with the layer of the administrative borders of the German states (*Bundesländer*) called `GER_STATES`.
+We want to import the shapefile with the layer of the administrative borders of the German states (*Bundesländer*) called `GER_STATES`.
 
 
 ```{r load-germanstates-display, eval = F}
@@ -223,7 +211,7 @@ german_states <- st_read(dsn = "../../data",
 ## Inspect your data: Classics
 
 Let's have a quick look at the imported data.
-Like with every other data set, we inspect the data to check some metadata and see if the importing worked correctly.
+Like every other data set, we inspect the data to check some metadata and see if the importing worked correctly.
 
 ```{r data-inspection-classy}
 # object type
@@ -241,6 +229,8 @@ ncol(german_states)
 
 ## Inspect your data: Classics
 
+You can see that there are no huge differences between the shapefile, we just imported, and a regular data table.
+
 ```{r data-inspection-head}
 
 # head of data table
@@ -250,13 +240,10 @@ head(german_states)
 
 ---
 
-
 ## Inspect your data: Spatial features
 
 Besides our general data inspection, we also want to check the spatial features of our import.
 This includes the geometric type (points? lines? polygons?) and the coordinate reference system.
-You can see that there is no big differences between the simple feature data frame, we just imported and a regular data table.
-
 
 ```{r data-inspection-stgeo}
 # type of geometry
@@ -267,7 +254,7 @@ st_geometry(german_states)
 ---
 ## Inspect your data: Spatial features
 
-Since we have a polygon, the geometry table stores a list with two columns of latitude and longitude information. The points build the basis for ech polygon.
+Since we have a polygon shapefile, the geometry column consists of a list with two columns: latitude and longitude. Hence, each polygon is defined by several points that are connected to build an enclosed area. Several polygons in one data frame have the `sf` type multipolygons. Just as Germany consists of several states, the polygon Germany consists of several smaller polygons.
 
 ```{r data-inspection-stattr}
 # the simple features column
@@ -281,8 +268,9 @@ glimpse(german_states$geometry)
 
 ## Inspect your data: Spatial features
 
-Remember: Stefan already talked about the importance of the CRS.
-And that we personally prefer the EPSG::3035 as a standard CRS.
+Remember: Stefan already introduced why the Coordinate Reference System is so important.
+And that we personally prefer the EPSG:3035 as a standard CRS.
+A crucial step is to check the CRS of your geospatial data.
 
 ```{r data-inspection-crs}
 # coordinate reference system
@@ -293,7 +281,7 @@ st_crs(german_states)
 
 ## `st_transform`
 
-When a CRS is messed up or you want to combine data with not matching CRS, it will all go downwards from there.
+When a CRS is messed up, or one wants to combine data with not matching CRS, it will all go downwards.
 The good thing is that the command `st_transform` allows us to  *translate* our spatial data from one coordinate reference system to another.
 
 ```{r st-transform}
@@ -308,8 +296,8 @@ st_crs(german_states)
 
 ## A very, VERY first map
 
-We had a look on all various kinds of information of our data set without seeing a single map.
-Making nice maps is an art on its own, see the upcoming session.
+We looked at all kinds of information of our data set without seeing a single map.
+Making good maps is an art on its own; see the upcoming session.
 But for inspecting the data and check if we actually loaded what we want to load, we can have a
 very first glimpse.
 
@@ -325,12 +313,10 @@ knitr::include_graphics("./img/plot_german_states.png")
 
 ---
 
-## Import Point Layer
+## Import point layer
 
 Unfortunately, the data we want to visualize or analyze are not always available as shapefiles.
-Especially, point coordinates are often stored in table formats like `.csv`.
-
-The location of German hospitals can be donloaded via the hopital register of the Federal Statistical Office of Germany. They were geocoded and referecend by Anne and finally, stored in a `.csv`-file.
+Especially, point coordinates are often stored in table formats like `.csv` - as are the location of German hospitals in our `data` folder. 
 
 ```{r load-hospitals-display, eval = F}
 
@@ -345,27 +331,17 @@ hospitals_df <- read.csv("./data/hospital_points.csv",
 
 hospitals_df <- read.csv("../../data/hospital_points.csv", header = T, fill = T, sep = ",")
 
-```
-
----
-## From Data Table to Simple Features
-
-We see that besides our attributes (e.g., year of data collection, number of beds...), the table contains the two variables "X" and "Y" , our point coordinates.
-When using the command `st_as_sf` make sure to use the option `crs`.
-If not used, your CRS will not be defined and you won't be able to perform further commands depending on the CRS.
-
-```{r st-as-sf}
-# inspect data
 head(hospitals_df)
-class(hospitals_df) 
-
 ```
 
 ---
 
-## From Data Table to Simple Features
+## From data table to geospatial data
 
-Good thing that Anne was the one who geocoded the addresses, so the data are most likely stored in EPSG:3035.
+We see that besides our attributes (e.g., year of data collection, number of beds...), the table contains the two variables "X" and "Y", our point coordinates.
+When using the command `st_as_sf`, make sure to use the option `crs = [EPSG_ID]`.
+If not used, your CRS will not be defined, and you won't perform further commands depending on the CRS.
+Good thing that Anne was the one who geocoded the addresses, and we know that the data are most likely stored in EPSG:3035.
 
 .pull-left[
 ```{r plot-hospitals-sf-display, eval = F}
@@ -377,13 +353,12 @@ hospitals_sf <- st_as_sf(hospitals_df,
 
 # inspect data
 class(hospitals_sf)
-plot(hospitals_sf)
-
+st_geometry(hospitals_sf)
 ```
 ]
 
 .pull-right[
-```{r plot-hospitals, echo = F}
+```{r transform-hospitals, echo = F}
 
 # transform to spatial data frame
 hospitals_sf <- st_as_sf(hospitals_df, coords = c("X", "Y"),
@@ -391,40 +366,47 @@ hospitals_sf <- st_as_sf(hospitals_df, coords = c("X", "Y"),
 
 # inspect data
 class(hospitals_sf)
-plot(hospitals_sf)
-
+st_geometry(hospitals_sf)
 ```
 ]
 
 ---
 
+## Our point data
+
+```{r plot-hospitals, out.width = "55%"}
+
+plot(hospitals_sf)
+
+```
+
+---
+
 ## ... and the other way round
 
-You already have enough of spatial data, simple featurs, and co?
-Do you want to go back handling a simple data frame?
+You already have enough spatial data, simple features, and co?
+Do you want to go back to handling a simple data frame?
 Here is your chance!
-You can easily achieve this by removing the geometry column or set the geometry to *Null*.
+You can quickly achieve this by drop the geometry column.
 
 ```{r remove-geometry}
 # check class
 class(german_states)
 
 # remove geometry
-german_states_df <- st_set_geometry(german_states, NULL) 
-
-# check class
-class(german_states_df)
+st_drop_geometry(german_states) %>% 
+  head(.,3)
 
 ```
 
 ---
 
-## Data Wrangling
+## Data wrangling
 
 After importing the data sets, we are now ready to manipulate our data. 
 In general, data manipulation of the attribute tables of simple feature objects can be done with all usual data manipulation commands in *R/RStudio*.
 We are working here with the `dplyr` package to manipulate the data frames for all regular data wrangling tasks.
-But if you are used to work with the base R language, feel free to do so.
+But if you are used to working with the base R language, feel free to do so.
 
 .center[
 ```{r echo = FALSE, out.width = "50%" }
@@ -437,29 +419,32 @@ knitr::include_graphics("./img/tidyverse.png")
 
 ## Data Intro: German Districts
 
-New task means, new data!
+A new task means new data!
 We're moving "a layer down" and look at Germany on a more fine-grained spatial level: the district.
-The layer is called *german_districts* and contains only one additional attribute (id).
+The layer is called *GER_DISTRICTS* and contains only one additional attribute (id).
 
 ```{r load-district-display, eval = F}
 
 german_districts <- st_read(dsn = "./data",
                            layer = "GER_DISTRICTS") %>% 
                      st_transform(. , crs = 3035) 
-
+german_districts
 ```
 
 ```{r load-district, echo = F}
 
 german_districts <- st_read(dsn = "../../data",
-                           layer = "GER_DISTRICTS") %>% 
-                     st_transform(. , crs = 3035) 
+                           layer = "GER_DISTRICTS",
+                           quiet = T) %>% 
+                     st_transform(. , crs = 3035,) 
+german_districts
 ```
 
 ---
 ## German Districts
 .small[
 ```{r plot_districts, echo = F , out.width = "70%"}
+
 plot(german_districts)
 
 ```
@@ -469,11 +454,6 @@ plot(german_districts)
 ## Data Intro: Attributes
 
 Since it would be a little bit boring to work with just one attribute, we prepared an extra table with more attributes called *attributes_districts*.
-.small[
-You'll find here 
-  1. Data on Covid-19 cases and deaths as of Feb 2nd 2021 (Prepared by the Robert-Koch-Institut and downloaded from the [NPGEO data hub](https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0))
-  2. Election Results for the German Right-Wing Populist Party *AfD* in the 2017 German federal election ([Der Bundeswahlleiter, Wiesbaden 2018](https://www.bundeswahlleiter.de/bundestagswahlen/2017/ergebnisse/weitere-ergebnisse.html))
-]
 
 ```{r load-attr-display, eval = F}
 
@@ -501,10 +481,11 @@ head(attributes_districts)
 
 ---
 
-## Add Attributes: Join Data Table
+## Add attributes: Join data table
 
-You might already spotted that we have an id for the districts in both data table. 
-With a regular left join of our additional attributes to the `sf` object, we can enhance our spatial data object and add more and more attributes.
+You might already spot that we have an id for the districts (*id* and *district_ic*) in both data tables. 
+This is a good example how easily `sf` objects can be handled.
+With a regular left join of our additional attributes to the `sf` object, we can enhance our geospatial data and add more attributes.
 
 ```{r join-attrtable}
 german_districts_enhanced <- 
@@ -518,19 +499,23 @@ head(german_districts_enhanced,2)
 
 ---
 
-## Exercise 1
+class: middle
+## Exercise 1_2_1: Import Vector Data 
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_2_1_Import_Vector_Data_question.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_2_1_Import_Vector_Data_solution.html)
+
 
 ---
-## Add (More) Attributes: Spatial Join, Spatial Intersects and More
+## Add (More) Attributes: Spatial Join, Spatial Intersects, and More
 
-Besides the regular join, we can also perform a so called *spatial join*.
+Besides the regular join, we can also perform a so-called *spatial join*.
 
-This is a small outlook for tomorrow on Data Wrangling and linking,
-The task here is rather simple: We want to count the number of hospitals in each German district.
-The hospital point layer was imported and is luckily already in the same CRS as polygon layer of the German districts.
+This is a small outlook for tomorrow on **Applied Data Wrangling**.
+For example, we want to count the number of hospitals in each German district.
+The hospital point layer was imported and is luckily already in the same CRS as the polygon layer of the German districts.
 `st_join` does the trick.
-The object *hospitals_in_districts* contains the corresponding district_id for each hospital.
-We can add the hospital count by rearranging the data and left join again.
 
 ```{r spatial-join}
 
@@ -554,19 +539,11 @@ german_districts_enhanced<- left_join(german_districts_enhanced,
 
 ---
 
-## Did that work?
-
-```{r, ech=F, out.width="50%"}
-
-tmap::tm_shape(german_districts_enhanced)+
-        tmap::tm_polygons("hospital_ct", n=10 ) 
-```
-
----
-
 ## Subsetting the Data
 
-You can use your usual data wrangling workflow also when subsetting the data.
+One might be interested in only one specific area of Germany, like the capital Berlin.
+To subset a `sf` object,  you often can use your usual data wrangling workflow. 
+In this case, I know the district_id and that is also the only information I want to keep.
 
 .pull-left[
 ```{r stouches-display, eval = F}
@@ -581,12 +558,15 @@ plot(berlin)
 
 # or in Base R
 german_districts_enhanced[which
-        (german_districts_enhanced$district_id==11000),
+        (german_districts_enhanced$
+            district_id == 11000),
         "district_id"] %>% 
         plot()
 
 ```
 ]
+
+--
 
 .pull-right[
 ```{r stouches, echo= F}
@@ -605,10 +585,8 @@ plot(berlin)
 
 ## Using `sf` for subsetting
 
-You can use `st_touches` to identify all districts surrounding Berlin.
-
-Tomorrows session on applied data wrangling will feature some more spatial data wrangle examples!
-
+If you have no information about *ids* but only about the geolocation, you can use `st_touches` to identify for example all districts which share a border with Berlin.
+Spatial relations of object like `touches`, `within`, `intersect`, `crosses` are helpful tools to exploit the geometric information stored in the data when other information are missing.
 
 .pull-left[
 ```{r surround-display, eval = F}
@@ -617,12 +595,16 @@ Tomorrows session on applied data wrangling will feature some more spatial data 
 berlin_surrounding <-
 german_districts_enhanced %>% 
   select(. , district_id) %>% 
-  filter(., lengths(st_touches(., berlin)) > 0) 
+# length of mutual border > 0
+  filter(., lengths
+         (st_touches(., berlin)) > 0) 
 
 plot(berlin_surrounding)
 
 ```
 ]
+
+--
 
 .pull-right[
 ```{r surround, echo= F}
@@ -646,8 +628,11 @@ After Wrangling and adjusting the data, you can save them.
 There are, again, several options to do so.
 Two notes:
 .small[
-1.Be careful when saving shapefiles: column names will automatically abbreviated!
+
+1.Be careful when saving shapefiles: column names will automatically be abbreviated!
+ 
 2.Make sure that the CRS is included either in your folder or the file name.
+
 ]
 
 
@@ -655,7 +640,7 @@ Two notes:
 
 # Export as Shapefile
 st_write(german_districts_enhanced, 
-         dsn = "./data/own_exports/districts_enhanced_epsg3035.shp", 
+         dsn = "./data/own_material/districts_enhanced_epsg3035.shp", 
          layer = "german_districts_enhanced_epsg3035.shp",  # optional
          driver = "ESRI Shapefile",  # optional
          delete_layer = TRUE) #optional
@@ -665,29 +650,85 @@ german_districts_enhanced_df <-
   st_set_geometry(german_districts_enhanced, NULL) 
 
 write.csv(german_districts_enhanced , 
-          "./data/own_exports/german_districts_enhanced.csv", 
+          "./data/own_material/german_districts_enhanced.csv", 
           row.names = F, na= "." )
   
 # Export data frame as csv with geometric attributes
-st_write(hospitals_sf, "./data/own_exports/hospitals_epsg3035.csv", 
+st_write(hospitals_sf, "./data/own_material/hospitals_epsg3035.csv", 
          layer_options = "GEOMETRY=AS_XY")
 
 ```
 
 ---
 
-## Excercise 2
+class: middle
+## Exercise 1_2_2: Manipulate Vector Data 
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_2_2_Manipulate_Vector_Data_question.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_2_2_Manipulate_Vector_Data_solution.html)
 
 ---
 
-## Wrap-Up and Lunch Break
+## Wrap-Up
 
-We made it through our first session dealing with vector data.
-You can load, transform, manipulate and export the data.
-The next step is producing a nice map and you already are  well-equipped to present your geodata in a nice way.
+.pull-left[
+We made it through our first session dealing with vector data: 
+You can load, transform, manipulate and export vector data. `emo::ji("confetti")`
+
+The next step is producing an awesome map, and you are already well-equipped!
+]
+
+.pull-right[
+```{r cologne-covid, echo=F}
+
+# Import data
+german_districts <- st_read(dsn = "../../data",
+                           layer = "GER_DISTRICTS",
+                           quiet = T) %>% 
+                     rename(., district_id = id)
+
+attributes_districts <-  read.csv("../../data/attributes_districts.csv", 
+                                  header = T, fill = T, sep = ",") 
+
+
+# Join data and transform
+german_districts_enhanced <- 
+  german_districts %>% 
+  left_join(., attributes_districts, by = "district_id") %>% 
+  st_transform(., crs = 3035)
+
+# calculate Covid-19 rate
+german_districts_enhanced <-
+  german_districts_enhanced %>% 
+  mutate(covid7d_rate = (cases_7days / population) * 100000)
+
+# filter Cologne
+cologne <-
+  german_districts_enhanced %>% 
+  filter(. , district_id == 5315)
+
+# filter surrounding districts, append with Cologne data and select the Covid column
+cologne_sur <-
+  german_districts_enhanced %>%
+  filter(lengths(st_touches(., cologne)) > 0) %>% 
+  bind_rows(., cologne) %>%   
+  dplyr::select(. , covid7d_rate)
+
+# plot  
+plot(cologne_sur)
+
+
+```
+]
+
+---
+
+class: middle
+## Lunch Break `r emo::ji("taco")`
+.center[
 But, that is for after lunch!
-
-
+]
 ---
 
 layout: false
@@ -703,7 +744,8 @@ knitr::include_graphics("./img/anne.png")
 ]
 
 .right-column[
-.left[.small[`r icon::fa("envelope")` [`anne-kathrin.stroppe@gesis.org`](mailto:anne-kathrin.stroppe@gesis.org)] </br>
-.small[`r icon::fa("twitter")` [`@AStroppe`](https://twitter.com/AStroppe)] </br>
-.small[`r icon::fa("github")` [`stroppan`](https://github.com/stroppan)] </br>
+.left[.small[`r icon::fontawesome("envelope")` [`anne-kathrin.stroppe@gesis.org`](mailto:anne-kathrin.stroppe@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@AStroppe`](https://twitter.com/AStroppe)] </br>
+.small[`r icon::fontawesome("github")` [`Stroppan`](https://github.com/stroppan)] </br>
+]
 ]
