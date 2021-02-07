@@ -4,8 +4,8 @@ title: 'Exercise 1_4_1: Basic Raster Operations - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
