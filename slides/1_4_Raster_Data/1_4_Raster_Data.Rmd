@@ -773,8 +773,13 @@ knitr::include_graphics("./img/nonregular_grid.png")
 
 ---
 
-class: middle
-## Break `r emo::ji("hot_beverage")`
+## Tomorrow
+
+```{r course-content-tomorrow, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(6:10, background = "yellow")
+```
+
 
 ---
 
