@@ -51,6 +51,10 @@ When social scientists aim to use geospatial data, they must rely on specialized
 
 [Exercise 2_1_2: Wrangling the German Census](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_question.html)
 
+[Exercise 2_2_1: Spatial Joins](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_2_1_Spatial_Joins_question.html)
+
+[Exercise 2_3_1: Advanced Maps Basis](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_3_1_Advanced_Maps_Basis_question.html)
+
 [Exercise 2_4_1: Pre-Shaping Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_1_Pre-Shaping_Data_question.html)
 
 [Exercise 2_4_2: Drawing Custom Elements](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_2_Drawing_Custom_Elements_question.html)
@@ -73,6 +77,10 @@ When social scientists aim to use geospatial data, they must rely on specialized
 [Exercise 2_1_1: Working with OSM Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_1_1_Working_with_OSM_data_solution.html)
 
 [Exercise 2_1_2: Wrangling the German Census](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_1_2_Wrangling_the_German_Census_solution.html)
+
+[Exercise 2_2_1: Spatial Joins](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_2_1_Spatial_Joins_solution.html)
+
+[Exercise 2_3_1: Advanced Maps Basis](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_3_1_Advanced_Maps_Basis_solution.html)
 
 [Exercise 2_4_1: Pre-Shaping Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_4_1_Pre-Shaping_Data_solution.html)
 
