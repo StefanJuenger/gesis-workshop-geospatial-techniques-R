@@ -628,7 +628,7 @@ What helps to be understood is the styling of your code.
 ```{r out.width = "70%", echo = FALSE}
 include_graphics("./img/on_writing_king.jpg")
 ```
-.tinyisher[https://images-na.ssl-images-amazon.com/images/I/71z4varBITL.jpg]o
+.tinyisher[https://images-na.ssl-images-amazon.com/images/I/71z4varBITL.jpg]
 ]
 
 ---
