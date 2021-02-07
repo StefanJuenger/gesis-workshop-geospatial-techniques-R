@@ -34,7 +34,7 @@ xaringanExtra::use_extra_styles(
 
 ---
 
-## About this course
+## About This Course
 
 This course will teach you how to exploit `R` and apply its geospatial techniques in a social science context.
 
@@ -45,7 +45,7 @@ By the end of this course, you should...
 - be able to create maps based on your very own processed geospatial data in `R`
 ---
 
-## Keep calm and carry on learning/using `R`
+## Keep Calm and Carry On Learning/Using `R`
 
 ```{r, learn-r-cartoon, out.width = "50%", echo = F}
 include_graphics("./img/r_first_then.png")
@@ -54,7 +54,7 @@ include_graphics("./img/r_first_then.png")
 
 ---
 
-## This is not a spatial statistics course
+## This Is Not a Spatial Statistics Course
 
 The topic of spatial statistics would require a focus on actual statistics rather than hands-on data wrangling. Therefore, we decided to skip the subject of spatial statistics. We won't take a closer look at:
 - The concept of spatial dependence
@@ -72,7 +72,7 @@ Still, all of these topics can be approached using `R`, e.g., with the packages
 
 ---
 
-## We are (necessarily) selective
+## We Are (Necessarily) Selective
 
 There's a multitude of spatial `R` packages
 - we cannot cover all of them
@@ -84,7 +84,7 @@ We show the use of packages we exploit in practice
 
 ---
 
-## Thus, we cannot cover everything, unfortunately
+## Thus, We Cannot Cover Everything, Unfortunately
 
 Even for the packages we use, we cannot cover all of their functions. For example, the package we will use extensively, the `sf` package, has even more capabilities than we show for:
 - data wrangling & transformation
@@ -94,7 +94,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 
 ---
 
-## Prerequisites for this course
+## Prerequisites for This Course
 
 - At least basic knowledge of `R`, its syntax, and internal logic
   - Affinity for using script-based languages (`Stata` and `Python` are also great)  
@@ -104,7 +104,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 
 ---
 
-## About us
+## About Us
 
 **Stefan Jünger**
 
@@ -123,7 +123,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 
 ---
 
-## About us
+## About Us
 
 **Anne-Kathrin Stroppe**
 
@@ -140,7 +140,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 
 ---
 
-## About you
+## About You
 
 - What's your name?  
 - Where do you work/study? What are you working on/studying?
@@ -163,7 +163,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 
 ---
 
-## Course schedule
+## Course Schedule
 
 ```{r course-content, echo = FALSE}
 course_content
@@ -180,7 +180,7 @@ course_content %>%
 
 ---
 
-## Geographic information in social science research
+## Geographic Information in Social Science Research
 
 .pull-left[
 Exploiting geographic information is not new.
@@ -197,7 +197,7 @@ knitr::include_graphics("https://images.fr.shopping.rakuten.com/photo/874882994.
 
 ---
 
-## Integration in theory
+##Integration in Theory
 
 .pull-left[
 ```{r allport-pic, echo = FALSE, out.width = "65%"} 
@@ -213,7 +213,7 @@ A lot of classic theories have space embedded
 
 ---
 
-## Today's research is not necessarily new
+## Today’s Research Is Not Necessarily New
 
 .pull-left[
 ```{r park-etal-pic, echo = FALSE}
@@ -233,7 +233,7 @@ knitr::include_graphics("./img/fig_halo_example.png")
 
 ---
 
-## Data landscape
+## Data Landscape
 
 .pull-left[
 Increased amount of available data
@@ -258,7 +258,7 @@ Better tools
 
 ---
 
-## What are georeferenced data?
+## What Are Georeferenced Data?
 
 .pull-left[
 </br>
@@ -277,7 +277,7 @@ knitr::include_graphics("./img/fig_geometries.png")
 
 ---
 
-## Geospatial data
+## Geospatial Data
 
 </br>
 
@@ -293,24 +293,37 @@ Can be projected jointly in one single space
 
 ---
 
-## Geospatial data in this course
+## Geospatial Data in This Course I
 
 In the folder called `data` in the same folder as the other materials for this workshop, you can find the data files we prepped for all the exercises and slides. The following data are included:
 
- 1.Administrative borders of Germany (Prefix *GER_*) are provided by the German [Federal Agency for Cartography and Geodesy](http://www.bkg.bund.de)(2018). Check out their [Open Data Portal](https://gdz.bkg.bund.de/index.php/default/open-data.html).
+- Administrative borders of Germany (Prefix *GER_*) are provided by the German [Federal Agency for Cartography and Geodesy](http://www.bkg.bund.de)(2018). Check out their [Open Data Portal](https://gdz.bkg.bund.de/index.php/default/open-data.html).
 
-2.The hospital locations are based on the register of hospitals and preventive care/rehabilitation facilities 2017 published by the [Federal Statistical Office Germany](https://www-genesis.destatis.de/genesis/online). Addresses were geocoded and -referenced by Anne. 
-
-3. Data on Covid-19 cases and deaths as of Feb 2nd, 2021 were prepared by the Robert-Koch-Institut and downloaded from the [NPGEO data hub](https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0).
-
-4. Election Results for the German Right-Wing Populist Party *AfD* in the 2017 German federal election ([Der Bundeswahlleiter, Wiesbaden 2018](https://www.bundeswahlleiter.de/bundestagswahlen/2017/ergebnisse/weitere-ergebnisse.html)).
-
-Please make sure that if you reuse any of the provided data to cite the original data sources.
-
+- The hospital locations are based on the register of hospitals and preventive care/rehabilitation facilities 2017 published by the [Federal Statistical Office Germany](https://www-genesis.destatis.de/genesis/online). Addresses were geocoded and -referenced by Anne. 
 
 ---
 
-## What is GIS?
+## Geospatial Data in This Course II
+
+- Data on Covid-19 cases and deaths as of Feb 2nd, 2021 were prepared by the Robert-Koch-Institut and downloaded from the [NPGEO data hub](https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0).
+
+-  Election Results for the German Right-Wing Populist Party *AfD* in the 2017 German federal election ([Der Bundeswahlleiter, Wiesbaden 2018](https://www.bundeswahlleiter.de/bundestagswahlen/2017/ergebnisse/weitere-ergebnisse.html)).
+
+- German Census 2011 data are provided by the [Federal Statistical Office Germany, Wiesbaden 2020](https://www.zensus2011.de/EN/Home/home_node.html)
+
+---
+
+## Geospatial Data in This Course III
+
+- Shapefiles for Cologne are gathered from the [Open Data Portal Cologne](https://www.offenedaten-koeln.de/)
+
+- Raster data on land use are provided by the Leibniz [Institute of Ecological Urban and Regional Development](https://www.ioer.de/1/home/) through the [Monitor of Settlement and Open Space Development (IOER Monitor)](https://www.ioer-monitor.de/en/)
+
+Please make sure that if you reuse any of the provided data to cite the original data sources.
+
+---
+
+## What Is GIS?
 
 Most common understanding: Geographic Information Systems (GIS) as specific software to process geospatial data for 
 - Visualization
@@ -324,7 +337,7 @@ knitr::include_graphics("./img/gis.png")
 
 ---
 
-## Data specifics
+## Data Specifics
 
 .pull-left[
 </br>
@@ -348,7 +361,7 @@ Coordinate reference systems
 
 ---
 
-## Layers must match!
+## Layers Must Match!
 
 </br>
 ```{r pic-crs, echo = FALSE}
@@ -378,7 +391,7 @@ knitr::include_graphics("./img/fig_projections.png")
 
 class: middle
 
-## Short break `r emo::ji("hot_beverage")`
+## Short Break `r emo::ji("hot_beverage")`
 
 Grab one of your favorite hot or cold beverages, or take a stretch break.
 
@@ -386,7 +399,7 @@ If you're back at your place, you may want to play around with geometries on thi
 
 ---
 
-## A bit more about CRS
+## A Bit More About CRS
 
 A lot of software relies on open libraries comprising information about CRS. 
 - to project geometries on earth's surface
@@ -394,7 +407,7 @@ A lot of software relies on open libraries comprising information about CRS.
 
 ---
 
-## Old standard: `PROJ.4` strings
+## Old Standard: `PROJ.4` Strings
 
 This is how you information about the CRS are defined in a classic standard:
 
@@ -409,7 +422,7 @@ This is how you information about the CRS are defined in a classic standard:
 
 ---
 
-## New kid in town: `WKT` ("Well Known Text")
+## New Kid in Town: `WKT` (“Well Known Text”)
 
 ```
 PROJCS["ETRS89 / LAEA Europe",
@@ -438,7 +451,7 @@ PROJCS["ETRS89 / LAEA Europe",
 
 ---
 
-## Current transition from `PROJ.4` to `WKT` in `R`
+## Current Transition From `PROJ.4` to `WKT` in `R`
 
 Currently, there's a transition from the bit old standard of `PROJ.4` to `WKT` in many `R` packages.
 - you'll get a lot of warnings (see next slide)
@@ -450,7 +463,7 @@ However, for the operations we are going to show...
 
 ---
 
-## ...just ignore the warnings
+## ...Just Ignore the Warnings
 
 You may particularly face some warnings when using the `raster` package (see this afternoon's session about these data). Again, as always in `R`, that's just a warning. [You can ignore it](https://gis.stackexchange.com/questions/365296/setting-crs-of-raster-to-epsg-3035-using-r) since it's a result of the current transition of CRS definitions in individual packages.
 
@@ -464,7 +477,7 @@ I have turned these warnings off for legibility reasons in my slides.
 
 ---
 
-## EPSG codes and EPSG:3035
+## EPSG Codes And EPSG:3035
 
 Eventually, it's not as challenging to work with CRS in `R` as it may seem
 - we don't have to use PROJ.4 or WKT strings directly.
@@ -476,7 +489,7 @@ Most of the times it's enough to use so-called EPSG Codes ("European Petroleum S
 
 ---
 
-## More details on geospatial data 
+## More Details on Geospatial Data
 
 There's no more on geospatial data and their quirks for the time being.
 
@@ -488,7 +501,7 @@ It should not be surprising in light of this course's content: `R` can serve as 
 
 ---
 
-## `R` packages for geospatial data
+## `R` Packages for Geospatial Data
 
 There have been packages for geospatial data in `R` already for a long time.
 - [`sp`](https://cran.r-project.org/web/packages/sp/index.html) for vector data
@@ -509,7 +522,7 @@ knitr::include_graphics("./img/sf.jpg")
 
 ---
 
-## Packages in this course
+## Packages in This Course
 
 We will use plenty of different packages during the course, but only a few are our main drivers (e.g., the `sf` package). Here's the list of packages
 
@@ -548,7 +561,7 @@ class: middle
 ---
 
 class: middle
-## Some last notes on using `R`
+## Some Last Notes on Using `R`
 
 ---
 
@@ -575,7 +588,7 @@ A prime example is the [`Tidyverse`](https://www.tidyverse.org/)
 
 ---
 
-## Piping in `R`
+## Piping In `R`
 
 Usually, in `R` we apply functions as follows:
 
@@ -604,7 +617,7 @@ More details: https://r4ds.had.co.nz/pipes.html
 
 ---
 
-## Some precocious notes on style
+## Some Precocious Notes on Style
 .pull-left[
 In some ways, writing code is similar to writing a novel; it's a craft where you set the tone of how you want to be perceived by your future-you and others.
   
@@ -620,7 +633,7 @@ include_graphics("./img/on_writing_king.jpg")
 
 ---
 
-## General elements of style
+## General Elements of Style
 These are only some of the topics you will face when researching for styling your code.
 - line length (see the ["sacred 80 column rule"]( https://www.emacswiki.org/emacs/EightyColumnRule))
 - indentions
@@ -633,7 +646,7 @@ These are only some of the topics you will face when researching for styling you
 
 ---
 
-## Style guides out there
+## Style Guides out There
 It's not uncommon to follow a specific style guide that already exists.
 
 Many institutions define styles for several different programming languages, such as [Google's style guide for `R`](https://google.github.io/styleguide/Rguide.html)
@@ -642,7 +655,7 @@ It doesn't matter what style you use as long as you are consistent (at least in 
 
 ---
 
-## Coding in style `r emo::ji("sunglasses")`
+## Coding in Style `r emo::ji("sunglasses")`
 
 [The `tidyverse` style guide](https://style.tidyverse.org/) by Hadley Wickham  
   
@@ -690,7 +703,7 @@ class: middle
 
 layout: false
 class: center
-background-image: url(./assets/the_end.png)
+background-image: url(./assets/img/the_end.png)
 background-size: cover
 
 .left-column[

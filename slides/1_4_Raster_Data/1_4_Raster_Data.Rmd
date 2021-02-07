@@ -363,7 +363,7 @@ class: middle
 
 [Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_1_Basic_Raster_Operations_question.html)
 
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_1_Basic_Raster_Operations_solution.html)
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_4_1_Basic_Raster_Operations_solution.html)
 
 ---
 
@@ -623,7 +623,7 @@ class: middle
 
 [Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_question.html)
 
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_solution.html)
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_4_2_Fancier_Raster_Operations_solution.html)
 
 ---
 
@@ -780,7 +780,7 @@ class: middle
 
 layout: false
 class: center
-background-image: url(./img/the_end.png)
+background-image: url(./assets/img/the_end.png)
 background-size: cover
 
 .left-column[
@@ -791,8 +791,8 @@ knitr::include_graphics("./img/stefan.png")
 ]
 
 .right-column[
-.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:cute.cat@gesis.org)] </br>
-.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/CuteCat)] </br>
-.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/cute_cat)] </br>
-.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://www.cute-cat.org)]] </br>
+.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:stefan.juenger@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://stefanjuenger.github.io)]] </br>
 ]
