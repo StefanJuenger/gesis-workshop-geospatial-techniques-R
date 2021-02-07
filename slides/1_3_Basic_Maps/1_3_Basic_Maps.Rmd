@@ -34,11 +34,16 @@ xaringanExtra::use_extra_styles(
 
 
 ---
+class: middle
 ## Check-In and Q&A  
 
-Short Check-In: How are you feeling in two words? [Click here]()
+.center[
+Check-In: [Click here](https://www.menti.com/efi4iyigyg)
+]
 
-Any questions remaining from last session you need us to answer?
+--
+
+Any questions remaining from the last session you need us to answer?
 Any questions concerning the organization of the course?
 
 ---
@@ -60,7 +65,9 @@ knitr::include_graphics("./img/fun_with_flags.jpg")
 ```
 ]
 <br>
+.center[
 <small><small><small> Fun with Flags by Dr. Sheldon Cooper. [Big Bang Theory](https://youtu.be/_e8PGPrPlwA)</small></small></small>
+]
 
 ---
 
@@ -68,8 +75,9 @@ knitr::include_graphics("./img/fun_with_flags.jpg")
 
 .pull-left[
 We already learned how we can make very basic maps using the `plot` function.
-However, this command does not allow us to manipulate the maps in any ways.
-But we already have the two most important ingredients to create a nice map:
+However, this command does not allow us to manipulate the maps in any way.
+But we already have the two most essential ingredients to create a nice map:
+
   1. At least one vector layer like an ESRI Shapefile.
   2. Some interesting attributes linked with the geometries.
 ]
@@ -121,12 +129,12 @@ plot(cologne_sur)
 
 ## What Makes a Good Map?
 
-There is a difference between a great and an amazing map.
-And there are hundreds of really really bad maps out there.
+There is a difference between a great and a fantastic map.
+And there are hundreds of really, really bad maps out there.
 What makes the difference?
 .pull-left[
 A Good Map:
-- reduction to most important informations
+- reduction to most important information
 - legends, scales, descriptions
 - audience oriented
 - adjusted for color blindness
@@ -147,20 +155,22 @@ A Bad Map:
 ... but there is one other type:
 
 .center[
-The fast, but nice map.
+The fast but nice map.
 ]
 
 This is what we plan to do now: 
+
 A fast exploration of spatial data by visualizing the geometries and attributes.
-They might not be publication ready yet, but they are more rewarding than just plotting information.
+
+They might not be publication-ready yet, but they are more rewarding than just plotting information.
 
 ---
 
 ## Sophie´s Choice: Packages for Mapping
 
-As always, *RStudio*  offers several ways to map spatial data and the offered packages are various.
+As always, *RStudio*  offers several ways to map spatial data, and the provided packages are various.
 What is out there?
-  - base R graphics package: `maps` and `mapdata`  
+  - base R graphics package: `maps` and [`mapdata`](https://rpubs.com/rbatzing/mapping)
   - mobile-friendly interactive maps: [`leaflet`](https://rstudio.github.io/leaflet/)
   - interactive and static thematic maps based on shapefiles: [`tmap`](https://mran.microsoft.com/snapshot/2014-12-22/web/packages/tmap/vignettes/tmap-nutshell.html)
   - the all-rounder: `ggmap` in [`ggplot2`](https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html)
@@ -172,15 +182,16 @@ What is out there?
 
 Today, we'll concentrate on the package `tmap`.
 - Firstly, it focuses on vector data.
-- Secondly, it offers not only a static, but a quick interactive feature.
+- Secondly, it offers not only static but a quick interactive feature.
 - Thirdly, it is very intuitive and makes "good" decisions for us.
 
-Lastly,the syntax is very similar to `ggplot2` and will help us tomorrow when we dive deeper into the art of mapping.
+Lastly, the syntax is very similar to `ggplot2` and will help us tomorrow when we dive deeper into the art of mapping.
 A wide-known secret is that `tmap` creates a map based on `ggplot2`, so `ggplot2`-specific graphics manipulations will work as well.
 
 
 ---
-## First Map in 4 Lines
+
+## First Map in Four Lines
 
 Quick Map of Worldwide Life Expectancy?
 Here we go! 
@@ -223,7 +234,7 @@ tm_shape(World) +
 ]
 
 .pull-right[
-```{r first-map-int, echo = FALSE, eval = FALSE}
+```{r first-map-int, echo = FALSE}
 # set mode to "view" for interactive maps
 tmap_mode("view")
 
@@ -240,7 +251,7 @@ tmap_mode("plot")
 
 ## `tmap` in a nutshell
 
-There is not much to consider when using `tmap` , but essential two requirements:
+There is not much to consider when using `tmap`, but essential two requirements:
   1. Define your spatial object.
   2. Choose a building block to determine how to display information.
 
@@ -366,22 +377,52 @@ tm_shape(metro) +
 ```
 
 
+---
+
+## Add Some Information
+
+After we took care of our geometric types, we want to add some information to our data.
+The inner construction of each building block of `tm_elements` is the same.
+  1. Define the variable of interest first by stating the column name. 
+  2. Add a name for legend title, color palette, adjust legend, scales ...
+
+.pull-left[
+```{r life-exp-disp, eval = F}
+
+# define variable
+tm_shape(World) +
+  tm_polygons("life_exp") 
+
+
+```
+]
+
+--
+
+.pull-right[
+.center[
+```{r life-exp, echo = F}
+
+
+# define variable
+tm_shape(World) +
+  tm_polygons("life_exp") 
+
+```
+]
+]
 
 ---
 
 ## Add Some Information
 
 After we took care of our geometric types, we want to add some information to our data.
-The inner constructions of each building block of `tm_elements` are the same.
+The inner construction of each building block of `tm_elements` is the same.
   1. Define the variable of interest first by stating the column name. 
   2. Add a name for legend title, color palette, adjust legend, scales ...
 
 .pull-left[
 ```{r add-attributes-disp, eval = F}
-
-# define variable
-tm_shape(World) +
-  tm_polygons("life_exp") 
 
 # add color, title and more
 tm_shape(World) +
@@ -399,9 +440,6 @@ tm_shape(World) +
 .center[
 ```{r add-attributes, echo = F}
 
-# define variable
-tm_shape(World) +
-  tm_polygons("life_exp") 
 
 # add color, title and more
 tm_shape(World) +
@@ -418,9 +456,9 @@ tm_shape(World) +
 
 ## Change the surroundings
 
-We can change the map self but we can also change the over all layout like title, frame, fonts, margins, legend
+We can change the map self, but we can also change the overall layout like title, frame, fonts, margins, legend
 position, and more. 
-There is another building block organizing basically everything surrounding our map.
+There is another building block organizing everything surrounding our map: `tm_layout`.
 
 .pull-left[
 ```{r changelayout-disp, eval = F}
@@ -431,10 +469,10 @@ tm_shape(World) +
               palette = "RdPu",
               title = "Life Expectancy",
               style = "kmeans") +
-  tm_layout(main.title = "Life Expectancy Around the World",
-            legend.text.color = "white",
-            legend.title.color = "white",
-            legend.bg.color = "darkgrey",
+  tm_layout(main.title = "Life Expectancy ",
+            legend.text.color = "purple",
+            legend.title.color = "purple",
+            legend.bg.color = "lightgrey",
             legend.outside = TRUE)
 
 ```
@@ -451,9 +489,9 @@ tm_shape(World) +
               title = "Life Expectancy",
               style = "kmeans") +
   tm_layout( main.title = "Life Expectancy Around the World",
-             legend.text.color = "white",
-             legend.title.color = "white",
-             legend.bg.color = "darkgrey",
+             legend.text.color = "purple",
+              legend.title.color = "purple",
+              legend.bg.color = "lightgrey",
              legend.outside = TRUE)
 
 ```
@@ -465,9 +503,9 @@ tm_shape(World) +
 class: middle
 ## Exercise 1_3_1: Basic Maps
 
-[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_1_Basic_Maps_question_question.html)
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_1_Basic_Maps_question.html)
 
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_1_Basic_Maps_question_solution.html)
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_3_1_Basic_Maps_solution.html)
 
 ---
 
@@ -484,9 +522,10 @@ knitr::include_graphics("./img/enough_maps.jpg")
 ## Explore Your Data
 
 We just can't get enough of creating maps.
-One simple benefit of quick maps: You can explore your data easily and make spatial correlations visible.
-In the previous months, German researchers and journalists alike claimed that in areas, where the Right-Wing Populist Party *AfD* is supported by voters, the rate of Covid-19 infections is especially high.
-The argument supporting this hypothesis is that *AfD* supporters have more conspiracy beliefs and are less compliant to state rules.
+
+One simple benefit of quick maps: You can explore your data efficiently and make spatial correlations visible.
+In the previous months, German researchers and journalists claimed that in areas where the Right-Wing Populist Party *AfD* is supported by voters, the rate of Covid-19 infections is exceptionally high.
+The argument supporting this hypothesis is that *AfD* supporters have more conspiracy beliefs and are less compliant with state rules.
 
 Can we support this claim based on our data and our basic map skills?
 
@@ -518,7 +557,7 @@ covid_map <-
   tm_layout(main.title = "Covid Cases in Germany",
             main.title.color = "black" ) +
   tm_legend(legend.outside = TRUE,
-            legend.outside.position = "left")
+            legend.outside.position = "right")
 
 ```
 
@@ -527,13 +566,20 @@ covid_map <-
 
 afd_map <-  
   tm_shape(german_districts_enhanced) + 
-  tm_fill(col = "afd_voteshare_2017",
-              title = "AfD Voteshare (%)",
-              palette = "Blues") +
-  tm_layout(main.title = "Electoral Success AfD",
-            main.title.color = "black" ) +
-  tm_legend(legend.outside = TRUE,
-            legend.outside.position = "left")
+  tm_fill(col = 
+            "afd_voteshare_2017",
+              title = "
+            AfD Voteshare (%)",
+              palette = 
+            "Blues") +
+  tm_layout(main.title = 
+              "Electoral Success AfD",
+            main.title.color = 
+              "black" ) +
+  tm_legend(legend.outside = 
+              TRUE,
+            legend.outside.position = 
+              "right")
 
 afd_map 
 ```
@@ -561,23 +607,31 @@ afd_map
 
 ## AfD Success and Covid-19 Cases
 
-If we place the Covid-19 map and the AfD map right next to each other, we can actually see some correlations.
-(Even though there might be a lot of unobserved confounders...)
+If we place the Covid-19 map created in the exercise and the AfD map right next to each other, we might get a first impression.
 The tool we use here is named `tmap_arrange()`.
 
-.pull-left[
 ```{r arranged-display, eval=F}
 
 tmap_arrange(covid_map, afd_map)
 
 ```
-]
 
-.pull-right[
-```{r arranged-maps,  echo = F, warning = F, message = F}
+--
+
+```{r arranged-maps,  echo = F, warning = F, message = F, out.width = "50%"}
 tmap_arrange(covid_map, afd_map)
 ```
-]
+
+---
+
+## AfD Success and Covid-19 Cases
+
+We can see some kind of correlation.
+
+But as we know: Correlation should not be confused with causation. 
+
+We can assume some confounding factors like the sociodemographic composition, state governments' decisions on regulations, or shared borders with other European countries.
+
 
 ---
 
@@ -585,8 +639,10 @@ tmap_arrange(covid_map, afd_map)
 
 Instead of placing maps next to each other, we can also explore spatial correlations by adding layers.
 Another benefit of layering: We can make our map more realistic and aesthetic.
-For example we can add a background layer of neighboring countries, add a layer of German cities or the borders of the German states for orientation.
+
+For example, we can add a background layer of neighboring countries, add a layer of German cities, or the German states' borders for orientation.
 Each layer can visualize another attribute of our map.
+
 For today, we want to add a layer of hospital point data to our Covid-19 map.
 
 
@@ -616,18 +672,29 @@ hospitals_sf <- read.csv("../../data/hospital_points.csv", header = T, fill = T,
 ```{r hospital-map-disp, eval=F}
 
 # map the hospitals on the covid-19 map
-hospital_covid_map <- tm_shape(german_districts_enhanced) + 
-  tm_fill(col = "cases_per_100k",
-          title = "Covid-19 Cases per 100k",
-          palette = "RdPu") +
-  tm_layout(main.title = "Covid Cases in Germany",
-            main.title.color = "black" ) +
-  tm_legend(legend.outside = TRUE,
-            legend.outside.position = "left") +
+hospital_covid_map <- 
+  tm_shape(german_districts_enhanced) + 
+  tm_fill(col = 
+            "cases_per_100k",
+          title = 
+            "Covid-19 Cases per 100k",
+          palette = 
+            "RdPu") +
+  tm_layout(main.title = 
+              "Covid Cases in Germany",
+            main.title.color = 
+              "black" ) +
+  tm_legend(legend.outside = 
+              TRUE,
+            legend.outside.position = 
+              "left") +
+# Add hospital data
 tm_shape(hospitals_sf) + 
   tm_dots("beds", 
-          col = "black",
-          title.size = "Number of Hospital Beds") 
+          col = 
+            "black",
+          title.size = 
+            "Number of Hospital Beds") 
  
 hospital_covid_map
 
@@ -666,18 +733,18 @@ class: middle
 
 # A Short Note on Mapping Responsible
 
-In the best cases, maps are easy to understand and a good way to transport (scientific) messages.
+In the best cases, maps are easy to understand and an excellent way to transport (scientific) messages.
 
 In the worst cases, they simplify (spurious) correlations and draw a dramatic picture of the world.
 
-Maps can shape narratives and they do not only depend on manipulation of the data they are based on.
-Decisions on which projection you use (remember the `true size` projector?), the segment of the world you choose and the colors you add have a high influence.
+Maps can shape narratives, and they do not only depend on the manipulation of the data.
+Decisions on which projection you use (remember the `true size` projector?), the segment of the world you choose, and the colors you add have a strong influence.
 
-As an example, check out this amazing blog post on mapping the Coronavirus responsible by [Kenneth Field](https://www.esri.com/arcgis-blog/products/product/mapping/mapping-coronavirus-responsibly/)
+As an example, check out this fantastic blog post on **mapping the Coronavirus responsible** by [Kenneth Field](https://www.esri.com/arcgis-blog/products/product/mapping/mapping-coronavirus-responsibly/)
 
 ---
 
-## Outlook and Wrap-Up
+## Wrap-Up
 
 If you want to dive deeper into mapping with `tmap` check out:
   - Introduction by [Thomas Lo Russo](https://tlorusso.github.io/geodata_workshop/tmap_package)
@@ -686,6 +753,12 @@ If you want to dive deeper into mapping with `tmap` check out:
 And if you want to get some inspiration, keep an eye out for the #30DayMapChallenge on Twitter.
 Repository of Last Year's Challenge [here](https://github.com/tjukanovt/30DayMapChallenge).
 
+You want to know how to advance your maps? We'll hava a look at this tomorrow!
+
+---
+
+class: middle
+## Break `r emo::ji("hot_beverage")`
 
 ---
 
