@@ -1,10 +1,11 @@
 ---
 title: 'Exercise 1_4_2: Fancier Raster Operations'
+# title: 'Exercise 1_4_2: Fancier Raster Operations - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  # unilur::tutorial_html: default
-  unilur::tutorial_html_solution: default
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -28,7 +29,7 @@ Sample 50 points that fall within the boundaries of the city of Cologne. You wil
 ```
 
 ```{block, opts.label = "clues"}
-This is no raster file, so you would need the `sf::read_sf()` function to load the data. Sampling is straightforward: Just apply the `sf::st_sample` to the loaded shapefile, but make sure to apply the `sf::st_as_sf()` function afterwards to receive a full-fledged data table (with a geometry column only).
+The shapefile is no raster file, so that you would need the `sf::read_sf()` function to load the data. Sampling is straightforward: Apply the `sf::st_sample` to the loaded shapefile, but make sure to apply the `sf::st_as_sf()` function afterward to receive a full-fledged data table (with a geometry column only).
 ```
 
 ```{r first, solution = TRUE}
@@ -45,7 +46,7 @@ cologne_50_points <-
 
 
 ```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
-Create a new raster layer comprising immigrant rates in Cologne based on the raster layers from the previous exercises.
+Create a new raster layer comprising Cologne's immigrant rates based on the raster layers from the previous exercises.
 ```
 
 ```{block, opts.label = "clues"}
@@ -65,7 +66,7 @@ Extract the immigrant rate value at each position of the previously sampled poin
 ```
 
 ```{block, opts.label = "clues"}
-Remember that the German Census 2011 data are rather sparse due to some severe data protections measures.
+Remember that the German Census 2011 data are relatively sparse due to some severe data protection measures.
 ```
 
 ```{r third, solution = TRUE}
@@ -76,7 +77,7 @@ immigrant_rates_at_point <-
 ```
 
 ```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
-Use a more adequate method of raster extraction to gather information in the geographic surrounding of a point. What is your observation now?
+Use an adequate method of raster extraction to gather information in the geographic surrounding of a point. What is your observation now?
 ```
 
 ```{block, opts.label = "clues"}

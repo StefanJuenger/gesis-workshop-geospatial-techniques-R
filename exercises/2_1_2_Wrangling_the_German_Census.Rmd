@@ -1,10 +1,11 @@
 ---
 title: 'Exercise 2_1_2: Wrangling the German Census'
+# title: 'Exercise 2_1_2: Wrangling the German Census - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  # unilur::tutorial_html: default
-  unilur::tutorial_html_solution: default
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -55,7 +56,7 @@ Crop both datasets to the extent of the city of Berlin.
 ```
 
 ```{block, opts.label = "clues"}
-You can use the `osmdata:getbb()` function to receive a proper polygon for this purpose. Make sure to only extract the `multipolygon` and to convert it to the EPSG:3035 CRS.
+You can use the `osmdata:getbb()` function to receive a proper polygon for this purpose. Make sure only to extract the `multipolygon` and to convert it to the EPSG:3035 CRS.
 ```
 
 ```{r second, solution = TRUE}

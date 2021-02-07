@@ -1,5 +1,6 @@
 ---
-title: 'Exercise 1_4_1: Basic Raster Operations'
+# title: 'Exercise 1_4_1: Basic Raster Operations'
+title: 'Exercise 1_4_1: Basic Raster Operations - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
@@ -28,7 +29,7 @@ Create a matrix with 8 rows and 8 columns filles with random numbers in  a range
 ```
 
 ```{block, opts.label = "clues"}
-You can use the `sample()` function to create the create the numbers.
+You can use the `sample()` function to create the numbers.
 ```
 
 ```{r first, solution = TRUE}
@@ -59,7 +60,7 @@ fancy_raster_layer <-
 raster::plot(fancy_raster_layer)
 ```
 
-The `raster()` function can not only be used to create raster data on the fly, which is also not very interesting. Instead, we can use it to import already prepared to data.
+The `raster()` function can not only be used to create raster data on the fly, which is also not very interesting. Instead, we can use it to import already prepared data.
 
 ```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
 Import one of the raster `.tiff`  files in the `./data/` folder of the workshop directory (repository). Do you get any warning messages?
@@ -79,7 +80,7 @@ immigrants_cologne <-
 
 
 ```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
-Import the data on Immigrants, Germans, and Inhabitants. Add up the Immigrants and Germans to a new layer. Then subtract this new layer from the Inhabitants layer to check whether the inhabitants layer is the same as the sum of Immigrants and Germans. Is it?
+Import the data on Immigrants, Germans, and Inhabitants. Add up the Immigrants and Germans to a new layer. Then subtract this new layer from the Inhabitants layer to check whether the inhabitant layer is the same as the sum of immigrants and Germans. Is it?
 ```
 
 ```{block, opts.label = "clues"}
