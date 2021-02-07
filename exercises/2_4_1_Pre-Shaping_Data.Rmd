@@ -1,10 +1,11 @@
 ---
-title: 'Exercise 2_4_1: Pre-Shaping Data'
+# title: 'Exercise 2_4_1: Pre-Shaping Data'
+title: 'Exercise 2_4_1: Pre-Shaping Data - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -31,7 +32,7 @@ Pick a address in Germany and geocode it through OSM. Make sure that the CRS is 
 ```
 
 ```{block, opts.label = "clues"}
-If you're not familiar with German places that may be interesting. You could, for example, choose between these three:
+If you're not familiar with German places, you could, for example, choose between these three:
 - "B2,1 68159 Mannheim"
 - "Waldspirale, 64289 Darmstadt"
 - "Gustav-Stresemann-Ring 11, 65189 Wiesbaden"
@@ -71,7 +72,7 @@ Apply the `bboxing` function and store the results in a new object. What do you 
 ```
 
 ```{block, opts.label = "clues"}
-Note that we use a cut-out map of a specific place's surrounding.
+Note that we use a cut-out map of a specific place's surroundings.
 ```
 
 ```{r second, solution = TRUE}
@@ -81,16 +82,16 @@ gesis_bbox
 
 # It's a bounding box for the areal surrounding of our geocoded address -- 1000 
 # meters in each direction. We will use it to cut out a slice of some data we
-# are going to load next.
+# will load next.
 ```
 
 
 ```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
-Download  data on roads using OpenStreetMap. You can use the "highways" plus "trunk", "primary", "secondary", and "tertiary" as key/value pairs. Again, make sure that the CRS is transformed to EPSG:3035
+Please download data on roads using OpenStreetMap. You can use the "highways" plus "trunk", "primary", "secondary", and "tertiary" as key/value pairs. Again, make sure that the CRS is transformed to EPSG:3035
 ```
 
 ```{block, opts.label = "clues"}
-This was part of the session this morning. It's part of this crazy pipe where you first define a bounding box using `osmdata::getbb()` and so on. 
+This task was part of the session this morning. It's part of this crazy pipe where you first define a bounding box using `osmdata::getbb()` and so on. 
 ```
 
 ```{r third, solution = TRUE}
@@ -108,11 +109,11 @@ cologne_roads <-
 
 
 ```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
-Crop the downloaded roads data to the extent of the object you created in exercise "2". We haven't used the function before, but it's basically the same as in the use of cropping raster data -- it's the `sf::st_crop()` function.
+Crop the downloaded road data to the extent of the object you created in exercise "2". We haven't used the function before, but it's the same as in the use of cropping raster data -- it's the `sf::st_crop()` function.
 ```
 
 ```{block, opts.label = "clues"}
-The first argument of the function are your downloaded roads data, the second one the -- psst! -- bounding box from exercise "2".
+The first argument of the function is your downloaded road data, the second one the -- psst! -- bounding box from exercise "2".
 ```
 
 ```{r fourth, solution = TRUE}
@@ -121,7 +122,7 @@ gesis_roads <-
   sf::st_crop(gesis_bbox)
 ```
 
-Use the following function for shearing and rotating your layers. Simply run the code first before applying it.
+Use the following function for shearing and rotating your layers. Run the code first before applying it.
 
 ```{r fun-rotate-data}
 rotate_data <- function(data, x_add = 0, y_add = 0) {
