@@ -1,11 +1,11 @@
 ---
-title: 'Exercise 1_1_1: Package Installation'
-# title: 'Exercise 1_1_1: Package Installation - Solution'
+# title: 'Exercise 1_1_1: Package Installation'
+title: 'Exercise 1_1_1: Package Installation - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -30,7 +30,7 @@ As this is the very first exercise in this workshop, it is relatively easy and s
 And here comes our very first exercise (which is not very spatial...):
 
 ```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
-Please install all packages that are listed on slide X of the Introduction slides ("1_1_Intro.html").
+Please install all packages that are listed on slide 33 of the Introduction slides ("1_1_Intro.html").
 ```
 
 ```{block, opts.label = "clues"}
