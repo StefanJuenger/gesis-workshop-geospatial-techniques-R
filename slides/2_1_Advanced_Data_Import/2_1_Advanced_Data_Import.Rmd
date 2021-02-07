@@ -57,7 +57,7 @@ course_content %>%
 Geospatial data tend to be quite big
 - pressure to distribute data efficiently
 
-Data dumps (on the internet) may not be helpful when resources are low and/or time's a factor
+Data dumps (on the internet) may not be helpful when resources are low and/or time's a factor.
 
 Already for a long time, there are standards to distribute data over the internet and make accessing only chunks of them possible
 - Use of *Programming Application Interfaces* (API)
@@ -97,7 +97,7 @@ Standardized mechanisms
 
 ---
 
-## Example: Access of Public Transport
+## Example: Access to Public Transport
 
 Say, we're interested in the accessibility of public transport in Cologne
 - bus, tram, etc.
@@ -109,7 +109,7 @@ Say, we're interested in the accessibility of public transport in Cologne
 
 ## Accessing OSM Data: the Overpass API
 
-> The Overpass API (formerly known as OSM Server Side Scripting, or OSM3S before 2011) is a read-only API that serves up custom selected parts of the OSM map data. It acts as a database over the web: the client sends a query to the API and gets back the data set that corresponds to the query.
+> The Overpass API (formerly known as OSM Server Side Scripting, or OSM3S before 2011) is a read-only API that serves up custom selected parts of the OSM map data. It acts as a database over the web: the client sends a query to the API and returns the data set that corresponds to the query.
 
 .tinyisher[Source: https://wiki.openstreetmap.org/wiki/Overpass_API]
 
@@ -117,7 +117,7 @@ Say, we're interested in the accessibility of public transport in Cologne
 
 ## Starting with a Geographic Area to Query
 
-Many geospatial API requests start with a bounding box or another geographical extent to define from which area should be accessed.
+Many geospatial API requests start with a bounding box or another geographical extent to define which area should be accessed.
 
 .pull-left[
 ```{r cologne-polygon}
@@ -142,7 +142,7 @@ tm_shape(cologne_pt_stops) +
 
 ## Defining some technical details
 
-The Overpass API in particular also requires a timeout parameter that repeats the request a certain amount of time if anything fails.
+The Overpass API also requires a timeout parameter that repeats the request a certain amount of time if anything fails.
 
 ```{r cologne-opq}
 cologne_pt_stops <-
@@ -253,7 +253,7 @@ class: middle
 
 [Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_1_Working_with_OSM_data_question.html)
 
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_1_Working_with_OSM_data_solution.html)
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_1_1_Working_with_OSM_data_solution.html)
 
 ---
 
@@ -261,7 +261,7 @@ class: middle
 
 Not all data come as pretty as OpenStreetMap data in, e.g., the `osmdata` package.
 
-Don't worry, there are methods to import data from source that
+Don't worry. There are methods to import data from source that
 - only provide an URL
 - not yet prepared for analysis
 
@@ -272,7 +272,7 @@ Don't worry, there are methods to import data from source that
 
 JSON files are pretty popular
 - standardized and well structured
-- similar to XML-files, but human readibilty is a bit better
+- similar to XML-files, but human readability is a bit better
 - also easy to parse for editors and browser
 
 There's also a JSON flavor for geospatial data...
@@ -328,7 +328,7 @@ where_to_wear <-
 
 ---
 
-## Where to weark a mask
+## Where to wear a mask
 
 We now know where in Cologne you should wear a mask using `R`. Not too bad, right?
 
@@ -350,10 +350,10 @@ tm_shape(where_to_wear) +
 
 ## Raster data access
 
-APIs are not only used for vector data, but also for raster data.
+APIs are not only used for vector data but also raster data.
 
 The idea is the same
-- accessing information on data through URLs
+- accessing the information through URLs
 - just the downloaded data formats differ
 
 ---
@@ -392,9 +392,9 @@ tm_shape(cologne_raster) +
 
 ---
 
-## Use it as background map
+## Use it as a background map
 
-As these data are basically images, they are perfect to be used as background maps when mapping other geospatial attributes, such as our mask wearing data.
+As these data are images, they are perfect to be used as background maps when mapping other geospatial attributes, such as our mask-wearing data.
 
 .pull-left[
 ```{r cologne-raster-map-bg, eval = FALSE}
@@ -452,9 +452,9 @@ tmaptools::read_osm(
 
 ## OGC Web Services
 
-OSM and other provide their own standardized interface to their data.
+OSM and others provide their standardized interface to their data.
 
-The Open Geospatial Consortium developed a more broadly used interface design to more diverse data sources
+The Open Geospatial Consortium developed a more broadly used interface design for more diverse data sources
 - often used by public authorities all over the world
 - support of well-supported data formats
 - good documentation
@@ -479,11 +479,11 @@ Web Feature Service (WFS)
 **Web Coverage Service (WCS)**
 - raster data
 
-Unfortunately, as of today there are no ready-to-play packages providing full access to OWS services in `R`
-- The [`ows4R` package](https://cran.r-project.org/web/packages/ows4R/index.html) let's you only use WFS services
+Unfortunately, as of today, no ready-to-play packages are providing full access to OWS services in `R`
+- The [`ows4R` package](https://cran.r-project.org/web/packages/ows4R/index.html) lets you only use WFS services
 - I (Stefan), however, work a lot with raster data
 
-In the following, we will see a way establishing an interface to `Python` and using its `OWSLib` to access WCS data.
+In the following, we will establish an interface to `Python` and use its `OWSLib` to access WCS data.
 
 ---
 
@@ -675,7 +675,7 @@ tm_shape(cologne_green) +
 There are times where no APIs are available for downloading geospatial data.
 
 The German Census 2011 is a prime example
-- only a data dump of Gigabytes of data exists for hundrends of attributes
+- only a data dump of Gigabytes of data exists for hundreds of attributes
 - when you often work with these data, it's a pain
 
 **Thus, I created my own (pseudo-)API for these data hosted over Github.**
@@ -684,7 +684,7 @@ The German Census 2011 is a prime example
 
 ## Accessing data
 
-Details on using the package can be found [here](https://stefanjuenger.github.io/z11/articles/using-z11.html), but it's really easy to use. For example, if you want to download data on immigrant rates on a 1 km² grid you can use the following function.
+Details on using the package can be found [here](https://stefanjuenger.github.io/z11/articles/using-z11.html), but it's straightforward to use. For example, if you want to download data on immigrant rates on a 1 km² grid, you can use the following function.
 
 ```{r census-immigrants}
 immigrants_germany <-
@@ -699,7 +699,7 @@ immigrants_germany
 
 ## It's a raster
 
-As it is a raster file, you can plot it fairly easy.
+As it is a raster file, you can plot it easily.
 
 --
 
@@ -724,7 +724,7 @@ class: middle
 
 [Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_question.html)
 
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_solution.html)
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_1_2_Wrangling_the_German_Census_solution.html)
 
 ---
 
