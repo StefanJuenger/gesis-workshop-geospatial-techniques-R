@@ -1,5 +1,6 @@
 ---
-title: 'Exercise 2_1_1: Working with OSM Data'
+# title: 'Exercise 2_1_1: Working with OSM Data'
+title: 'Exercise 2_1_1: Working with OSM Data - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
@@ -45,7 +46,7 @@ plot(dresden)
 
 
 ```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
-Choose one or two building types you are interested in and set them as key and value pairs. You can find a list of building types in the [Overpass API documentation](https://wiki.openstreetmap.org/wiki/Key:building). But don't forget to set the timeout query parameters first usind the `osmdata::opq()` function.
+Please choose one or two building types you are interested in and set them as key and value pairs. You can find a list of building types in the [Overpass API documentation](https://wiki.openstreetmap.org/wiki/Key:building). But don't forget to set the timeout query parameters first using the `osmdata::opq()` function.
 ```
 
 ```{block, opts.label = "clues"}
@@ -68,7 +69,7 @@ Download the data using the `osmadata::osmdata_sf()` function and extract only t
 ```
 
 ```{block, opts.label = "clues"}
-The downloaded data are actually a list. The polygons are a named list element that you can extract with its name `osm_polygons`, just like a variable in a data table.
+The downloaded data are a list. The polygons are a named list element that you can extract with its name `osm_polygons`, just like a variable in a data table.
 ```
 
 ```{r third, solution = TRUE}
