@@ -1,10 +1,11 @@
 ---
-title: 'Exercise 2_4_2: Drawing Custom Elements'
+# title: 'Exercise 2_4_2: Drawing Custom Elements'
+title: 'Exercise 2_4_2: Drawing Custom Elements - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -25,7 +26,7 @@ library(ggplot2)
 klippy::klippy()
 ```
 
-In this exercise, we are going to re-use the results from the previous one. If you don't have them available, just fire up the code below.
+In this exercise, we are going to re-use the results from the previous one. If you don't have them available, fire up the code below.
 
 ```{r pre-code, echo = FALSE, include = FALSE}
 library(dplyr)
@@ -98,7 +99,7 @@ Think outside the box :-)
 ```{r first, solution = TRUE}
 # It depends on the map. Often compasses are placed where they don't cover any
 # other import elements of the map. If you're unsure, it might be a good idea
-# just to place it outside of the map frame.
+# to place it outside of the map frame.
 ```
 
 Look at this code to create compass coordinates (for an arrow):
@@ -112,11 +113,11 @@ gesis_cologne_compass_data <-
 
 
 ```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
-If we were to draw the compass arrow in the upper right corner, what do you think would be some reasonable offset values for the bounding box? The values define the start and end point of the arrow, thus they have to be adjusted to be vertical in space.
+If we were to draw the compass arrow in the upper right corner, what do you think would be some reasonable offset values for the bounding box? The values define the arrow's start and endpoint; thus, they have to be adjusted to be vertical in space.
 ```
 
 ```{block, opts.label = "clues"}
-There is no right or wrong as we have to test them in the next step. So this is a mean question. But remember that the bounding box is 1000 meters on each side, and that the bounding box values are ordered this way: minimum x-value, minimum y-value, maximum x-value, and maximum y-value.
+There is no right or wrong as we have to test them in the next step. So this is a mean question. But remember that the bounding box is 1000 meters on each side and that the bounding box values are ordered this way: minimum x-value, minimum y-value, maximum x-value, and maximum y-value.
 ```
 
 ```{r second, solution = TRUE}
@@ -126,7 +127,7 @@ gesis_cologne_compass_data <-
   sf::st_sf()
 ```
 
-Admittedly, drawing custom elements is a matter of fiddling around. We want to draw an arrow, and we didn't had this before. So here's a way to use our compass data and add it to an existing `ggplot`. Please feel free to adapt it to your liking.
+Admittedly, drawing custom elements is a matter of fiddling around. We want to draw an arrow, and we didn't have this before. Here's a way to use our compass data and add it to an existing `ggplot`. Please feel free to adapt it to your liking.
 
 ```{r geom-segment, eval = FALSE}
 geom_segment(
@@ -148,7 +149,7 @@ Recreate the unrotated and the rotated map from Exercise 1_4_1 and add the pre-d
 ```
 
 ```{block, opts.label = "clues"}
-There's a lot of stuff happening on the map. Think about applying the `ggsn::blank()` function to remove all the clutter. Also, for the unrotated map you obviously don't need the `rotate_data()` function, right?
+There's a lot of stuff happening on the map. Think about applying the `ggsn::blank()` function to remove all the clutter. Also, you don't need the `rotate_data()` function for the unrotated map, right?
 ```
 
 ```{r third, solution = TRUE}

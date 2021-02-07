@@ -43,7 +43,7 @@ course_content %>%
 
 ---
 
-## What we aim to learn in this session
+## What We Aim to Learn in This Session
 
 ```{r 3d-pic, echo = FALSE}
 knitr::include_graphics("./img/fig_3d_simple.png")
@@ -51,18 +51,18 @@ knitr::include_graphics("./img/fig_3d_simple.png")
 
 ---
 
-## How we are going to do it?
+## How Are We Going to Do It?
 
 We will make use of
 - `sf`'s excellent interface to straightforward manipulate the `geometry` column
 - barebones `ggplot2` again
-- most importantly, some mathematical voodoo for rotating the data, called affine transformation
+- most notably, some mathematical voodoo for rotating the data, called an affine transformation
 
 ---
 
-## A lay persons's explanation of the mathematical background
+## A Laypersons’ Explanation of the Mathematical Background
 
-Creating a 3D map comprises two steps
+Creating a 3D map comprises two steps.
 
 1. Shearing the geometries
 2. Rotating the geometries
@@ -71,7 +71,7 @@ Creating a 3D map comprises two steps
 
 ## Shearing
 
-Shearing or shear mapping is a method of geometric data transformation which 'distorts' the data while preserving the size of the area
+Shearing or shear mapping is a method of geometric data transformation that 'distorts' the data while preserving the size of the area
 - with a signed distance in reference
 - to a fixed line or point
 
@@ -146,7 +146,7 @@ So we not only multiply any point in our data with a shear matrix, which serves 
 
 $${[x,y]} \times \underbrace{\begin{bmatrix}2   & 0  \\ 1.2 & 1 \end{bmatrix}}_\text{Shear Matrix} \times \underbrace{\begin{bmatrix} \cos(\frac{\pi}{20}) & \sin(\frac{\pi}{20}) \\ -\sin(\frac{\pi}{20}) & \cos(\frac{\pi}{20})\end{bmatrix}}_\text{Rotation Matrix} \underbrace{(+ \begin{bmatrix}x\_add & y\_add \end{bmatrix})}_\text{Optional Additions}$$
 
-At the end of this operation, we can also add an $x$ or $y$ offset value to move the whole thing in two-dimensional space. This creates this layer optic, as we've seen in the beginning.
+We can also add an $x$ or $y$ offset value to move the whole thing in two-dimensional space at the end of this operation. This step creates this layer optic, as we've seen in the beginning.
 
 ---
 
@@ -173,9 +173,9 @@ rotate_data <- function(data, x_add = 0, y_add = 0) {
 
 ---
 
-## Let's start with a simple square
+## Let's Start With a Simple Square
 
-Using `sf`, we can create a basic rectangle more or less just like in a drawing program.
+Using `sf`, we can create a basic rectangle more or less, just like in a drawing program.
 
 .pull-left[
 ```{r simple-square}
@@ -201,9 +201,9 @@ ggplot() +
 
 ---
 
-## Application of our pre-defined function 
+## Application of Our Pre-Defined Function 
 
-What is nice about the pre-defined function is that we can simply unleash it on our drawn rectangle
+What is nice about the pre-defined function is that we can unleash it on our drawn rectangle.
 
 .pull-left[
 ```{r simple-square-rotated}
@@ -224,7 +224,7 @@ ggplot() +
 
 ---
 
-## Adding multiple layers
+## Adding Multiple Layers
 
 We can also recycle our rectangle and adding a `y` offset value.
 
@@ -253,14 +253,14 @@ ggplot() +
 
 ---
 
-## What's next?
+## What's Next?
 
 You can do this rotation stuff with any geometry:
 - points
 - lines
 - polygons
 
-In the upcoming exercise, you will get used to apply the function by rotating multiple different geometries. But first, we are going to learn from one more geospatial technique as a prerequisite...
+In the upcoming exercise, you will get used to applying the function by rotating multiple different geometries. But first, we are going to learn from one more geospatial technique as a prerequisite...
 
 ---
 
@@ -298,11 +298,11 @@ class:middle
 
 [Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_1_Pre-Shaping_Data_question.html)
 
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_1_Pre-Shaping_Data_solution.html)
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_4_1_Pre-Shaping_Data_solution.html)
 
 ---
 
-## Going crazy: Adding custom elements
+## Going Crazy: Adding Custom Elements
 
 Some additional packages for `ggplot2` already provide functionalities to add custom elements
 - scale bars
@@ -310,11 +310,11 @@ Some additional packages for `ggplot2` already provide functionalities to add cu
 
 However, they are often small images added to the plot, which makes rotating them a bit hard.
 
-**Thus, we just draw them ourselves as additional `sf` geometries.**
+**Thus, we draw them ourselves as additional `sf` geometries.**
 
 ---
 
-## Basic scale bar: prerequisites
+## Basic Scale Bar: Prerequisites
 
 ```{r bboxing, include = FALSE}
 bboxing <- function(input_point) {
@@ -340,9 +340,9 @@ It's the frame we are orientating on for 'drawing'. Just like your canvas in MS 
 
 ---
 
-## Basic scale bar: the whole thing
+## Basic Scale Bar: the Whole Thing
 
-Scalebars have a specific length. We define it here by restructuring our pre-defined frame.
+Scale bars have a specific length. We define it here by restructuring our pre-defined frame.
 
 .pull-left[
 ```{r scalebar-frame}
@@ -363,9 +363,9 @@ plot(gesis_cologne_scalebar)
 
 ---
 
-## Basic scale bar: sections
+## Basic Scale Bar: Sections
 
-Often scalebars include sections for measuring distances. That's something we can also draw and add to our scalebar.
+Often scale bars include sections for measuring distances. That's something we can also draw and add to our scalebar.
 
 .pull-left[
 ```{r scalebar-sections}
@@ -401,9 +401,9 @@ plot(gesis_cologne_scalebar)
 
 ---
 
-## Unrotated map with scalebar
+## Unrotated Map With Scalebar
 
-Let's have a look at our map inluding our custom scalebar.
+Let's have a look at our map, including our custom scalebar.
 
 ```{r gesis-roads, include = FALSE}
 gesis_roads <-
@@ -441,11 +441,12 @@ ggplot() +
 
 ---
 
-## Rotated map with a scalebar
+## Rotated Map With a Scalebar
 
-And now let's see how it perform when roating the whole map.
+And now, let's see how it performs when rotating the whole map.
 
 .pull-left[
+.tinyisher[
 ```{r rotated-map, eval = FALSE}
 ggplot() +
   geom_sf(
@@ -490,6 +491,7 @@ ggplot() +
   ggsn::blank()
 ```
 ]
+]
 
 --
 
@@ -506,12 +508,12 @@ class:middle
 
 [Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_2_Drawing_Custom_Elements_question.html)
 
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_4_2_Drawing_Custom_Elements_solution.html)
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_4_2_Drawing_Custom_Elements_solution.html)
 
 ---
 
 class: middle
-## Break & then Wrap-up
+## Break & Then Wrap-up
 
 
 ---
@@ -529,8 +531,8 @@ knitr::include_graphics("./img/stefan.png")
 ]
 
 .right-column[
-.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:cute.cat@gesis.org)] </br>
-.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/CuteCat)] </br>
-.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/cute_cat)] </br>
-.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://www.cute-cat.org)]] </br>
+.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:stefan.juenger@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://stefanjuenger.github.io)]] </br>
 ]
