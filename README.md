@@ -2,6 +2,8 @@
 
 [CLICK HERE FOR UNCLUTTERED VIEW](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/)
 
+<br/>
+
 Materials for the 2021 GESIS Workshop ["Geospatial Techniques in R for Social Scientists"](https://training.gesis.org/?site=pDetails&child=full&pID=0xE521E26B38B0463BB57F08015CF37403)
 
 [Stefan Jünger](https://stefanjuenger.github.io) (stefan.juenger@gesis.org)
