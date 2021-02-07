@@ -39,7 +39,7 @@ When social scientists aim to use geospatial data, they must rely on specialized
 
 [Exercise 1_2_2: Manipulate Vector Data](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_2_2_Manipulate_Vector_Data_question.html)
 
-[Exercise 1_3_1: Basic Maps](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_1_Basic_Maps_question_question.html)
+[Exercise 1_3_1: Basic Maps](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_1_Basic_Maps_question.html)
 
 [Exercise 1_3_2: Fun with Maps](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_3_2_Fun_with_Maps_question.html)
 
