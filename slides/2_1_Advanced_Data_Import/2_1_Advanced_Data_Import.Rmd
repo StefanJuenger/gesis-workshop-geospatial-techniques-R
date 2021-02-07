@@ -43,7 +43,7 @@ course_content %>%
 
 ---
 
-## `R`-Packages *we* will use
+## `R`-Packages *We* Will Use
 
 - `osmdata` 
 - `tmaptools`
@@ -52,7 +52,7 @@ course_content %>%
 
 ---
 
-## More on the geospatial data landscape
+## More on the Geospatial Data Landscape
 
 Geospatial data tend to be quite big
 - pressure to distribute data efficiently
@@ -64,7 +64,7 @@ Already for a long time, there are standards to distribute data over the interne
 
 ---
 
-## What is an API?
+## What Is an API?
 
 An Application Programming Interface (API) serves as an entry point to data distributed over the internet to
 - get data
@@ -88,7 +88,7 @@ Standardized mechanisms
 
 ---
 
-## How are data accessed?
+## How Are Data Accessed?
 
 1. (What is there to get?
 2. (Can I get it?)
@@ -107,7 +107,7 @@ Say, we're interested in the accessibility of public transport in Cologne
 
 ---
 
-## Accessing OSM Data: the Overpass API
+## Accessing OSM Data: The Overpass API
 
 > The Overpass API (formerly known as OSM Server Side Scripting, or OSM3S before 2011) is a read-only API that serves up custom selected parts of the OSM map data. It acts as a database over the web: the client sends a query to the API and returns the data set that corresponds to the query.
 
@@ -115,7 +115,7 @@ Say, we're interested in the accessibility of public transport in Cologne
 
 ---
 
-## Starting with a Geographic Area to Query
+## Starting With a Geographic Area to Query
 
 Many geospatial API requests start with a bounding box or another geographical extent to define which area should be accessed.
 
@@ -140,7 +140,7 @@ tm_shape(cologne_pt_stops) +
 
 ---
 
-## Defining some technical details
+## Defining Some Technical Details
 
 The Overpass API also requires a timeout parameter that repeats the request a certain amount of time if anything fails.
 
@@ -154,7 +154,7 @@ cologne_pt_stops
 
 ---
 
-## Turning to the content
+## Turning to the Content
 
 The content which we aim to request is defined with key/value pairs. It's best to learn them by doing and look them up in the [official documentation](https://wiki.openstreetmap.org/wiki/Map_features).
 
@@ -168,7 +168,7 @@ cologne_pt_stops
 
 ---
 
-## Conduct actual request/download
+## Conduct Actual Request/Download
 
 In the `osmdata` package, data is actually downloaded, e.g., by using the `osmdata::osmdata_sf()` function.
 
@@ -182,7 +182,7 @@ cologne_pt_stops
 
 ---
 
-## Filter and transform
+## Filter and Transform
 
 The data comprises a list that can be accessed as any list in `R`. Here we extract the points and wrangle them spatially.
 
@@ -202,7 +202,7 @@ cologne_pt_stops
 
 ---
 
-## The data indeed are mappable
+## The Data Indeed Are Mappable
 
 .pull-left[
 ```{r cologne-pt-stops-map, eval = FALSE}
@@ -220,7 +220,7 @@ tm_shape(cologne_pt_stops) +
 
 ---
 
-## Fiddling with the data: Creating a quick 'heatmap'
+## Fiddling With the Data: Creating a Quick 'Heatmap'
 
 OpenStreetMap points data are nice to analyze urban infrastructure. Let's draw a quick 'heatmap' using kernel densities.
 
@@ -257,7 +257,7 @@ class: middle
 
 ---
 
-## Accessing unpackaged (vector) data
+## Accessing Unpackaged (Vector) Data
 
 Not all data come as pretty as OpenStreetMap data in, e.g., the `osmdata` package.
 
@@ -268,7 +268,7 @@ Don't worry. There are methods to import data from source that
 
 ---
 
-## Example: GeoJSON files
+## Example: GeoJSON Files
 
 JSON files are pretty popular
 - standardized and well structured
@@ -279,7 +279,7 @@ There's also a JSON flavor for geospatial data...
 
 ---
 
-## GeoJSON snippet
+## GeoJSON Snippet
 
 ```
 {
@@ -303,7 +303,7 @@ There's also a JSON flavor for geospatial data...
 
 ---
 
-## An Application from Cologne's open data portal
+## An Application From Cologne’s Open Data Portal
 
 ```{r where-to-wear}
 where_to_wear <-
@@ -328,7 +328,7 @@ where_to_wear <-
 
 ---
 
-## Where to wear a mask
+## Where to Wear a Mask
 
 We now know where in Cologne you should wear a mask using `R`. Not too bad, right?
 
@@ -348,7 +348,7 @@ tm_shape(where_to_wear) +
 
 ---
 
-## Raster data access
+## Raster Data Access
 
 APIs are not only used for vector data but also raster data.
 
@@ -358,7 +358,7 @@ The idea is the same
 
 ---
 
-## OSM data can be gathered as raster data, too
+## OSM Data Can Be Gathered As Raster Data, Too
 
 The `tmaptools` package is pretty handy to download OpenStreetMap data (tiles).
 
@@ -372,7 +372,7 @@ cologne_raster
 
 ---
 
-## Mapped OSM raster data
+## Mapped OSM Raster Data
 
 The resulting data can be packed in a `tmap` workflow.
 
@@ -392,7 +392,7 @@ tm_shape(cologne_raster) +
 
 ---
 
-## Use it as a background map
+## Use It As a Background Map
 
 As these data are images, they are perfect to be used as background maps when mapping other geospatial attributes, such as our mask-wearing data.
 
@@ -414,7 +414,7 @@ tm_shape(cologne_raster) +
 
 ---
 
-## Playing with different map types
+## Playing With Different Map Types
 
 List of available type names can be seen with the function call `OpenStreetMap::getMapInfo()`.
 
@@ -461,7 +461,7 @@ The Open Geospatial Consortium developed a more broadly used interface design fo
 
 ---
 
-## Displaying vs. downloading
+## Displaying vs. Downloading
 
 These web services can broadly be divided into services to
 - display data
@@ -670,7 +670,7 @@ tm_shape(cologne_green) +
 
 ---
 
-## Shameless advertising: the `z11` package
+## Shameless Advertising: The `z11` Package
 
 There are times where no APIs are available for downloading geospatial data.
 
@@ -682,7 +682,7 @@ The German Census 2011 is a prime example
 
 ---
 
-## Accessing data
+## Accessing Data
 
 Details on using the package can be found [here](https://stefanjuenger.github.io/z11/articles/using-z11.html), but it's straightforward to use. For example, if you want to download data on immigrant rates on a 1 km² grid, you can use the following function.
 
@@ -697,7 +697,7 @@ immigrants_germany
 
 ---
 
-## It's a raster
+## It’s a Raster
 
 As it is a raster file, you can plot it easily.
 
@@ -729,13 +729,13 @@ class: middle
 ---
 
 class: middle
-## Break
+## Break `r emo::ji("hot_beverage")`
 
 ---
 
 layout: false
 class: center
-background-image: url(./img/the_end.png)
+background-image: url(./assets/img/the_end.png)
 background-size: cover
 
 .left-column[
@@ -746,8 +746,8 @@ knitr::include_graphics("./img/stefan.png")
 ]
 
 .right-column[
-.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:cute.cat@gesis.org)] </br>
-.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/CuteCat)] </br>
-.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/cute_cat)] </br>
-.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://www.cute-cat.org)]] </br>
+.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:stefan.juenger@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://stefanjuenger.github.io)]] </br>
 ]
