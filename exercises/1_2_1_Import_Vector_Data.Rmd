@@ -1,11 +1,11 @@
 ---
-#title: 'Exercise 1_2_1 Import and Explore Vector Data - Solutions'
-title: 'Exercise 1_2_1 Import and Explore Vector Data'
-author: 'Anne Stroppe, Stefan Jünger'
+# title: 'Exercise 1_1_1: Import Vector Data'
+title: 'Exercise 1_1_1: Import Vector Data - Solution'
+author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+   # unilur::tutorial_html: default
+   unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -24,14 +24,16 @@ klippy::klippy()
 ```
 
 Let's get started with some hands-on exercises and exploring some data!
-This exercise focuses on how to import different vector data geometries from different data sources and get used to simple feature data tables.
+This exercise focuses on importing different vector data geometries from various data sources and getting used to simple feature data tables.
 
-In the folder "data" you can find the data files we prepped for all the exercises which rely on preexisting data sets. 
+In the folder `data`, you can find the data files we prepped for all the exercises which rely on preexisting data sets. 
 However, if you like to play around with your own data, feel free to do so!
 . 
 
 ```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
-Load the administrative borders of Germany. Therefore, import the shapefile "GER_COUNTRY" from the respective folder and assign the data to an object named "germany". 
+Load the administrative borders of Germany. Therefore, import the shapefile "GER_COUNTRY" from the respective folder and assign it to an object named "germany". 
+
+Plot the newly created object.
 
 ```
 
@@ -44,19 +46,21 @@ Don't forget to load the packages "sf" and set your working directory before sta
 library(sf)
 
 germany <- st_read(dsn = "./data",
-                           layer = "GER_COUNTRY") 
+                  layer = "GER_COUNTRY") 
+
+plot(germany)
 
 ```
 
-The output in the console of the *RStudio* interface gives you already some information on the data you just loaded. You also see that the object "germany" appeared on your environment.
+The output in the console of the *RStudio* interface gives you already some information on the data you just loaded. You also see that the object "germany" appeared in your environment.
 Though, we will explore the data set a little bit closer.
 
 ```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
 
-Explore the data, plot the data and answer the following questions:
+Explore the data and answer the following questions:
 
   - What is the geometry type? 
-  - What is the id of the coordinate refernce system ?
+  - What is the id of the coordinate reference system?
   - Which kind of class is the object?
   - What is the name of the column containing the information on geometries?
   - Which attributes are assigned to the geometries?
@@ -66,12 +70,30 @@ Explore the data, plot the data and answer the following questions:
 
 ```{r second-exercise, solution = TRUE, eval = FALSE}
 
-st_geometry(germany) # Multpolygon: Set of several Polygons. Each row is a polygon.
+st_geometry(germany) # Multipolygon: Set of several Polygons. Each row is a polygon.
 class(germany) # "sf" and "data.frame"
 attr(germany, "sf_column") # geometry
 st_crs(germany) # ETRS89, ID = EPSG:4258
 head(germany) # Name, Area Type, Area Size, Population Size
 table(germany$population) # 82,792,351 inhabitants
 
+
+```
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+
+Do you have an idea why there are 11 observations instead of only one, even though we expected a shapefile with a polygon of just Germany?
+Create a new object which contains only one observation holding information on area size and population of Germany.
+
+```
+
+```{r third-exercise, solution = TRUE, eval = FALSE}
+
+# It seems like the shapefile contains not only the land area of Germany but also coastal areas and lakes.
+
+# filter 
+germany_land <-
+  germany %>% 
+  filter(area_size != 0)
 
 ```

@@ -4,8 +4,8 @@ title: 'Exercise 1_2_2 Manipulate Vector Data'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  # unilur::tutorial_html: default
-  unilur::tutorial_html_solution: default
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -64,15 +64,15 @@ head(german_districts_enhanced, 2)
 ```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
 
 We want a first descriptive visual of the distribution of Covid-19 cases in Cologne and the surrounding districts. 
-Calculate the number of Covid-19 cases in the last 7 days (*cases_7days*) by population (population) and multiply with 100,000 (in Germany usually called "7 Tages Inzidenzzahl). 
+Calculate the number of Covid-19 cases in the last seven days (*cases_7days*) by population (population) and multiply with 100,000 (in Germany usually called "7 Tages Inzidenzzahl": number of persons who were infected with Covid-19 in the last seven days per 100k). 
 
-Select Cologne (district_id == 5315), find the surrounding districts and plot the Covid Rate in Cologne and the surrounding districts.
+Select Cologne (district_id == 5315), find the surrounding districts, and plot Cologne and its surrounding districts.
 
 ```
 
 ```{block, opts.label = "clues"}
 
-You can use the dplyr function `bind_rows` to combine the two spatial objects "Cologne" and "Cologne Surroundings".
+You can use the dplyr function `bind_rows` to combine the two spatial objects, "Cologne" and "Cologne Surroundings".
 
 ```
 
@@ -105,15 +105,15 @@ plot(cologne_sur)
 
 ```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
 
-Save your data set of Cologne and its surrounding districts as a ESRI Shapefile. 
+Save your data set of Cologne and its surrounding districts as an ESRI Shapefile. 
 
 ```
 
 ```{r third-exercise, solution = TRUE, eval = FALSE}
 
-# Export as Shapefile
+# Export as shapefile
 st_write(cologne_sur, 
-         dsn = "./data/own_materials/cologne_covid19_eps3035", 
+         dsn = "./data/own_material/cologne_covid19_epsg3035", 
          delete_layer = TRUE) #optional
 
   
