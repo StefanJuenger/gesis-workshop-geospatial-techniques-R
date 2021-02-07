@@ -1,5 +1,6 @@
 ---
 title: 'Exercise 1_1_1: Package Installation'
+# title: 'Exercise 1_1_1: Package Installation - Solution'
 author: 'Stefan Jünger & Anne Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
@@ -22,9 +23,9 @@ knitr::opts_template$set(
 klippy::klippy()
 ```
 
-As this is the very first exercise in this workshop it is quite easy and short. Its purpose is  to get used to this exercise format and, more importantly, to install all necessary packages for this course.
+As this is the very first exercise in this workshop, it is relatively easy and short. Its purpose is to get used to this exercise format and, more importantly, to install all necessary packages for this course.
 
-*Note*: You can find the solutions for this exercise as well as all other exercises in the `solutions` folder in the repo/directory that contains the course materials. You can copy code from these exercise files by clicking on the small blue clipboard icon in the upper right corner of the code boxes.
+*Note*: You can find the solutions for this exercise and all other exercises in the `solutions` folder in the repo/directory that contains the course materials. You can copy code from these exercise files by clicking on the small blue clipboard icon in the code boxes' upper right corner.
 
 And here comes our very first exercise (which is not very spatial...):
 
@@ -33,7 +34,7 @@ Please install all packages that are listed on slide X of the Introduction slide
 ```
 
 ```{block, opts.label = "clues"}
-We recommend using the `easypackages` packages, which can be installed with the command `install.packages("easypackages")`. After loading the package with `library(easypackages)` you can load *and* install packages with the command `easypackages::packages("fancy_package_1", "fancy_package_2", ...)`. You can also install packages from Gihub just by adding the Github user's name in front of the package name, e.g., `DavidHasselhof/fancy_package_3`.
+We recommend using the `easypackages` packages, which can be installed with the command `install.packages("easypackages")`. After loading the package with `library(easypackages)` you can load *and* install packages with the command `easypackages::packages("fancy_package_1", "fancy_package_2", ...)`. You can also install Github packages just by adding the Github user's name in front of the package name, e.g., `DavidHasselhof/fancy_package_3`.
 ```
 
 ```{r first.exercise, solution = TRUE}
