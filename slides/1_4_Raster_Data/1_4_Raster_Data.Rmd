@@ -774,7 +774,7 @@ knitr::include_graphics("./img/nonregular_grid.png")
 ---
 
 class: middle
-## Break
+## Break `r emo::ji("hot_beverage")`
 
 ---
 
