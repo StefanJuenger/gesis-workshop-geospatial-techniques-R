@@ -3,6 +3,7 @@ if (!require(easypackages)) { install.packages("easypackages")}
 library(easypackages)
 
 easypackages::packages(
+  "corrr",
   "dplyr",
   "emo",
   "ggplot2",
