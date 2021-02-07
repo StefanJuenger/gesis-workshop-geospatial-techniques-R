@@ -513,14 +513,14 @@ class:middle
 ---
 
 class: middle
-## Break & Then Wrap-up
+## Wrap-up
 
 
 ---
 
 layout: false
 class: center
-background-image: url(./img/the_end.png)
+background-image: url(./assets/img/the_end.png)
 background-size: cover
 
 .left-column[
