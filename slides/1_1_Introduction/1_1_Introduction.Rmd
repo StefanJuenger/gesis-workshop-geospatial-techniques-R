@@ -293,6 +293,23 @@ Can be projected jointly in one single space
 
 ---
 
+## Geospatial data in this course
+
+In the folder called `data` in the same folder as the other materials for this workshop, you can find the data files we prepped for all the exercises and slides. The following data are included:
+
+ 1.Administrative borders of Germany (Prefix *GER_*) are provided by the German [Federal Agency for Cartography and Geodesy](http://www.bkg.bund.de)(2018). Check out their [Open Data Portal](https://gdz.bkg.bund.de/index.php/default/open-data.html).
+
+2.The hospital locations are based on the register of hospitals and preventive care/rehabilitation facilities 2017 published by the [Federal Statistical Office Germany](https://www-genesis.destatis.de/genesis/online). Addresses were geocoded and -referenced by Anne. 
+
+3. Data on Covid-19 cases and deaths as of Feb 2nd, 2021 were prepared by the Robert-Koch-Institut and downloaded from the [NPGEO data hub](https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0).
+
+4. Election Results for the German Right-Wing Populist Party *AfD* in the 2017 German federal election ([Der Bundeswahlleiter, Wiesbaden 2018](https://www.bundeswahlleiter.de/bundestagswahlen/2017/ergebnisse/weitere-ergebnisse.html)).
+
+Please make sure that if you reuse any of the provided data to cite the original data sources.
+
+
+---
+
 ## What is GIS?
 
 Most common understanding: Geographic Information Systems (GIS) as specific software to process geospatial data for 
@@ -526,7 +543,7 @@ class: middle
 
 [Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_question.html)
 
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_1_1_Package_Installation_solution.html)
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_1_1_Package_Installation_solution.html)
 
 ---
 
@@ -684,8 +701,8 @@ knitr::include_graphics("./img/stefan.png")
 ]
 
 .right-column[
-.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:cute.cat@gesis.org)] </br>
-.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/CuteCat)] </br>
-.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/cute_cat)] </br>
-.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://www.cute-cat.org)]] </br>
+.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:stefan.juenger@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://stefanjuenger.github.io)]] </br>
 ]
