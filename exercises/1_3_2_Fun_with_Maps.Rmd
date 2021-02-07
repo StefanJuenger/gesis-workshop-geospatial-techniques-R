@@ -1,6 +1,6 @@
 ---
-title: 'Exercise 1_3_2 Fun with Maps - Solutions'
-# title: 'Exercise 1_3_2 Fun with Maps'
+# title: 'Exercise 1_3_2 Fun with Maps - Solutions'
+title: 'Exercise 1_3_2 Fun with Maps'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:

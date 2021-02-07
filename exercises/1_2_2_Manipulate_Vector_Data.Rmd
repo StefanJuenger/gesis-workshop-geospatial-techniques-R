@@ -1,11 +1,11 @@
 ---
-# title: 'Exercise 1_2_2 Manipulate Vector Data - Solutions'
-title: 'Exercise 1_2_2 Manipulate Vector Data'
+title: 'Exercise 1_2_2 Manipulate Vector Data - Solutions'
+# title: 'Exercise 1_2_2 Manipulate Vector Data'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -38,14 +38,18 @@ You need to rename one of the id variables or adjust your join accordingly ("id 
 ```
 
 
-```{r first-exercise, solution = TRUE, eval = FALSE}
+```{r first-exercise, solution = TRUE}
+
+# load libraries
+library(sf)
+library(dplyr)
 
 # Import data
-german_districts <- st_read(dsn = "./data",
+german_districts <- st_read(dsn = "../data",
                            layer = "GER_DISTRICTS") %>% 
                      rename(., district_id = id) #
 
-attributes_districts <-  read.csv("./data/attributes_districts.csv", 
+attributes_districts <-  read.csv("../data/attributes_districts.csv", 
                                   header = T, fill = T, sep = ",") 
 
 
@@ -76,7 +80,7 @@ You can use the dplyr function `bind_rows` to combine the two spatial objects, "
 
 ```
 
-``````{r second-exercise, solution = TRUE, eval = FALSE}
+``````{r second-exercise, solution = TRUE}
 
 # calculate Covid-19 rate
 german_districts_enhanced <-

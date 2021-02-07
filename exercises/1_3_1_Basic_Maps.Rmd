@@ -1,11 +1,11 @@
 ---
-title: 'Exercise 1_3_1 Basic Maps - Solutions'
-# title: 'Exercise 1_3_1 Basic Maps'
+# title: 'Exercise 1_3_1 Basic Maps - Solutions'
+title: 'Exercise 1_3_1 Basic Maps'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
   unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+  #unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -24,14 +24,14 @@ klippy::klippy()
 ```
 
 We've finally arrived at creating our first maps based on the data we imported and cleaned in the previous sessions.
-The focus on this first session lies on the package `tmap` to create maps.
+The focus of this first session lies on the package `tmap` to create maps.
 
 
 ```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
 
 Let's start super simple.
 Import our enhanced district data.
-Create a map with the outline of Germany and one were the borders of the districts are visible.
+Create a map with only the outline of Germany and one where the districts' borders are visible.
 Chose a color of your choice for both maps.
 
 ```
@@ -74,12 +74,12 @@ tm_shape(german_districts_enhanced) +
 ```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
 
 In a second step, we want to visualize some information on the German districts contained in the attribute table.
-Choose the column  and create a map of Covid-19 cases per 100,000 inhabitants in Germany.
+Choose the column `cases_per_100k` and create a map of Covid-19 cases per 100,000 inhabitants in Germany.
 Alternate the map by:
 
 - add a legend title and change the color palette
 - add a title to the map and change the font color of the title
-- place the legend outside to of the map at the bottom
+- place the legend outside of the map at the bottom
 - ...
 
 Assign your map to an object called `covid_map`.
@@ -133,7 +133,7 @@ covid_map <-
 ```{block, opts.label = "clues"}
 
 Check the `head()` of your shapefile. 
-You might to need to rename some of the columns or use the correct names: `cases_per_100k` (abbreviated: `cs__100`).
+You might need to rename some of the columns or use the correct names: `cases_per_100k` (abbreviated: `cs__100`).
 
 ```
 
@@ -151,8 +151,6 @@ If you run `colors()`, R returns the names of all built-in colors.
 
 ```{block, opts.label = "clues"}
 
-To assign your map to an object use the arrow `<-`.
+To assign your map to an object, use the arrow `<-`.
 
 ```
-
-
