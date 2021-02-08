@@ -57,15 +57,13 @@ include_graphics("./img/r_first_then.png")
 ## This Is Not a Spatial Statistics Course
 
 The topic of spatial statistics would require a focus on actual statistics rather than hands-on data wrangling. Therefore, we decided to skip the subject of spatial statistics. We won't take a closer look at:
-- The concept of spatial dependence
-  - its modeling using spatial weight matrices
-  - analysis of spatial dependence (e.g., Moran's I)
+- The concept of spatial dependence, its modeling using spatial weight matrices, and analysis (e.g., Moran's I)
 - Spatial regression
 
 --
 
 Still, all of these topics can be approached using `R`, e.g., with the packages
-- [`spdep`](https://bookdown.org/yihui/rmarkdown/xaringan-key.html
+- [`spdep`](https://bookdown.org/yihui/rmarkdown/xaringan-key.html)
 - [`spatstat`](https://cran.r-project.org/web/packages/spatstat/index.html)
 - [`spatialEco`](https://cran.r-project.org/web/packages/spatialEco/index.html)
 - and so many more
@@ -159,7 +157,7 @@ Even for the packages we use, we cannot cover all of their functions. For exampl
 - Please mute your microphones unless you are asking a question
 - Slides and other materials are available at
 
-.center[`https://github.com/StefanJuenger/gesis-workshop-geoR`]
+.center[`https://github.com/StefanJuenger/gesis-workshop-geospatial-techniques-R`]
 
 ---
 
@@ -208,7 +206,8 @@ knitr::include_graphics("https://i.gr-assets.com/images/S/compressed.photo.goodr
 
 .pull-right[
 A lot of classic theories have space embedded
-- For example, in Allport's (1954) contact theory, he at least implicitly assumes that people meet in a set space
+
+For example, in Allport's (1954) contact theory, he at least implicitly assumes that people meet in a set space
 ]
 
 ---
@@ -319,7 +318,7 @@ In the folder called `data` in the same folder as the other materials for this w
 
 - Raster data on land use are provided by the Leibniz [Institute of Ecological Urban and Regional Development](https://www.ioer.de/1/home/) through the [Monitor of Settlement and Open Space Development (IOER Monitor)](https://www.ioer-monitor.de/en/)
 
-Please make sure that if you reuse any of the provided data to cite the original data sources.
+**Please make sure that if you reuse any of the provided data to cite the original data sources.**
 
 ---
 
