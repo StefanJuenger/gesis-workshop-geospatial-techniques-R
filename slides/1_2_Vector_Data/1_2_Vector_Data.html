@@ -1326,6 +1326,15 @@ st_drop_geometry(german_states) %&gt;%
 
 ---
 
+class: middle
+## Exercise 1_2_1: Import Vector Data 
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_2_1_Import_Vector_Data_question.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_2_1_Import_Vector_Data_solution.html)
+
+---
+
 ## Data wrangling
 
 After importing the data sets, we are now ready to manipulate our data. 
@@ -1418,7 +1427,7 @@ attributes_districts &lt;-  read.csv(&quot;./data/attributes_districts.csv&quot;
 
 ## Add attributes: Join data table
 
-You might already spot that we have an id for the districts (*id* and *district_ic*) in both data tables. 
+You might already spot that we have an id for the districts (*id* and *district_id*) in both data tables. 
 This is a good example how easily `sf` objects can be handled.
 With a regular left join of our additional attributes to the `sf` object, we can enhance our geospatial data and add more attributes.
 
@@ -1453,16 +1462,6 @@ head(german_districts_enhanced,2)
 ## 1           7.449591 MULTIPOLYGON (((4283235 352...
 ## 2           6.877478 MULTIPOLYGON (((4331981 348...
 ```
-
----
-
-class: middle
-## Exercise 1_2_1: Import Vector Data 
-
-[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_2_1_Import_Vector_Data_question.html)
-
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_2_1_Import_Vector_Data_solution.html)
-
 
 ---
 ## Add (More) Attributes: Spatial Join, Spatial Intersects, and More
@@ -1574,7 +1573,7 @@ Two notes:
 ```r
 # Export as Shapefile
 st_write(german_districts_enhanced, 
-         dsn = &quot;./data/own_material/districts_enhanced_epsg3035.shp&quot;, 
+         dsn = &quot;./own_material/districts_enhanced_epsg3035.shp&quot;, 
          layer = &quot;german_districts_enhanced_epsg3035.shp&quot;,  # optional
          driver = &quot;ESRI Shapefile&quot;,  # optional
          delete_layer = TRUE) #optional
@@ -1584,11 +1583,11 @@ german_districts_enhanced_df &lt;-
   st_set_geometry(german_districts_enhanced, NULL) 
 
 write.csv(german_districts_enhanced , 
-          &quot;./data/own_material/german_districts_enhanced.csv&quot;, 
+          &quot;./own_material/german_districts_enhanced.csv&quot;, 
           row.names = F, na= &quot;.&quot; )
   
 # Export data frame as csv with geometric attributes
-st_write(hospitals_sf, &quot;./data/own_material/hospitals_epsg3035.csv&quot;, 
+st_write(hospitals_sf, &quot;./own_material/hospitals_epsg3035.csv&quot;, 
          layer_options = &quot;GEOMETRY=AS_XY&quot;)
 ```
 
@@ -1606,10 +1605,14 @@ class: middle
 ## Wrap-Up
 
 .pull-left[
-We made it through our first session dealing with vector data: 
-You can load, transform, manipulate and export vector data. `emo::ji(&quot;confetti&quot;)`
-
-The next step is producing an awesome map, and you are already well-equipped!
+We made it through our first session dealing with vector data!
+You can:
+  - load
+  - transform
+  - manipulate 
+  - and export vector data.
+  
+The next step is producing an awesome map! 🎊
 ]
 
 .pull-right[
