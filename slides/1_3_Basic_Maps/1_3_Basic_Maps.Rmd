@@ -220,33 +220,6 @@ tm_shape(World) +
 
 ---
 
-## Making it interactive
-
-By changing the mode, we get an interactive map!
-
-.pull-left[
-```{r first-map-int-disp, eval = F}
-tmap_mode("view")
-
-tm_shape(World) +
-    tm_fill("life_exp")
-```
-]
-
-.pull-right[
-```{r first-map-int, echo = FALSE}
-# set mode to "view" for interactive maps
-tmap_mode("view")
-
-tm_shape(World) +
-    tm_fill("life_exp")
-
-tmap_mode("plot")
-
-```
-]
-
----
 
 
 ## `tmap` in a nutshell
