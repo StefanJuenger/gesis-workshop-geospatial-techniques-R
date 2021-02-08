@@ -575,6 +575,15 @@ tm_shape(immigrant_edges) +
 
 ---
 
+class: middle
+## Exercise 1_4_2: : Fancier Raster Operations
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_question.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_4_2_Fancier_Raster_Operations_solution.html)
+
+---
+
 ## Raster Stacks (Or `raster::brick()`, Respectively)
 
 So far, raster data have been unidimensional: we only had one attribute for each dataset.
@@ -618,12 +627,45 @@ raster::plotRGB(
 
 ---
 
-class: middle
-## Exercise 1_4_2: : Fancier Raster Operations
+## Non-Regular Grids
 
-[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/1_4_2_Fancier_Raster_Operations_question.html)
+In this course, we will only use regular grid-based raster data. But be aware that also non-regular grid data exist.
 
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/1_4_2_Fancier_Raster_Operations_solution.html)
+```{r pic-grid, echo = FALSE, out.width = "80%"}
+knitr::include_graphics("./img/nonregular_grid.png")
+```
+
+.tinyisher[Source: https://r-spatial.github.io/stars/]
+
+---
+
+## Tomorrow
+
+```{r course-content-tomorrow, echo = FALSE}
+course_content %>%
+  kableExtra::row_spec(6:10, background = "yellow")
+```
+
+---
+
+layout: false
+class: center
+background-image: url(./assets/img/the_end.png)
+background-size: cover
+
+.left-column[
+</br>
+```{r pic-me, echo = FALSE, out.width = "90%"}
+knitr::include_graphics("./img/stefan.png")
+```
+]
+
+.right-column[
+.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:stefan.juenger@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://stefanjuenger.github.io)]] </br>
+]
 
 ---
 
@@ -758,46 +800,3 @@ raster_polygon <-
 The developers of the `raster` package decided to rewrite the functions so that it's [simpler, better, and faster](https://rspatial.org/terra/pkg/index.html)
 
 **Thus, `terra` will be the `raster` package's successor in the future.**
-
----
-
-## Non-Regular Grids
-
-In this course, we will only use regular grid-based raster data. But be aware that also non-regular grid data exist.
-
-```{r pic-grid, echo = FALSE, out.width = "80%"}
-knitr::include_graphics("./img/nonregular_grid.png")
-```
-
-.tinyisher[Source: https://r-spatial.github.io/stars/]
-
----
-
-## Tomorrow
-
-```{r course-content-tomorrow, echo = FALSE}
-course_content %>%
-  kableExtra::row_spec(6:10, background = "yellow")
-```
-
-
----
-
-layout: false
-class: center
-background-image: url(./assets/img/the_end.png)
-background-size: cover
-
-.left-column[
-</br>
-```{r pic-me, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("./img/stefan.png")
-```
-]
-
-.right-column[
-.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:stefan.juenger@gesis.org)] </br>
-.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/StefanJuenger)] </br>
-.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/StefanJuenger)] </br>
-.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://stefanjuenger.github.io)]] </br>
-]
