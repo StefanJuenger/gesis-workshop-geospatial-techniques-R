@@ -481,9 +481,96 @@ Web Feature Service (WFS)
 
 Unfortunately, as of today, no ready-to-play packages are providing full access to OWS services in `R`
 - The [`ows4R` package](https://cran.r-project.org/web/packages/ows4R/index.html) lets you only use WFS services
-- I (Stefan), however, work a lot with raster data
+- But you could establish an interface to `Python` and use its `OWSLib` to access WCS data (see add-on slides.
 
-In the following, we will establish an interface to `Python` and use its `OWSLib` to access WCS data.
+---
+
+## Shameless Advertising: The `z11` Package
+
+There are times where no APIs are available for downloading geospatial data.
+
+The German Census 2011 is a prime example
+- only a data dump of Gigabytes of data exists for hundreds of attributes
+- when you often work with these data, it's a pain
+
+**Thus, I created my own (pseudo-)API for these data hosted over Github.**
+
+---
+
+## Accessing Data
+
+Details on using the package can be found [here](https://stefanjuenger.github.io/z11/articles/using-z11.html), but it's straightforward to use. For example, if you want to download data on immigrant rates on a 1 km² grid, you can use the following function.
+
+```{r census-immigrants}
+immigrants_germany <-
+  z11::z11_get_1km_attribute(Auslaender_A)
+
+immigrants_germany[immigrants_germany <= -1] <- NA
+
+immigrants_germany
+```
+
+---
+
+## It’s a Raster
+
+As it is a raster file, you can plot it easily.
+
+--
+
+.pull-left[
+```{r census-immigrants-map, eval = FALSE}
+tm_shape(immigrants_germany) +
+  tm_raster(palette = "viridis")
+```
+]
+
+--
+
+.pull-right[
+```{r census-immigrants-map-execution, ref.label = "census-immigrants-map", echo = FALSE}
+```
+]
+
+---
+
+class: middle 
+## Exercise 2_1_2: Wrangling the German Census
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_question.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_1_2_Wrangling_the_German_Census_solution.html)
+
+---
+
+class: middle
+## Break `r emo::ji("hot_beverage")`
+
+---
+
+layout: false
+class: center
+background-image: url(./assets/img/the_end.png)
+background-size: cover
+
+.left-column[
+</br>
+```{r pic-me, echo = FALSE, out.width = "90%"}
+knitr::include_graphics("./img/stefan.png")
+```
+]
+
+.right-column[
+.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:stefan.juenger@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/StefanJuenger)] </br>
+.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://stefanjuenger.github.io)]] </br>
+]
+
+---
+
+class: middle
+## Add-on Slides: Accessing WCS Data
 
 ---
 
@@ -666,88 +753,4 @@ tm_shape(cologne_green) +
 
 ```{r map-ioer-green-execution, ref.label = "map-ioer-green", echo = FALSE}
 ```
-]
-
----
-
-## Shameless Advertising: The `z11` Package
-
-There are times where no APIs are available for downloading geospatial data.
-
-The German Census 2011 is a prime example
-- only a data dump of Gigabytes of data exists for hundreds of attributes
-- when you often work with these data, it's a pain
-
-**Thus, I created my own (pseudo-)API for these data hosted over Github.**
-
----
-
-## Accessing Data
-
-Details on using the package can be found [here](https://stefanjuenger.github.io/z11/articles/using-z11.html), but it's straightforward to use. For example, if you want to download data on immigrant rates on a 1 km² grid, you can use the following function.
-
-```{r census-immigrants}
-immigrants_germany <-
-  z11::z11_get_1km_attribute(Auslaender_A)
-
-immigrants_germany[immigrants_germany <= -1] <- NA
-
-immigrants_germany
-```
-
----
-
-## It’s a Raster
-
-As it is a raster file, you can plot it easily.
-
---
-
-.pull-left[
-```{r census-immigrants-map, eval = FALSE}
-tm_shape(immigrants_germany) +
-  tm_raster(palette = "viridis")
-```
-]
-
---
-
-.pull-right[
-```{r census-immigrants-map-execution, ref.label = "census-immigrants-map", echo = FALSE}
-```
-]
-
----
-
-class: middle 
-## Exercise 2_1_2: Wrangling the German Census
-
-[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_1_2_Wrangling_the_German_Census_question.html)
-
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_1_2_Wrangling_the_German_Census_solution.html)
-
----
-
-class: middle
-## Break `r emo::ji("hot_beverage")`
-
----
-
-layout: false
-class: center
-background-image: url(./assets/img/the_end.png)
-background-size: cover
-
-.left-column[
-</br>
-```{r pic-me, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("./img/stefan.png")
-```
-]
-
-.right-column[
-.left[.small[`r icon::fontawesome("envelope")` [`stefan.juenger@gesis.org`](mailto:stefan.juenger@gesis.org)] </br>
-.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/StefanJuenger)] </br>
-.small[`r icon::fontawesome("github")` [`StefanJuenger`](https://github.com/StefanJuenger)] </br>
-.small[`r icon::fontawesome("home")` [`https://stefanjuenger.github.io`](https://stefanjuenger.github.io)]] </br>
 ]
