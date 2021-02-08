@@ -3,10 +3,12 @@ if (!require(easypackages)) { install.packages("easypackages")}
 library(easypackages)
 
 easypackages::packages(
+  "cowplot",
   "corrr",
   "dplyr",
   "emo",
   "ggplot2",
+  "ggrepel",
   "mitchelloharawild/icon",
   "kableExtra",
   "knitr",
