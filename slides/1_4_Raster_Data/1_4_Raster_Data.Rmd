@@ -40,7 +40,7 @@ xaringanExtra::use_extra_styles(
 
 ```{r course-content-now, echo = FALSE}
 course_content %>%
-  kableExtra::row_spec(4, background = "yellow")
+  kableExtra::row_spec(5, background = "yellow")
 ```
 
 ---
