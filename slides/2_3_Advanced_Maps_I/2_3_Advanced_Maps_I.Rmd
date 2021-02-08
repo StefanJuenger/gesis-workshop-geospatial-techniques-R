@@ -464,7 +464,13 @@ ggsave("afd_map.png", afd_map, dpi = 300)
 
 ---
 
-## Excercise 1
+class:middle
+
+## Exercise 2_3_1: Advancced Maps Basis
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_3_1_Advanced_Maps_Basis_question.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_3_1_Advanced_Maps_Basis_solution.html)
 
 ---
 
@@ -778,12 +784,21 @@ afd_map
 
 ---
 
-## Excercise 2
+---
 
-Create your Best Map!
+class:middle
+
+## Exercise 2_3_1: Advancced Maps Basis
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_3_2_Advanced_Maps_Basis_question.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_3_1_Advanced_Maps_Basis_solution.html)
+
+.center[**Create your Best Map!**]
 
 ---
 
+class: middle
 ## The Map-Off
 
 ---
