@@ -76,17 +76,15 @@ There's a multitude of spatial `R` packages
 - we cannot cover all of them
 - you may have used some we are not familiar with
 
+--
+
 We show the use of packages we exploit in practice
 - there's always another way of doing things in `R`
 - don't hesitate to bring up your solutions
 
----
+--
 
-## Thus, We Cannot Cover Everything, Unfortunately
-
-Even for the packages we use, we cannot cover all of their functions. For example, the package we will use extensively, the `sf` package, has even more capabilities than we show for:
-- data wrangling & transformation
-- geometric analysis
+We cannot cover all functions in the packages we use for data wrangling and geometric analysis.
 
 **You can't learn everything at once, but you also don't have to!**
 
