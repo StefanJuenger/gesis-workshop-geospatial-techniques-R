@@ -15,6 +15,21 @@ Anne-Kathrin Stroppe (anne-kathrin.stroppe@gesis.org)
 ## Workshop Description
 When social scientists aim to use geospatial data, they must rely on specialized tools, called Geographic Information Systems (GIS). However, the world of GIS is complicated, since often only foreign software solutions provide a comprehensive collection of available geospatial techniques. Fortunately, nowadays, social scientists can also use the statistical software R as a proper GIS. Thus, this course will teach how to exploit R and apply its geospatial techniques in a social science context. We will learn about the most common data formats, their quirks, and their application. Most importantly, the course will present data sources, how to get the data and wrangle them for further analysis.  Central are geospatial operations, such as cropping, aggregating or linking data. Finally, what is of interest for many researchers is creating maps, which is also straightforward in R. 
 
+## Course Schedule
+
+|Day | 	Time | 	Title |
+| ------------- |:-------------:| -----:|
+|February 08 |	09:00am-10:30am |	Introduction |
+|February 08 |	11:00am-12:30pm |	Vector Data |
+|February 08 |	12:30pm-01:30pm |	Lunch Break |
+|February 08 |	01:30pm-03:00pm |	Basic Maps |
+|February 08 | 	03:30pm-05:00pm |	Raster Data |
+|February 09 | 	09:00am-10:30am |	Advanced Data Import |
+|February 09 |	11:00am-12:30pm |	Applied Data Wrangling |
+|February 09 |	12:30pm-13:30pm |	Lunch Break |
+|February 09 |	01:30pm-03:00pm |	Advanced Maps I |
+|February 09 |	03:30pm-05:00pm |	Advanced Maps II |
+
 ## Slides
 ### Day 1
 [1_1 Introduction](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/slides/1_1_Introduction/1_1_Introduction.html)
