@@ -1,7 +1,7 @@
 ---
 title: "Geospatial Techniques for Social Scientists in R"
 subtitle: "Applied Data Wrangling"
-author: "Stefan Jünger & Anne-Kathrin Stroppe<br>February 08, 2021"
+author: "Stefan Jünger & Anne-Kathrin Stroppe<br>February 09, 2021"
 output:
   xaringan::moon_reader:
     self_contained: true
@@ -437,10 +437,17 @@ fake_survey_data
 *District relatively high affected by Covid-19*
 > 2) If the Corona 7 day incidence per 100k in the district is higher than in the state, the lower the Fake Corona Burden Score.
 
---
+---
+
+## What could explain our Fake Corona Burden Score?
 
 *Provision of health services*
-> 3) The closer the next hospital to the respondent, the lower the Fake Corona Burden Score
+> 3) The closer the next hospital to the respondent, the lower the Fake Corona Burden Score.
+
+--
+
+*Possible language issues in health care communication*
+> 3) The higher the immigrant rate in the neighborhood, the higher the Fake Corona Burden Score.
 
 ---
 
@@ -891,6 +898,40 @@ spatial_information
 ```
 ]
 
+---
+
+## Immigrant Rate Buffers
+
+...and we're not yet done: we still need the immigrant rate in the neighborhood. Let's calculate buffers of 500 meters and add their mean values to our dataset.
+
+
+```{r load-link-data}
+# download data & create rate
+immigrant_rate <-
+  z11::z11_get_100m_attribute(STAATSANGE_KURZ_2) * 100 /
+  z11::z11_get_100m_attribute(Einwohner)
+
+# set missings
+immigrant_rate[is.na(immigrant_rate)] <- 0
+
+# spatially link with buffers on the fly
+spatial_information <-
+  spatial_information %>% 
+  dplyr::bind_cols(
+    .,
+    immigrant_buffers = 
+      fake_coordinates %>% 
+      raster::extract(
+        immigrant_rate,
+        .,
+        buffer = 500,
+        fun = mean
+      )
+  )
+```
+
+
+
 ```{r save-secret-data, echo = FALSE, include = FALSE}
 saveRDS(spatial_information, "../../data/secrect_data.rds")
 ```
@@ -927,7 +968,9 @@ fake_survey_data_spatial <-
 .pull-right[
 ```{r correlation-plot, echo = FALSE, out.width = "75%"}
 fake_survey_data_spatial %>% 
-  dplyr::select(fcbs, pop_dens, incidence_diff, dist_closest_hospital) %>% 
+  dplyr::select(
+    fcbs, pop_dens, incidence_diff, dist_closest_hospital, immigrant_buffers
+  ) %>% 
   corrr::correlate() %>% 
   corrr::network_plot(min_cor = .1)
 ```
