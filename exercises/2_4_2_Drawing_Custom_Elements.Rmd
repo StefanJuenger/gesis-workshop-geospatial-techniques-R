@@ -127,7 +127,7 @@ gesis_cologne_compass_data <-
   sf::st_sf()
 ```
 
-Admittedly, drawing custom elements is a matter of fiddling around. We want to draw an arrow, and we didn't have this before. Here's a way to use our compass data and add it to an existing `ggplot`. Please feel free to adapt it to your liking.
+Admittedly, drawing custom elements is a matter of fiddling around. We want to draw an arrow, and we didn't have done this before. Here's a way to use our compass data and add it to an existing `ggplot`. Please feel free to adapt it to your liking.
 
 ```{r geom-segment, eval = FALSE}
 geom_segment(

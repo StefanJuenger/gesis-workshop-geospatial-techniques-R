@@ -47,8 +47,8 @@ course_content %>%
 
 - `osmdata` 
 - `tmaptools`
-- `reticulate`
 - `StefanJuenger/z11`
+- (`reticulate`)
 
 ---
 
