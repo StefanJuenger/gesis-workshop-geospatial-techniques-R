@@ -131,7 +131,7 @@ course_content %>%
 
 Main Messages
 - Geospatial data tend to be large
-- Often distrubuted over the internet
+- Often distributed over the internet
 - APIs help in downloading these data
 - can get pretty involved
 
