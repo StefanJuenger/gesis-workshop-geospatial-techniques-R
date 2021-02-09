@@ -455,9 +455,9 @@ fake_survey_data
 
 Good Thing: We have all the data to calculate these indicators, even though we need first to transform some of the variables.
 
-  1. Calculate the variables at the district and state-level.
+  1. Calculate the variables at the district and state levels.
   2. Link the district and state-level data with the fake survey respondents.
-  3. Calculate the hospital distance.
+  3. Calculate the hospital distance and immigrant rate.
 
 ```{r overview-table, echo = FALSE, out.width = "90%"}
 knitr::include_graphics("./img/overview_table.png")
@@ -703,7 +703,7 @@ tm_shape(nrw_districts_enhanced) +
 
 ---
 
-# You can do the same by using `aggregate` 
+## You can do the same by using `aggregate` 
 
 The alternative which you will probably come across is `aggregate`. It works a similar way, but it will directly create an `sf` object on the state level and perform the same and limited functions of aggregation to all columns in the data object. 
 The definition of the assumed spatial relation is based on `sf`.
