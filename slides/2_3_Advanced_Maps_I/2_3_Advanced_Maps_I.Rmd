@@ -36,20 +36,33 @@ xaringanExtra::use_extra_styles(
 
 ---
 
-## Check-In 
+## Check-In and Q&A
 
-Short Check-In: How are you feeling in two words? Click [here](XXX).
+Short Check-In: [Click here](https://www.menti.com/efi4iyigyg).
 
-Any questions remaining from last session you need us to answer?
+--
+
+Any questions remaining from the last session you need us to answer?
 
 ---
-
 ## Workshop Evaluation
-
-Even though, the some more cool stuff is yet to come...
-
+.pull-left[
 .center[
-Please log into [ILIAS](XXXLINKXXX) for the workshop evaluation.
+```{r evaluation-meme, echo = FALSE}
+knitr::include_graphics("./img/evaluation_time.jpg")
+```
+]
+.center[
+<small><small>[Memegenerator](https://memegenerator.net/instance/65814822/prepare-yourself-evaluation-time-is-coming)</small></small>
+]
+]
+
+--
+
+.pull-right[
+Even though some more cool stuff is yet to come:
+
+Please log into [ILIAS](https://ilias.gesis.org/goto.php?target=crs_25075_rcodeAQeEHPgRGV&client_id=gesis) for the workshop evaluation.
 ]
 
 ---
@@ -58,9 +71,11 @@ Please log into [ILIAS](XXXLINKXXX) for the workshop evaluation.
 
 `ggplot2` is well-known for creating plots.
 Thanks to our `sf` working environment, we can exploit all amazing `ggplot2` functions.
-Trust us, before `sf` making maps was way more complicated.
+Trust us, before `sf`, making maps was way more complicated.
 
-In general on `ggplot2`:
+--
+
+In general, on `ggplot2`:
 
 - well-suited for multi-dimensional data
 - expects data (frames) as input
@@ -80,13 +95,14 @@ plot_call +
 
 ## From `tmap` to `ggplot2`
 
-Reminder: We were fiddling around with `tmap` yesterday and the results were already pretty nice.
-`ggplot2` allows us, however, to customize our maps even more, draw on previous knowledge of the package and increase the possibilities to combine maps, plots and more.
+Reminder: We played around with `tmap` yesterday, and the results were already pretty nice.
+`ggplot2` allows us to customize our maps even more, draw on previous knowledge of the package and increase the possibilities to combine maps, plots, and more.
 
-The good thing: the inner logic of `tmap` and `ggplot2` is the same and is based on the *grammer of graphics*.
+The good thing: the inner logic of `tmap` and `ggplot2` is the same and is based on the *grammar of graphics*.
 
+--
 
-If you are all new to `ggplot`, you might also want to check out:
+If you are new to `ggplot2`, you might want to check out:
   - [ggplot2 - Elegant Graphics for Data Analysis](https://www.springer.com/gp/book/9783319242750) by Hadley Wickham
   - [BBC Visual and Data Journalism cookbook for R graphics](https://bbc.github.io/rcookbook/#how_to_create_bbc_style_graphics)
   - [ggplot2 extensions](http://www.ggplot2-exts.org/gallery/)
@@ -94,14 +110,14 @@ If you are all new to `ggplot`, you might also want to check out:
 
 ---
 
-## Components of a plot
+## Components of a Plot
 
-According to Wickham ([2010, 8](http://dx.doi.org/10.1198/jcgs.2009.07098)) a layered plot consists of the following components:
+According to Wickham ([2010, 8](http://dx.doi.org/10.1198/jcgs.2009.07098)), a layered plot consists of the following components:
 
 - data and aesthetic mappings,
 - geometric objects,
 - scales,
-- and facet specification
+- (and facet specification)
 
 ```{r plot call example, eval = FALSE, echo = TRUE}
 
@@ -114,7 +130,6 @@ plot_call +
 
 ```
 
----
 ---
 
 ## Let us start building some maps!
@@ -163,7 +178,7 @@ german_states <- st_read(dsn = "../../data", layer = "GER_STATES",
 
 ---
 
-## And I'm Proudly Presenting...
+## And I'm proudly presenting...
 
 .pull-left[
 ```{r first-map, eval = FALSE}
@@ -188,20 +203,22 @@ ggplot() +
 ## Making a Plan
 
 This map will be our canvas for the ongoing session.
-Obviously, there are hundreds of options to change this maps.
-We will cover at least some important building blocks:
+There are hundreds of options to change this map.
+We will cover at least some essential building blocks:
 
-  - *THE MAP*: adding attributes, choose from colors and palettes, adding layers
+  - *THE MAP*: adding attributes, choose from colors/palettes, adding layers
   - *THE LEGEND*: position, sizes, display
-  - *THE ENVIRONMENT*: chosing from themes and build your own
+  - *THE ENVIRONMENT*: choosing from themes and build your own
   - *THE META-INFORMATION*: titles and sources
   - *THE EXTRAS*: scales and compass
 
-If your working on your own maps the [ggplot2 cheatsheets](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) will help your with questions a perfect overview of scales, themes, labels, facets and more. 
+--
+
+If your working on your maps, the [ggplot2 cheatsheets](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) will help you with an overview of scales, themes, labels, facets, and more. 
 
 ---
 
-## The Map Layer 
+## The Map Layer: A Basis
 
 .pull-left[
 ```{r colorfill-map, eval = FALSE}
@@ -237,10 +254,10 @@ We'll concentrate on mapping the vote share of the German Right-Wing Populist Pa
 # map aethetics
 ggplot() +
   geom_sf(data = german_districts_enhanced, 
-          # add the attribute we want to map
-          aes(fill = afd_voteshare_2017)) + 
-   # choose a continuous palette (optional)
-  scale_fill_continuous() 
+       # add the attribute we want to map
+        aes(fill = afd_voteshare_2017)) + 
+      # choose a continuous palette 
+        scale_fill_continuous() 
 
 ```
 ]
@@ -262,6 +279,8 @@ ggplot() +
 
 ## The Map Layer 
 
+Are you having trouble choosing the right color? There are some excellent tutorials out there, f.e. by [Michael Toth](https://michaeltoth.me/a-detailed-guide-to-ggplot-colors.html).
+
 .pull-left[
 ```{r viridis-map, eval = FALSE}
 
@@ -270,8 +289,12 @@ ggplot() +
   geom_sf(data = german_districts_enhanced,
           aes(fill = afd_voteshare_2017)) + 
   # readable with color vision deficiencies
-  scale_fill_viridis_c(option = "plasma") 
+    scale_fill_viridis_c(option = "plasma") 
 
+# other option:
+scale_fill_continuous(type = "viridis")
+# or build you own continous palette:
+scale_color_gradient
 ```
 ]
 
@@ -291,20 +314,21 @@ ggplot() +
 ---
 
 ## The Map Layer 
+
+You are changing your map, step by step.
  
 
 .pull-left[
 ```{r direction-map, eval = FALSE}
 
-# change color direction and try without borders
 ggplot() +
   geom_sf(data = german_districts_enhanced, 
           aes(fill = afd_voteshare_2017), 
            # make the borders disappear
           color = NA) +
   scale_fill_viridis_c(option = "plasma",
-                       # change scale direction
-                       direction = -1)  
+          # change scale direction
+           direction = -1)  
 
 ```
 ]
@@ -331,12 +355,12 @@ ggplot() +
 
 # realizing that my shapefile includes
 # polygons of oceans and lakes
-# easy fix onthe fly when you know your data
+# easy fix on the fly when you know your data
 german_states <-
   german_states %>% 
   filter(., GF == 4 )
 
-# add layer with the boundaries of the German state
+# add layer with German states
 ggplot() +
   geom_sf(data = german_districts_enhanced, 
           aes(fill = afd_voteshare_2017), 
@@ -344,9 +368,12 @@ ggplot() +
   scale_fill_viridis_c(option = "plasma", 
                        direction = -1) +
    # add another layer
-  geom_sf(data = german_states,        
-          fill = "transparent", 
+  geom_sf(data = german_states, 
+          # filling transparent
+          fill = "transparent",
+          # color of borders
           color = "white", 
+          # size of borders
           size = 1) 
 
 ```
@@ -381,6 +408,9 @@ ggplot() +
 
 ## Dealing with the Legend 
 
+You can deal with everything concerning the legend (labels, titles, width...) within the scale argument.
+The only thing you cannot change here is the position in relation to the map.
+
 .pull-left[
 ```{r legend, eval = FALSE}
 
@@ -390,17 +420,21 @@ ggplot() +
           color = NA) + 
   scale_fill_viridis_c(option = "plasma",
                        direction = -1,
-                       # add a legend title
-                       name = "AfD Vote Share",
-                       # adjust legend
-                       guide = guide_legend (
-                          # turn it horizontal
-                         direction= "horizontal",
-                         # put the labels under the legend bar
-                         label.position = "bottom")) + 
+                    # add a legend title
+                    name = "AfD Vote Share",
+                    # adjust legend
+                    guide = guide_legend (
+                    # turn it horizontal
+                    direction= "horizontal",
+                    # put the labels
+                    # under the legend bar
+                    label.position = "bottom")) + 
   geom_sf(data = german_states, 
           fill = "transparent", 
           color = "white") 
+
+# check the help file for more options
+?guide_legend
 
 ```
 ]
@@ -429,79 +463,67 @@ ggplot() +
 
 ## Save and Reuse
 
-Maps produced with `ggplot2` are standard objects like any other object in `R` (they are lists). We can just assign them to re-use, call later, and add map layers.
+Maps produced with `ggplot2` are standard objects like any other object in `R` (they are lists). We can just assign them to re-use, plot later, and add map layers.
 
 Furthermore, you can save them just as any `ggplot2` graph.
 The `ggsave()` function automatically detects the file format. You can also define the height, width, and dpi, which is particularly useful to produce high-class graphics for publications.
 
 ---
 
-# Save and Reuse
+## Save and Reuse
+
 
 ```{r eval = FALSE}
+
+# assign to object
 afd_map <- 
-  ggplot() +
+ggplot() +
   geom_sf(data = german_districts_enhanced, 
           aes(fill = afd_voteshare_2017), 
           color = NA) + 
   scale_fill_viridis_c(option = "plasma",
                        direction = -1,
-                       # add a legend title
-                       name = "AfD Vote Share",
-                       # adjust legend
-                       guide = guide_legend (
-                          # turn it horizontal
-                         direction= "horizontal",
-                         # put the labels under the legend bar
-                         label.position = "bottom")) + 
+                    name = "AfD Vote Share",
+                    guide = guide_legend (
+                    direction= "horizontal",
+                    label.position = "bottom")) + 
   geom_sf(data = german_states, 
           fill = "transparent", 
           color = "white") 
-
+ 
+# save as png-file
 ggsave("afd_map.png", afd_map, dpi = 300)
 
 ```
 
 ---
 
-class:middle
 
-## Exercise 2_3_1: Advancced Maps Basis
-
-[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_3_1_Advanced_Maps_Basis_question.html)
-
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_3_1_Advanced_Maps_Basis_solution.html)
-
----
-
-
-## What is there to improve? 
+## The overall `theme` of your map 
 
 .pull-left[
 ```{r afdmap, eval = FALSE}
 
 afd_map <- 
-  ggplot() +
+ggplot() +
   geom_sf(data = german_districts_enhanced, 
           aes(fill = afd_voteshare_2017), 
           color = NA) + 
   scale_fill_viridis_c(option = "plasma",
                        direction = -1,
-                       # add a legend title
-                       name = "AfD Vote Share",
-                       # adjust legend
-                       guide = guide_legend (
-                          # turn it horizontal
-                         direction= "horizontal",
-                         # put the labels under the legend bar
-                         label.position = "bottom")) + 
+                    name = "AfD Vote Share",
+                    guide = guide_legend (
+                    direction= "horizontal",
+                    label.position = "bottom")) + 
   geom_sf(data = german_states, 
           fill = "transparent", 
-          color = "white")
+          color = "white")  
 
+afd_map
 ```
 ]
 
+--
 
 .pull-right[
 ```{r afdmap-plot, echo = FALSE}
@@ -527,7 +549,11 @@ afd_map
 
 ---
 
-## Carrying on: The `theme`
+## Get rid of everything?!
+
+The `theme` controls all 'non-data' display.
+If you want to get rid of the default `ggplot2` theme, you can do so.
+But instead of getting rid of everything, you might want to try out the built-in themes.
 
 .pull-left[
 ```{r theme, eval = FALSE}
@@ -536,8 +562,19 @@ afd_map +
   # empty your theme
   theme_void() 
 
+
+# ... or add another
+theme_bw()
+theme_gray()
+theme_light()
+
+# check all themes here
+?theme
+
 ```
 ]
+
+--
 
 .pull-right[
 ```{r theme-plot, echo = FALSE}
@@ -564,17 +601,19 @@ ggplot() +
 # building a theme
 afd_map +
   theme_void() + 
-  # bold legend text
-  theme(title=element_text(face='bold'), 
-        # move legend to the bottom of the map
-        legend.position = 'bottom', 
-         # change background color
-        panel.background = element_rect(fill = "lightgrey"))
+        # bold text elements
+  theme(title = element_text
+                (face = "bold"), 
+        # move legend to bottom of map
+        legend.position = "bottom", 
+        # change background color
+        panel.background = 
+          element_rect(fill = "lightgrey"))
 
 ```
 ]
 
-
+--
 
 .pull-right[
 ```{r buildtheme-plot, echo = FALSE}
@@ -598,12 +637,31 @@ ggplot() +
 
 ---
 
-## My (Final?) Result
+## Adding `labs`
 
-There is one necessary step to do. You should always make sure to at least include and cite your data sources. Especially in the context of graphs and maps, you can use a short version to directly include in the graph.
-This is the complete code:
+There is one necessary step to do. You should always make sure to include and cite your data sources. Especially in graphs and maps, you can use a short version to include them in the description directly.
 
-```{r labs-map, eval = FALSE}
+.pull-left[
+```{r labs-map-disp, eval = FALSE}
+
+afd_map +
+        # add title
+  labs(title = "Electoral Success AfD",   
+       # add sub-title
+       subtitle = 
+         "German Federal Elections 2017",   
+       # add source
+       caption = 
+         c("© Der Bundeswahlleiter, Wiesbaden 
+           2018 & © GeoBasis-DE / BKG 2021")) 
+
+```
+]
+
+--
+
+.pull-right[
+```{r labs-maps, echo = F}
 
 ggplot() +
   geom_sf(data = german_districts_enhanced, 
@@ -629,68 +687,91 @@ ggplot() +
        caption=c("© Der Bundeswahlleiter, Wiesbaden 2018 & © GeoBasis-DE / BKG 2021")) 
 
 ```
+]
 
 ---
 
-## My (Final?) Result
+class:middle
 
-.small[
+## Exercise 2_3_1: Advanced Maps: The Basis
+
+[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_3_1_Advanced_Maps_Basis_question.html)
+
+[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_3_1_Advanced_Maps_Basis_solution.html)
+
+---
+
+## To be continued...
+
+Our code in total has already grown pretty much. Without going into too much detail, the next slides showcase some more changes you can do with your maps
 .center[
-```{r labs-plot, echo = FALSE, out.width="70%"}
+**A map is never finished until you decide not to work on it anymore.**
+]
 
-afd_map +
+```{r complete-syntax, eval = F}
+
+ggplot() +
+  geom_sf(data = german_districts_enhanced, 
+          aes(fill = afd_voteshare_2017), 
+          color = NA) + 
+  scale_fill_viridis_c(option = "plasma",
+                       direction = -1,
+                       name = "AfD Vote Share",
+                       guide = guide_legend (
+                        direction= "horizontal",
+                         label.position = "bottom")) + 
+  geom_sf(data = german_states, 
+          fill = "transparent", 
+          color = "white") +
   theme_void() + 
   theme(title=element_text(face='bold'), 
         legend.position = 'bottom') +
-  labs(title="Electoral Success AfD",                               # add titl
-       subtitle= "German Federal Elections 2017",                   # add sub-title
-       caption=c("© Der Bundeswahlleiter, Wiesbaden 2018 & © GeoBasis-DE / BKG 2021")) # add source
-
+  labs(title="Electoral Success AfD",   
+       subtitle= "German Federal Elections 2017",   
+       caption=c("© Der Bundeswahlleiter, Wiesbaden 2018 & © GeoBasis-DE / BKG 2021")) 
 
 ```
-]
-]
----
 
-## To be continued.
-
-Now, you have this super nice map und you start to ask yourself: Is this really the best way to visualize my data? 
-.center[
-**A map is never finished until you decide to not work on it anymore.**
-]
 
 ---
 
-## An Example
+## Changing the attribute to discrete
 .pull-left[
 ```{r try-map, eval = FALSE}
 
-# should i change my map map by using a discrete measure?
+# should I change my map  
+# by using a discrete measure?
+
+# recode my original variable
+# with five categories
 german_districts_enhanced$afd_voteshare_quant <-  
   cut(german_districts_enhanced$afd_voteshare_2017,
       breaks = c(0,5,10,13,15,Inf),
       labels=c('< 5','5-10','10-13','13-15','> 15'))
 
-# re-use old code
+# re-use old code with two adjustments
 ggplot() +
   geom_sf(data = german_districts_enhanced,
           # change variable name
           aes(fill = afd_voteshare_quant), 
           color = NA) +   
-   # change to the discrete scale
+  # change to the discrete scale
   scale_fill_viridis_d(option = "plasma", 
-                       direction = -1,  
-                       name = "AfD Vote Share",
-                       guide = guide_legend (
-                         direction= "horizontal",
-                         label.position = "bottom")) +
-  geom_sf(data = german_states, fill = "transparent", color = "white") +
+                      direction = -1,  
+                      name = "AfD Vote Share",
+                      guide = guide_legend (
+                      direction= "horizontal",
+                      label.position = "bottom")) +
+  geom_sf(data = german_states, 
+          fill = "transparent", 
+          color = "white") +
   theme_void() + 
   theme(title=element_text(face='bold'), 
         legend.position = 'bottom') +
   labs(title="Electoral Success AfD",                               
        subtitle= "German Federal Elections 2017",                  
-       caption=c("© Der Bundeswahlleiter, Wiesbaden 2018 © GeoBasis-DE / BKG 2021")) 
+       caption=c("© Der Bundeswahlleiter, Wiesbaden 
+                 2018 © GeoBasis-DE / BKG 2021")) 
 
 ```
 ]
@@ -729,19 +810,215 @@ ggplot() +
 
 ---
 
-# Where `ggplot2` cannot help anymore
+## Creating a city layer for city labels
+
+
+```{r german-cities-disp}
+
+# create a german city layer by choosing the five districts
+# with the highest pop density
+
+german_cities <-
+  german_districts_enhanced %>% 
+  # calculate pop_dens
+  mutate(pop_dens = population / 
+           st_area(german_districts_enhanced)) %>% 
+  # filter top 5 observation with highs pop_dens
+  top_n( . , 5, pop_dens) %>% 
+  # take the centroid of each polygon and turn to
+  # polygon file into a shapefile
+  st_centroid() %>% 
+  # add the coordinates as X and Y column
+  bind_cols(. , as.data.frame(st_coordinates(.))) %>% 
+  # add some city names as labels
+  bind_cols(. , data.frame(names = c("City 1", 
+                                 "City 2", 
+                                 "City 3", 
+                                 "City 4", 
+                                 "City 5")))
+
+german_cities %>% 
+  dplyr::select(.,pop_dens, X, Y)
+
+
+```
+
+---
+
+## Add City Labels
+
+Using `geom_label` to get a text box that holds a character string associated with an X- and Y-coordinate
+
+.pull-left[
+```{r geom-label-disp, eval = F}
+
+afd_map +
+  # add the label
+   geom_label(data = german_cities, 
+               # don't need sf object but columns 
+                # with x- and  y-coordinate
+             aes(x = X, y = Y, 
+                 # column holding the character
+                 # vector with strings
+                  label = names),
+                  # size of labels
+                  size = 3,
+                  # transparency
+                  alpha = .8) 
+  
+
+```
+]
+
+--
+
+
+.pull-left[
+```{r geom-lab, echo = F}
+
+afd_map +
+  # add the label
+   geom_label(data = german_cities, 
+               # don't need sf object but columns 
+                # with x- and  y-coordinate
+             aes(x = X, y = Y, 
+                 # column holding the character
+                 # vector with strings
+                  label = names),
+                  # size of labels
+                  size = 3,
+                  # transparency
+                  alpha = .8) 
+  
+
+```
+]
+
+
+---
+
+## Having fun with point layers...
+
+... and moving around the labels with the package `ggrepel`.
+
+.pull-left[
+```{r point-layers-disp, eval = F}
+
+afd_map +
+  # add cities as point layers
+    geom_point(data = german_cities,
+             aes(x = X, y = Y),
+             # color of points
+                 color = "black",
+             # transparency of points
+                  alpha = 0.6,
+             # size of points
+                  size = 5) +
+  # ggrepel to move geometric objects
+  ggrepel::geom_label_repel(data = german_cities, 
+                            # the coordinates as columns              
+                            aes(x = X, y = Y, 
+                                label = names),
+                            size = 3,
+                            alpha = .8,
+                            # connect label and 
+                            #original data oint via line
+                            min.segment.length = unit(0, 'lines')) 
+
+
+```
+]
+
+--
+
+.pull-right[
+```{r point-layers, echo = F}
+
+afd_map +
+  # add cities as point layers
+    geom_point(data = german_cities,
+             aes(x = X, y = Y),
+             # color of points
+                 color = "black",
+             # transparency of points
+                  alpha = 0.6,
+             # size of points
+                  size = 5) +
+  # ggrepel to move geometric objects
+  ggrepel::geom_label_repel(data = german_cities, 
+                            # the coordinates as columns              
+                            aes(x = X, y = Y, 
+                                label = names),
+                            size = 3,
+                            alpha = .8,
+                            # connect label and 
+                            #original data oint via line
+                            min.segment.length = unit(0, 'lines')) 
+
+
+```
+]
+
+---
+
+## `ggplot2` and raster data
+
+You can also use `ggplot2` to create maps with `raster data`. There are several ways to do so, but Stefan recommends the `geom_stars` building block. Here an example with some (small) adjustments.
+
+.pull-left[
+```{r raster-example-disp, eval = F}
+
+cologne_immigrants <-
+  raster::raster("../../data/immigrants_cologne.tif")
+
+ggplot() +
+  stars::geom_stars
+(data = stars::st_as_stars(cologne_immigrants)) +
+  # add for fixed "aspect ratio"
+  coord_equal() +
+  # set na values transparent
+  scale_fill_continuous(na.value = "transparent") +
+  # remove theme
+  theme_void()
+```
+]
+
+--
+
+.pull-right[
+```{r raster-example, echo = F}
+
+cologne_immigrants <-
+  raster::raster("../../data/immigrants_cologne.tif")
+
+ggplot() +
+  stars::geom_stars(data = stars::st_as_stars(cologne_immigrants)) +
+  # add for fixed "aspect ratio"
+  coord_equal() +
+  # set na values transparent
+  scale_fill_continuous(na.value = "transparent") +
+  # remove theme
+  theme_void()
+```
+]
+
+---
+
+## Where `ggplot2` cannot help anymore
 
   
 In some specific circumstances, we might realize that `ggplot2` is super powerful but just not designed to build maps.
-One example are typical features of maps like a compass or scale bars.
+Typical features of maps are not in the package, like a compass or scale bars.
 
-This is where other package might need to be installed.packages
+This is where other packages might need to be installed. The good thing:
 Elements of the package `ggsn` can be included as `ggplot2` layer.
 Checkout [Github](http://oswaldosantos.github.io/ggsn/).
 
 ---
 
 ## The Extras
+
+`ggsn` allows you to add, f.e. a scale bar and a north arrow.
 
 .pull-left[
 ```{r add-scale, eval = F}
@@ -784,15 +1061,9 @@ afd_map
 
 ---
 
----
-
 class:middle
 
-## Exercise 2_3_1: Advancced Maps Basis
-
-[Exercise](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/exercises/2_3_2_Advanced_Maps_Basis_question.html)
-
-[Solution](https://stefanjuenger.github.io/gesis-workshop-geospatial-techniques-R/solutions/2_3_1_Advanced_Maps_Basis_solution.html)
+## Exercise 2_3_2:
 
 .center[**Create your Best Map!**]
 
@@ -801,13 +1072,6 @@ class:middle
 class: middle
 ## The Map-Off
 
----
-
-## Add a Raster Layer
-
-```{r, eval = F}
-stars::geom_stars(data = stars::st_as_stars(raster_file))
-```
 
 ---
 
@@ -816,17 +1080,157 @@ stars::geom_stars(data = stars::st_as_stars(raster_file))
 
 You can also annotate plots with titles, subtitles, captions, and tags. 
 
-You can nest plots and introduce more complex layouts.
+You can also nest plots and introduce more complex layouts by using `patchwork`([repository on *GitHub*](https://github.com/thomasp85/patchwork)) or `cowplot` ([tutorial on inset maps](https://upgo.lab.mcgill.ca/2019/12/13/making-beautiful-maps/))
 
-Tip: If you're interested you can check out the [`patchwork` repository on *GitHub*](https://github.com/thomasp85/patchwork) since everything is really well-documented there.
+---
+
+## Inset Map: Annes First Try!
+
+```{r inset-map, echo = F}
+
+# Adjust the original AfD map
+afd_map_adj <-
+  ggplot() +
+    geom_sf(data = german_districts_enhanced, 
+            aes(fill = afd_voteshare_2017), 
+            color = NA) + 
+    scale_fill_viridis_c(option = "plasma",
+                         direction = -1,
+                         name = "AfD Vote Share",
+                         guide = FALSE) + 
+    geom_sf(data = german_states, 
+            fill = "transparent", 
+            color = "white") +
+    theme_void()
+
+# Subsetting the data to NRW
+nrw_districts_enhanced <-
+  german_districts_enhanced %>% 
+  filter( district_id >= 5000 & district_id < 6000 )
+
+# Getting the boundary box of NRW
+bbox_nrw <-
+  st_as_sfc(st_bbox
+            (nrw_districts_enhanced))
+
+# drawing a black rectangle on our AfD Map
+afd_map_box <-
+  afd_map_adj + 
+  geom_sf(data = bbox_nrw, 
+          fill = NA, color = "black", size = 1.2) +
+  theme_void()
+
+# making the NRW Map
+afd_map_nrw <-
+  ggplot() +
+  geom_sf(data = nrw_districts_enhanced, 
+          aes(fill = afd_voteshare_2017), 
+          color = "white") + 
+  scale_fill_viridis_c(option = "plasma",
+                       direction = -1,
+                       name = "AfD Vote Share") +
+  theme_void()
+
+# inset map
+inset_map <-
+  cowplot::ggdraw() +
+  cowplot::draw_plot(afd_map_nrw,
+                     # size of map
+                     width = 0.8, height = 0.8) +
+  cowplot::draw_plot(afd_map_box, 
+                     # position of map
+                     x = 0.05, y = 0.65, 
+                     # size of map
+                     width = 0.35, height = 0.35) +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=3))
+
+inset_map
+
+```
+
+---
+
+## ... and the code behind it ...
+
+```{r inset-map-disp1, eval = F}
+
+# Adjust the original AfD map
+afd_map_adj <-
+  ggplot() +
+    geom_sf(data = german_districts_enhanced, 
+            aes(fill = afd_voteshare_2017), 
+            color = NA) + 
+    scale_fill_viridis_c(option = "plasma",
+                         direction = -1,
+                         name = "AfD Vote Share",
+                         guide = FALSE) + 
+    geom_sf(data = german_states, 
+            fill = "transparent", 
+            color = "white") +
+    theme_void()
+
+# Subsetting the data to NRW
+nrw_districts_enhanced <-
+  german_districts_enhanced %>% 
+  filter( district_id >= 5000 & district_id < 6000 )
+
+# Getting the boundary box of NRW
+bbox_nrw <-
+  st_as_sfc(st_bbox
+            (nrw_districts_enhanced))
+
+# drawing a black rectangle on our AfD Map
+afd_map_box <-
+  afd_map_adj + 
+  geom_sf(data = bbox_nrw, 
+          fill = NA, color = "black", size = 1.2) +
+  theme_void()
+
+
+```
+
+---
+
+##  ...
+
+```{r inset-map-disp2, eval = F}
+
+
+# making the NRW Map
+afd_map_nrw <-
+  ggplot() +
+  geom_sf(data = nrw_districts_enhanced, 
+          aes(fill = afd_voteshare_2017), 
+          color = "white") + 
+  scale_fill_viridis_c(option = "plasma",
+                       direction = -1,
+                       name = "AfD Vote Share") +
+  theme_void()
+
+# inset map
+inset_map <-
+  cowplot::ggdraw() +
+  cowplot::draw_plot(afd_map_nrw,
+                     # size of map
+                     width = 0.8, height = 0.8) +
+  cowplot::draw_plot(afd_map_box, 
+                     # position of map
+                     x = 0.05, y = 0.65, 
+                     # size of map
+                     width = 0.35, height = 0.35) +
+  theme(panel.border = element_rect(colour = "black", fill = NA, size = 3))
+
+inset_map
+```
 
 
 ---
 
 ## The Art of Mapping
 
-There are quite a few examples how far we can get when mastering the art of mapping with `ggplot2`.
-One of my favourite maps was designed by [Timo Grossenbacher](https://timogrossenbacher.ch/2019/04/bivariate-maps-with-ggplot2-and-sf/).
+There are quite a few examples of how far we can get when mastering the art of mapping with `ggplot2`.
+And the best thing you can do is to learn from others.
+ For example, [Timo Grossenbacher](https://timogrossenbacher.ch/2019/04/bivariate-maps-with-ggplot2-and-sf/) designed this beautiful map. You can find all of his code online!
 
 .center[
 ```{r swiss-map, echo = FALSE, out.width = "80%"}
@@ -851,18 +1255,16 @@ You can find inspiration all over the web:
 - Super nice tutorial to actual design artworks like these by [gplot2tutor]( https://ggplot2tutor.com/streetmaps/streetmaps/)
 - Get Inspired by our GIS friends working on the [ArcGIS Blog]( https://www.esri.com/arcgis-blog/overview/)
 - Check Out [R Graph Gallery](https://www.r-graph-gallery.com/) for Hexbins and Bubble Maps.
-- And keep an eye out for the #30DayMapChallenge on Twitter and check last years' [Github repository](https://github.com/tjukanovt/30DayMapChallenge)
-
 ]
  
 
 ---
 
-## .. and don't forget
+## And don't forget
 
 
 **Try and error goes a long way**.
-If your frustration is especially high, you might want to find some comfort in [this Twitter account](https://twitter.com/accidental__art?lang=en) account which collects `ggplot2` graphs which turned into art instead of a useful visualization.
+If your frustration is exceptionally high, you might want to find some comfort in [this Twitter account](https://twitter.com/accidental__art?lang=en) account which collects `ggplot2` graphs which turned into art instead of a useful visualization.
 
 
 

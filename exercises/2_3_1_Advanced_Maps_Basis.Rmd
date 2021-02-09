@@ -1,10 +1,11 @@
 ---
-title: 'Exercise 2_3_1 The Basis of Advanced Maps'
+title: 'Exercise 2_3_1 The Basis of Advanced Maps - Solution'
+#title: 'Exercise 2_3_1 The Basis of Advanced Maps'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+  # unilur::tutorial_html: default
+    unilur::tutorial_html_solution: default
 ---
 
 
@@ -25,33 +26,34 @@ klippy::klippy()
 ```
 
 
-Let us go back where we stopped developing our mapping techniques yesterday: Our Corona Map.
+Let us go back to where we stopped developing our mapping techniques yesterday: Our Covid-19 Map.
 This is just a super short repetition of what was just presented.
-No worries, we're going to have some time to improve your maps.
+No worries, we're going to have some time to improve your maps in the second exercise.
 
 
 ```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
 
 Recreate a simple Covid-19 map as already created yesterday but use ggplot2 this time.
 
-They don't have to perfectly match but:
+They don't have to match perfectly but:
 
-  - Use either the cases per 100.000 inhabitants or cases per 100.000 inhabitants in the last 7 days.
+  - Use either the cases per 100.000 inhabitants or cases per 100.000 inhabitants in the last seven days.
   - Choose a color palette.
   - Name your legend and change its position.
   - Your map should have a title.
   
 ```
 
-```{r code, eval = F}
+```{r code}
 
-# For importing the data, you can ue this code:
+# For importing the data, you can use this code:
 library(dplyr)
 library(sf)
 
-attributes_districts <-  read.csv("./data/attributes_districts.csv", 
+attributes_districts <-  read.csv("../data/attributes_districts.csv", 
                                   header = T, fill = T, sep = ",") 
-german_districts_enhanced <- st_read(dsn = "./data",
+
+german_districts_enhanced <- st_read(dsn = "../data",
                            layer = "GER_DISTRICTS") %>% 
                            rename(., district_id = id) %>% 
                           st_transform(., crs = 3035) %>% 
@@ -62,8 +64,7 @@ german_districts_enhanced <- st_read(dsn = "./data",
 ```
 
 
-```{r first-exercise, solution = TRUE, eval = FALSE}
-
+```{r first-exercise, solution = TRUE}
 
 # load libraries
 library(ggplot2)
@@ -83,20 +84,36 @@ ggplot() +
        subtitle= "German Federal Elections 2017")   
 
 
-
 ```
 
 ```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
 
-Now we want to add another layer to see if enough hospitals are located in the Covid-19 high risk zones of Germany.
+Save your map as a `.pdf`!
 
-- Add the the hospital layer to the map
+```
+
+```{block, opts.label = "clues"}
+
+You need the function `ggsave` to fulfill this task.
+
+```
+
+```{r second-exercise, solution = TRUE, eval = FALSE}
+
+# save map
+ggsave("./own_material/covid_map.pdf", covid_map, dpi = 300)
+
+```
+
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+
+Now we want to add another layer to see if enough hospitals are located in the Covid-19 high-risk zones of Germany.
+
+- Add the hospital layer to the map
 - Change the color of the points
-- Save the plot including hospitals as pdf
 
-For an extra challenge: 
-The hospital shapefile contains information on the number of beds in each hospital.
-Can you change the size of hospital dots according to the number of beds?
+For an extra challenge which we haven't covered: The hospital shapefile contains information on the number of beds in each hospital. Can you change the size of hospital dots according to the number of beds?
 
 
 ```
@@ -109,25 +126,25 @@ Make sure that the CRS of your hospital layer is defined correctly!
 
 ```{block, opts.label = "clues"}
 
-You need to define `size = beds` as aethetics of the new layer.
+You need to define `size = beds` as the aesthetics of the new layer.
 
 ```
 
 ```{block, opts.label = "clues"}
 
-The variable beds is a character but needs to be numeric.
+The variable beds is a character but need to be numeric.
 
 ```
 
 
-```{r second-exercise, solution = TRUE, eval = FALSE}
+```{r third-exercise, solution = TRUE}
 
 # import point layer hospital sf
-hospitals_sf <- read.csv("./data/hospital_points.csv", header = T, fill = T, sep = ",") %>%
+hospitals_sf <- read.csv("../data/hospital_points.csv", header = T, fill = T, sep = ",") %>%
                 st_as_sf(., coords = c("X", "Y"),
                   crs = 3035)
                 
-# add layer to map
+# add hospital layer to map
 covid_map <-
   ggplot() +
    geom_sf(data = german_districts_enhanced, 
@@ -138,12 +155,11 @@ covid_map <-
                        name = "Covid-19 Cases per 100k") + 
     theme(legend.position = "left") +
     labs(title="Covid-19 Map") +
+            # add hospital layer
     geom_sf(data = hospitals_sf,
+            # define the size of the hospital layer 
+            # by the number of beds
          aes(size = as.numeric(beds)))
-
-# save map
-ggsave("./data/own_material/covid_map.pdf", covid_map, dpi = 300)
-
 
 ```
 

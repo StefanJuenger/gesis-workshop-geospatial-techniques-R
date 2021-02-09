@@ -1,10 +1,11 @@
 ---
+# title: 'Exercise 2_2_1: Spatial Joins - Solution'
 title: 'Exercise 2_2_1: Spatial Joins'
 author: 'Stefan Jünger & Anne-Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  # unilur::tutorial_html: default
-  unilur::tutorial_html_solution: default
+  unilur::tutorial_html: default
+  # unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -30,7 +31,7 @@ klippy::klippy()
 In the session, Anne calculated the distances to the closest hospitals located within North-Rhine Westphalia (NRW). Still, she did not show how she subsetted the original file, which contains all hospitals in Germany.
 What did she do?
 Subset the data file yourself by relying on the spatial information of the `csv`-file "hospital_points" and the polygon of North-Rhine Westphalia.
-
+How many hospitals are located within the borders of NRW?
 ```
 
 ```{block, opts.label = "clues"}
@@ -39,26 +40,20 @@ You need two shapefiles for that: the point layer hospital_points in the `data` 
 
 ```{block, opts.label = "clues"}
 
-Row-wise deletion of observations with missing values will allow you to subset.   
+The default of `st_join` will leave you with a 'left-join' and returns a data object with all hospitals and matching district information for those which are located within NRW. You can reset the option to perform an 'inner-join' and keep only the observation which lay within the predefined area (st_join(x , y, join  = "", left = FALSE)).
 
 ```
 
-```{r first, solution = TRUE, eval = FALSE}
+```{r first, solution = TRUE}
 
-hospitals <- read.csv("./data/hospital_points.csv", 
+# load hospitals
+hospitals <- read.csv("../data/hospital_points.csv", 
                       header = T, fill = T, sep = ",") %>%
             sf::st_as_sf(., coords = c("X", "Y"),
             crs = 3035)
 
-# import shapefile nrw
-nrw <- sf::st_read(dsn = "./data",
-                         layer = "GER_STATES",
-                         quiet = T) %>%
-                  sf::st_transform(.,3035) %>% 
-                  filter( AGS == "05")
 
-
-# you could also use the OSM function provided by Stefan
+#  use the OSM function provided by Stefan
 nrw <-
   osmdata::getbb(
     "Nordrhein-Westfalen", 
@@ -67,12 +62,28 @@ nrw <-
   .$multipolygon %>% 
   sf::st_transform(3035)
 
+# or import shapefile nrw
+nrw <- sf::st_read(dsn = "../data",
+                         layer = "GER_STATES",
+                         quiet = T) %>%
+                        sf::st_transform(.,3035) %>% 
+                        filter( AGS == "05")
+
 # spatial join
 nrw_hospitals <-
   hospitals %>% 
-  st_join(., nrw, join = st_within) %>% 
-  filter(!is.na(AGS))
+  sf::st_join(., 
+          # point layer nrw
+          nrw, 
+          # chose intersect or within
+          join = sf::st_intersects,
+          # option false will 
+          # keep only the hospital 
+          # which could be joined
+          left = FALSE)
 
+nrw_hospitals
+# 344 hospitals in NRW
 
 ```
 
@@ -81,24 +92,30 @@ nrw_hospitals <-
 
 Did the operationalization of health care provision convince you? Don't you think it might be more important how many hospitals are close to the respondents?
 To test this, we want to calculate the number of hospitals per district in North-Rhine Westphalia.
-Use the syntax below to load the district data and prep the hospital data.
+Use the syntax below to prep the hospital data.
 
-Earn extra points by counting the number of hospitals and the sum of hospital beds within a district.
+Earn extra points by counting not only the number of hospitals but also the sum of hospital beds within a district.
 
 ```
 
 ```{r load-data, eval = F}
 
-nrw_districts <- st_read(dsn = "./data",
+nrw_districts <- sf::st_read(dsn = "../data",
                             layer = "GER_DISTRICTS",
+                            # quiet is optional if you
+                            # not want to print the metainformation
                             quiet = T) %>% 
-                    st_transform(. , 3035) %>% 
-                    rename(., district_id = id) %>% 
-                   filter( district_id >= 5000 & district_id < 6000 ) 
+                    sf::st_transform(. , 3035) %>% 
+                    dplyr::rename(., district_id = id) %>% 
+                    # filter the districts of NRW
+                    dplyr::filter( district_id >= 5000 & district_id < 6000 ) 
 
-nrw_hospitals <-  nrw_hospitals %>% 
-                  mutate(beds = as.numeric(beds)) %>%
-                  replace(., is.na(.), 0)
+nrw_hospitals <-  
+  nrw_hospitals %>% 
+    # beds were character, now numeric
+     dplyr::mutate(beds = as.numeric(beds)) %>%
+    # replace NAs as zeros for simplification
+     replace(., is.na(.), 0)
 
 ```
 
@@ -111,20 +128,28 @@ You need a `as_tibble()` data frame to use the functions `group_by()` and `summa
  
 ```{block, opts.label = "clues"}
 
-The function `n()` allows summarising the total count of hospitals. `sum(beds)` for summarizing the sum of beds.
+The function `n()` allows summarising the total count of hospitals. `sum(beds)` for summarizing the bed total per district.
 
 ```
 
-```{r second, solution = TRUE, eval = FALSE}
+```{r second, solution = TRUE}
 
+district_hospital_join <-
+  nrw_hospitals %>% 
+    # join the hospitals 
+    # within districts
+    sf::st_join(., nrw_districts, join = sf::st_within) %>% 
+    # use as tibble to perform
+    # group by & summarise
+    dplyr::as_tibble() %>% 
+    dplyr::group_by(district_id) %>% 
+    dplyr::summarise(hospital_ct = n(), 
+              hospital_bed_ct = sum(beds)) %>% 
+    # left join the new information
+    # to the original data frame
+    left_join(nrw_districts,.)
 
-nrw_hospitals %>% 
-  st_join(., nrw_districts, join = st_within) %>% 
-  as_tibble() %>% 
-  group_by(district_id) %>% 
-  summarise(hospital_ct = n(), 
-            hospital_bed_ct = sum(beds)) %>% 
-  left_join(nrw_districts,.)
+district_hospital_join
 
 
 ```
