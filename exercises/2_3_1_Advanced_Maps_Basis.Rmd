@@ -83,6 +83,8 @@ ggplot() +
   labs(title="Covid-19 Map",   
        subtitle= "German Federal Elections 2017")   
 
+covid_map
+
 
 ```
 
@@ -145,7 +147,7 @@ hospitals_sf <- read.csv("../data/hospital_points.csv", header = T, fill = T, se
                   crs = 3035)
                 
 # add hospital layer to map
-covid_map <-
+covid_hospitals_map <-
   ggplot() +
    geom_sf(data = german_districts_enhanced, 
           aes(fill = cases_per_100k), 
@@ -160,6 +162,8 @@ covid_map <-
             # define the size of the hospital layer 
             # by the number of beds
          aes(size = as.numeric(beds)))
+
+covid_hospitals_map
 
 ```
 
