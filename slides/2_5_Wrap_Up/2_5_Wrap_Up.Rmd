@@ -72,9 +72,11 @@ course_content %>%
 ## Vector Data
 
 Main Messages
--
--
--
+- Most common geospatial data type
+- Vector data come as points, lines or polygons 
+- Information on the geometries stored in the geometry column
+- Attributes can be assigned to each geometric object
+- Attribute tables are treated as data frames
 
 ---
 
@@ -90,9 +92,9 @@ course_content %>%
 ## Basic Maps
 
 Main Messages
--
--
--
+- basis of each map is the geometries of geospatial data.
+- spatial distribution of attributes become visible when  defining an attribute and adding color scales
+- layer shapefiles to add more information or for aesthetic reasons
 
 ---
 
@@ -165,9 +167,10 @@ course_content %>%
 ## Advanced Maps I
 
 Main Messages
--
--
--
+- When making maps think not only about map layers but also layers of meta information and visualizations
+- Advanced toolboxes like ggplot2 allow you to tweak every detail of your map.
+- Making maps can be very time investing but yet very rewarding
+
 
 ---
 
@@ -195,13 +198,59 @@ Spatial Analysis
 - requires knowledge of spatial statistics
 - but definitely the next step
 
+--
+
 Other map types
 - cartograms
 - hexagon maps
 - animated maps
 - ...
 
+--
+
 More data source
 - necessarily limited
+
+  
+---
+
+## Data Sources
+
+Some more information:
+
 - geospatial data are interdisciplinary
-  - amount of data feels unlimited
+- amount of data feels unlimited
+- data providers and data portals are often specific in the area and/or the information they cover
+
+--
+
+Some random examples: 
+
+- [Eurostat](https://ec.europa.eu/eurostat/web/gisco/geodata)
+- [European Spatial Data Infrastructure](https://inspire.ec.europa.eu/about-inspire/563)
+- [John Hopkins Corona Data Hub and Dashboard](https://coronavirus.jhu.edu/map.html)
+- [US Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html)
+- ...
+
+---
+layout: false
+class: center
+background-image: url(./img/the_end.png)
+background-size: cover
+
+.left-column[
+```{r pic-anne, echo = FALSE, out.width = "60%"}
+knitr::include_graphics("./img/anne.png")
+knitr::include_graphics("./img/stefan.png")
+```
+]
+.right-column[
+.left[.small[`r icon::fontawesome("envelope")` [`anne-kathrin.stroppe@gesis.org`](mailto:anne-kathrin.stroppe@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@AStroppe`](https://twitter.com/Astroppe)] </br>
+ </br>
+.small[`r icon::fontawesome("envelope")`  [`stefan.juenger@gesis.org`](mailto:stefan.juenger@gesis.org)] </br>
+.small[`r icon::fontawesome("twitter")` [`@StefanJuenger`](https://twitter.com/StefanJuenger)]] </br>
+]
+
+  
+  -
