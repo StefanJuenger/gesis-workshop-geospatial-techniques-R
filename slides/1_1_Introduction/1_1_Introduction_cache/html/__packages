@@ -1,8 +1,11 @@
 base
 easypackages
+cowplot
+corrr
 dplyr
 emo
 ggplot2
+ggrepel
 icon
 kableExtra
 knitr

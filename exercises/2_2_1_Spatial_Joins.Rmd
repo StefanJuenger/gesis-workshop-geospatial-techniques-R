@@ -1,11 +1,11 @@
 ---
-# title: 'Exercise 2_2_1: Spatial Joins - Solution'
-title: 'Exercise 2_2_1: Spatial Joins'
+title: 'Exercise 2_2_1: Spatial Joins - Solution'
+# title: 'Exercise 2_2_1: Spatial Joins'
 author: 'Stefan Jünger & Anne-Kathrin Stroppe'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  # unilur::tutorial_html_solution: default
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
@@ -83,7 +83,6 @@ nrw_hospitals <-
           left = FALSE)
 
 nrw_hospitals
-# 344 hospitals in NRW
 
 ```
 
@@ -98,7 +97,7 @@ Earn extra points by counting not only the number of hospitals but also the sum 
 
 ```
 
-```{r load-data, eval = F}
+```{r load-data}
 
 nrw_districts <- sf::st_read(dsn = "../data",
                             layer = "GER_DISTRICTS",

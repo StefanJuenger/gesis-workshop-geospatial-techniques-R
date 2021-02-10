@@ -1,5 +1,5 @@
 ---
-title: 'Exercise 1_2_2 Manipulate Vector Data - Solutions'
+title: 'Exercise 1_2_2 Manipulate Vector Data - Solution'
 # title: 'Exercise 1_2_2 Manipulate Vector Data'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'

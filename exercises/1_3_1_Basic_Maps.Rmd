@@ -1,11 +1,11 @@
 ---
-# title: 'Exercise 1_3_1 Basic Maps - Solutions'
-title: 'Exercise 1_3_1 Basic Maps'
+title: 'Exercise 1_3_1 Basic Maps - Solutions'
+#title: 'Exercise 1_3_1 Basic Maps'
 author: 'Anne Stroppe, Stefan Jünger'
 date: 'Geospatial Techniques for Social Scientists in R'
 output:
-  unilur::tutorial_html: default
-  #unilur::tutorial_html_solution: default
+  # unilur::tutorial_html: default
+  unilur::tutorial_html_solution: default
 ---
 
 ```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}

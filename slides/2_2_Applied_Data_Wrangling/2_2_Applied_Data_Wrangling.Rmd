@@ -775,7 +775,7 @@ knitr::include_graphics("./img/distance.png")
 
 # Distance Calculation
 
-`st_distance` will calculate between **all** respondents and **all** hospitals resulting in a matrix with 344000 objects (1000 respondent * 344 hospitals). We can make our lives a little bit easier by treating this matrix as a `tibble` or data frame having 1000 observations with 344 variables.
+`st_distance` will calculate between **all** respondents and **all** hospitals resulting in a matrix with 343000 objects (1000 respondent * 343 hospitals). We can make our lives a little bit easier by treating this matrix as a `tibble` or data frame having 1000 observations with 343 variables.
 
 .pull-left[
 ```{r dist_matr-disp, eval = F}

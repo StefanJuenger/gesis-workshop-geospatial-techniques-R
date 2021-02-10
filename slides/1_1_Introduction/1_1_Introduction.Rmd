@@ -296,7 +296,7 @@ In the folder called `data` in the same folder as the other materials for this w
 
 - Administrative borders of Germany (Prefix *GER_*) are provided by the German [Federal Agency for Cartography and Geodesy](http://www.bkg.bund.de)(2018). Check out their [Open Data Portal](https://gdz.bkg.bund.de/index.php/default/open-data.html).
 
-- The hospital locations are based on the register of hospitals and preventive care/rehabilitation facilities 2017 published by the [Federal Statistical Office Germany](https://www-genesis.destatis.de/genesis/online). Addresses were geocoded and -referenced by Anne. 
+- The hospital locations are based on the register of hospitals and preventive care/rehabilitation facilities 2015 published by the [Federal Statistical Office Germany](https://www-genesis.destatis.de/genesis/online). Addresses were geocoded and -referenced by Anne. 
 
 ---
 
